@@ -1355,7 +1355,7 @@ function WebDetectorQuiz() {
     <div style={{ 
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-      padding: '20px',
+      padding: 'clamp(10px, 3vw, 20px)',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       position: 'relative',
       overflow: 'hidden'
@@ -1375,7 +1375,7 @@ function WebDetectorQuiz() {
           position: 'absolute',
           top: '10%',
           left: '5%',
-          fontSize: '3rem',
+          fontSize: 'clamp(2rem, 5vw, 3rem)',
           transform: 'rotate(-15deg)',
           animation: 'float 4s ease-in-out infinite'
         }}>🚩</div>
@@ -1383,7 +1383,7 @@ function WebDetectorQuiz() {
           position: 'absolute',
           top: '20%',
           right: '10%',
-          fontSize: '4rem',
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
           transform: 'rotate(15deg)',
           animation: 'float 5s ease-in-out infinite'
         }}>⚠️</div>
@@ -1391,7 +1391,7 @@ function WebDetectorQuiz() {
           position: 'absolute',
           bottom: '15%',
           left: '15%',
-          fontSize: '3.5rem',
+          fontSize: 'clamp(2.2rem, 5.5vw, 3.5rem)',
           transform: 'rotate(-10deg)',
           animation: 'float 4.5s ease-in-out infinite'
         }}>🔍</div>
@@ -1399,20 +1399,20 @@ function WebDetectorQuiz() {
           position: 'absolute',
           bottom: '25%',
           right: '5%',
-          fontSize: '3rem',
+          fontSize: 'clamp(2rem, 5vw, 3rem)',
           transform: 'rotate(20deg)',
           animation: 'float 5.5s ease-in-out infinite'
         }}>🎯</div>
       </div>
 
-      {/* Progress indicator - Made more mobile-friendly */}
+      {/* Progress indicator */}
       <div style={{
         position: 'fixed',
         top: '10px',
         right: '10px',
         left: '10px',
         backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        padding: '8px 15px',
+        padding: 'clamp(6px, 2vw, 8px) clamp(10px, 3vw, 15px)',
         borderRadius: '20px',
         boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
         zIndex: 1000,
@@ -1424,7 +1424,7 @@ function WebDetectorQuiz() {
         margin: '0 auto'
       }}>
         <span style={{ 
-          fontSize: '1rem',
+          fontSize: 'clamp(0.9rem, 2vw, 1rem)',
           fontWeight: '600',
           color: '#2c3e50',
           textAlign: 'center'
@@ -1465,39 +1465,40 @@ function WebDetectorQuiz() {
 
       <div style={{ 
         maxWidth: '1200px', 
-        margin: '60px auto 20px',
+        margin: 'clamp(40px, 8vw, 60px) auto 20px',
         background: 'rgba(255, 255, 255, 0.9)',
         borderRadius: '20px',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-        padding: '20px',
+        padding: 'clamp(15px, 3vw, 20px)',
         position: 'relative',
         zIndex: 1
       }}>
         <div style={{
           textAlign: 'center',
-          marginBottom: '30px',
-          padding: '20px',
+          marginBottom: 'clamp(20px, 4vw, 30px)',
+          padding: 'clamp(15px, 3vw, 20px)',
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderRadius: '15px',
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
           <h2 style={{ 
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
             color: '#2c3e50',
-            marginBottom: '15px',
+            marginBottom: 'clamp(10px, 2vw, 15px)',
             fontWeight: '800',
             textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
             letterSpacing: '0.5px',
             background: 'linear-gradient(45deg, #2c3e50, #3498db)',
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
+            WebkitTextFillColor: 'transparent',
+            lineHeight: '1.3'
           }}>
             You Are Stuck in the Web of Manipulation...
             How Did You Get Stuck?
           </h2>
           
           <p style={{ 
-            fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+            fontSize: 'clamp(0.9rem, 2vw, 1.4rem)',
             color: '#34495e',
             marginBottom: '0',
             fontStyle: 'italic',
@@ -1505,7 +1506,7 @@ function WebDetectorQuiz() {
             fontWeight: '500',
             maxWidth: '600px',
             margin: '0 auto',
-            padding: '0 10px'
+            padding: '0 clamp(10px, 2vw, 20px)'
           }}>
             Click on the red flags you've noticed in your situation. Be honest with yourself.
           </p>
@@ -1515,16 +1516,16 @@ function WebDetectorQuiz() {
           <form onSubmit={handleSubmit} style={{ maxWidth: '100%', margin: '0 auto' }}>
             <div style={{ 
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              padding: '20px',
+              padding: 'clamp(15px, 3vw, 20px)',
               borderRadius: '15px',
               boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
               minHeight: '500px',
               position: 'relative'
             }}>
               <p style={{ 
-                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
                 color: '#34495e',
-                marginBottom: '20px',
+                marginBottom: 'clamp(15px, 3vw, 20px)',
                 textAlign: 'center',
                 lineHeight: '1.6',
                 fontWeight: '500'
@@ -1534,9 +1535,9 @@ function WebDetectorQuiz() {
               
               <div style={{ 
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-                gap: '15px',
-                padding: '10px'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: 'clamp(10px, 2vw, 15px)',
+                padding: 'clamp(5px, 1.5vw, 10px)'
               }}>
                 {questions.map((q, idx) => {
                   const parts = q.question.split(/(\b\w+\b)/g);
@@ -1554,7 +1555,7 @@ function WebDetectorQuiz() {
                       onClick={() => handleChange(idx)}
                       style={{ 
                         position: 'relative',
-                        padding: '20px',
+                        padding: 'clamp(15px, 3vw, 20px)',
                         backgroundColor: responses[idx] ? '#fff5f5' : '#f8f9fa',
                         borderRadius: '15px',
                         cursor: 'pointer',
@@ -1576,11 +1577,11 @@ function WebDetectorQuiz() {
                         top: '-15px',
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        fontSize: '1.5rem',
+                        fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
                         backgroundColor: responses[idx] ? '#e74c3c' : '#95a5a6',
                         color: 'white',
-                        width: '30px',
-                        height: '30px',
+                        width: 'clamp(25px, 5vw, 30px)',
+                        height: 'clamp(25px, 5vw, 30px)',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
@@ -1591,10 +1592,10 @@ function WebDetectorQuiz() {
                         {responses[idx] ? '🚩' : '?'}
                       </div>
                       <p style={{ 
-                        fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
+                        fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
                         color: '#34495e',
                         lineHeight: '1.6',
-                        marginTop: '15px',
+                        marginTop: 'clamp(10px, 2vw, 15px)',
                         textAlign: 'center',
                         fontWeight: '500'
                       }}>
@@ -1607,13 +1608,13 @@ function WebDetectorQuiz() {
               
               <div style={{ 
                 textAlign: 'center',
-                marginTop: '20px'
+                marginTop: 'clamp(15px, 3vw, 20px)'
               }}>
                 <button 
                   type="submit" 
                   style={{ 
-                    padding: '12px 25px',
-                    fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                    padding: 'clamp(10px, 2vw, 12px) clamp(20px, 4vw, 25px)',
+                    fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
                     backgroundColor: '#3498db',
                     color: 'white',
                     border: 'none',
@@ -1640,23 +1641,24 @@ function WebDetectorQuiz() {
             {/* Results Header */}
             <div style={{
               textAlign: 'center',
-              marginBottom: '30px',
-              padding: '20px',
+              marginBottom: 'clamp(20px, 4vw, 30px)',
+              padding: 'clamp(15px, 3vw, 20px)',
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               borderRadius: '15px',
               boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
               animation: 'slideDown 0.5s ease-out'
             }}>
               <h3 style={{ 
-                fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+                fontSize: 'clamp(1.2rem, 3vw, 2.2rem)',
                 color: '#2c3e50',
-                marginBottom: '15px',
+                marginBottom: 'clamp(10px, 2vw, 15px)',
                 fontWeight: '800',
                 textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
                 letterSpacing: '0.5px',
                 background: 'linear-gradient(45deg, #2c3e50, #3498db)',
                 WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                WebkitTextFillColor: 'transparent',
+                lineHeight: '1.3'
               }}>
                 Your Results
               </h3>
@@ -1664,8 +1666,8 @@ function WebDetectorQuiz() {
             
             {/* Score Summary */}
             <div style={{ 
-              marginBottom: '20px',
-              padding: '20px',
+              marginBottom: 'clamp(15px, 3vw, 20px)',
+              padding: 'clamp(15px, 3vw, 20px)',
               backgroundColor: '#f8f9fa',
               borderRadius: '15px',
               boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
@@ -1678,13 +1680,14 @@ function WebDetectorQuiz() {
               animation: 'fadeIn 0.5s ease-out'
             }}>
               <p style={{ 
-                fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
-                marginBottom: '15px',
+                fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+                marginBottom: 'clamp(10px, 2vw, 15px)',
                 color: '#2c3e50',
-                fontWeight: '600'
+                fontWeight: '600',
+                textAlign: 'center'
               }}>
                 You identified <span style={{ 
-                  fontSize: 'clamp(1.3rem, 2.5vw, 1.5rem)',
+                  fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
                   fontWeight: '800',
                   color: '#e74c3c'
                 }}>{score}</span> out of {questions.length} red flags
@@ -1692,12 +1695,12 @@ function WebDetectorQuiz() {
               
               {score === 0 && (
                 <div style={{ 
-                  padding: '15px',
+                  padding: 'clamp(10px, 2vw, 15px)',
                   backgroundColor: '#e6ffe6',
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#27ae60', fontSize: '1.1rem' }}>
+                  <p style={{ margin: '0', color: '#27ae60', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🎉 Great job! You're probably safe in this situation. But keep trusting your instincts!
                   </p>
                 </div>
@@ -1705,12 +1708,12 @@ function WebDetectorQuiz() {
               
               {score >= 1 && score <= 2 && (
                 <div style={{ 
-                  padding: '15px',
+                  padding: 'clamp(10px, 2vw, 15px)',
                   backgroundColor: '#fff3e6',
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#d35400', fontSize: '1.1rem' }}>
+                  <p style={{ margin: '0', color: '#d35400', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     ⚠️ There may be mild manipulation patterns. Stay aware and keep your boundaries strong!
                   </p>
                 </div>
@@ -1718,12 +1721,12 @@ function WebDetectorQuiz() {
               
               {score >= 3 && score <= 4 && (
                 <div style={{ 
-                  padding: '15px',
+                  padding: 'clamp(10px, 2vw, 15px)',
                   backgroundColor: '#ffe6e6',
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#c0392b', fontSize: '1.1rem' }}>
+                  <p style={{ margin: '0', color: '#c0392b', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🚨 You're likely experiencing manipulative behavior. Trust your gut and set clear boundaries!
                   </p>
                 </div>
@@ -1731,12 +1734,12 @@ function WebDetectorQuiz() {
               
               {score >= 5 && (
                 <div style={{ 
-                  padding: '15px',
+                  padding: 'clamp(10px, 2vw, 15px)',
                   backgroundColor: '#ffcccc',
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#7f0000', fontSize: '1.1rem' }}>
+                  <p style={{ margin: '0', color: '#7f0000', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🔥 This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support!
                   </p>
                 </div>
@@ -1745,26 +1748,27 @@ function WebDetectorQuiz() {
 
             {/* Red Flag Details */}
             {flaggedQuestions.length > 0 && (
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: 'clamp(15px, 3vw, 20px)' }}>
                 <div style={{
                   textAlign: 'center',
-                  marginBottom: '30px',
-                  padding: '15px',
+                  marginBottom: 'clamp(20px, 4vw, 30px)',
+                  padding: 'clamp(10px, 2vw, 15px)',
                   backgroundColor: '#f8f9fa',
                   borderRadius: '12px',
                   boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                   animation: 'slideUp 0.5s ease-out'
                 }}>
                   <h4 style={{ 
-                    fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
+                    fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
                     color: '#2c3e50',
-                    marginBottom: '15px',
+                    marginBottom: 'clamp(10px, 2vw, 15px)',
                     fontWeight: '800',
                     textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
                     letterSpacing: '0.5px',
                     background: 'linear-gradient(45deg, #2c3e50, #3498db)',
                     WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                    WebkitTextFillColor: 'transparent',
+                    lineHeight: '1.3'
                   }}>
                     Details About the Red Flags You Identified
                   </h4>
@@ -1774,8 +1778,8 @@ function WebDetectorQuiz() {
                   <div 
                     key={idx} 
                     style={{ 
-                      marginBottom: '20px', 
-                      padding: '20px', 
+                      marginBottom: 'clamp(15px, 3vw, 20px)', 
+                      padding: 'clamp(15px, 3vw, 20px)', 
                       border: '1px solid #e0e0e0', 
                       borderRadius: '15px',
                       backgroundColor: '#fff',
@@ -1792,23 +1796,23 @@ function WebDetectorQuiz() {
                   >
                     <h5 style={{ 
                       color: '#2c3e50',
-                      fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
-                      marginBottom: '15px',
+                      fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+                      marginBottom: 'clamp(10px, 2vw, 15px)',
                       fontWeight: '700',
                       borderBottom: '2px solid #f0f0f0',
-                      paddingBottom: '10px'
+                      paddingBottom: 'clamp(8px, 1.5vw, 10px)'
                     }}>
                       {q.question}
                     </h5>
                     
                     <h6 style={{ 
                       color: '#e74c3c',
-                      fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
-                      marginBottom: '15px',
+                      fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
+                      marginBottom: 'clamp(10px, 2vw, 15px)',
                       fontWeight: '600',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '10px'
+                      gap: 'clamp(5px, 1.5vw, 10px)'
                     }}>
                       <span>🚩</span> {q.tactic}
                     </h6>
@@ -1816,13 +1820,13 @@ function WebDetectorQuiz() {
                     <div style={{ 
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                      gap: '15px',
-                      marginBottom: '15px'
+                      gap: 'clamp(10px, 2vw, 15px)',
+                      marginBottom: 'clamp(10px, 2vw, 15px)'
                     }}>
                       <div 
                         onClick={() => toggleSection(idx, 'howItWorks')}
                         style={{ 
-                          padding: '15px',
+                          padding: 'clamp(10px, 2vw, 15px)',
                           backgroundColor: '#f8f9fa',
                           borderRadius: '10px',
                           borderLeft: '4px solid #3498db',
@@ -1835,12 +1839,12 @@ function WebDetectorQuiz() {
                       >
                         <h6 style={{ 
                           color: '#2c3e50',
-                          fontSize: '1.1rem',
-                          marginBottom: '10px',
+                          fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                          marginBottom: 'clamp(8px, 1.5vw, 10px)',
                           fontWeight: '600',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '10px'
+                          gap: 'clamp(5px, 1.5vw, 10px)'
                         }}>
                           <span>🔍</span> How It Works
                           <span style={{ marginLeft: 'auto' }}>
@@ -1851,7 +1855,8 @@ function WebDetectorQuiz() {
                           <p style={{ 
                             color: '#444',
                             lineHeight: '1.6',
-                            margin: '0'
+                            margin: '0',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             {q.howItWorks}
                           </p>
@@ -1861,7 +1866,7 @@ function WebDetectorQuiz() {
                       <div 
                         onClick={() => toggleSection(idx, 'redFlags')}
                         style={{ 
-                          padding: '15px',
+                          padding: 'clamp(10px, 2vw, 15px)',
                           backgroundColor: '#f8f9fa',
                           borderRadius: '10px',
                           borderLeft: '4px solid #e74c3c',
@@ -1874,12 +1879,12 @@ function WebDetectorQuiz() {
                       >
                         <h6 style={{ 
                           color: '#2c3e50',
-                          fontSize: '1.1rem',
-                          marginBottom: '10px',
+                          fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                          marginBottom: 'clamp(8px, 1.5vw, 10px)',
                           fontWeight: '600',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '10px'
+                          gap: 'clamp(5px, 1.5vw, 10px)'
                         }}>
                           <span>🚩</span> Red Flags
                           <span style={{ marginLeft: 'auto' }}>
@@ -1889,15 +1894,16 @@ function WebDetectorQuiz() {
                         {expandedSections[`${idx}-redFlags`] && (
                           <ul style={{ 
                             margin: '0',
-                            paddingLeft: '20px',
+                            paddingLeft: 'clamp(15px, 3vw, 20px)',
                             color: '#444',
-                            lineHeight: '1.6'
+                            lineHeight: '1.6',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             {q.redFlags.map((flag, i) => (
                               <li key={i} style={{ 
-                                marginBottom: '8px',
+                                marginBottom: 'clamp(5px, 1.5vw, 8px)',
                                 position: 'relative',
-                                paddingLeft: '25px'
+                                paddingLeft: 'clamp(20px, 4vw, 25px)'
                               }}>
                                 <span style={{
                                   position: 'absolute',
@@ -1916,13 +1922,13 @@ function WebDetectorQuiz() {
 
                     <div style={{ 
                       display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                      gap: '20px'
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                      gap: 'clamp(15px, 3vw, 20px)'
                     }}>
                       <div 
                         onClick={() => toggleSection(idx, 'emotionalImpact')}
                         style={{ 
-                          padding: '15px',
+                          padding: 'clamp(10px, 2vw, 15px)',
                           backgroundColor: '#fff5e6',
                           borderRadius: '10px',
                           borderLeft: '4px solid #f39c12',
@@ -1935,12 +1941,12 @@ function WebDetectorQuiz() {
                       >
                         <h6 style={{ 
                           color: '#d35400',
-                          fontSize: '1.1rem',
-                          marginBottom: '10px',
+                          fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                          marginBottom: 'clamp(8px, 1.5vw, 10px)',
                           fontWeight: '600',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '10px'
+                          gap: 'clamp(5px, 1.5vw, 10px)'
                         }}>
                           <span>💭</span> Emotional Impact
                           <span style={{ marginLeft: 'auto' }}>
@@ -1951,7 +1957,8 @@ function WebDetectorQuiz() {
                           <p style={{ 
                             color: '#7f4c00',
                             lineHeight: '1.6',
-                            margin: '0'
+                            margin: '0',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             {q.emotionalImpact}
                           </p>
@@ -1961,7 +1968,7 @@ function WebDetectorQuiz() {
                       <div 
                         onClick={() => toggleSection(idx, 'metaphor')}
                         style={{ 
-                          padding: '15px',
+                          padding: 'clamp(10px, 2vw, 15px)',
                           backgroundColor: '#f0f7ff',
                           borderRadius: '10px',
                           borderLeft: '4px solid #3498db',
@@ -1974,12 +1981,12 @@ function WebDetectorQuiz() {
                       >
                         <h6 style={{ 
                           color: '#2980b9',
-                          fontSize: '1.1rem',
-                          marginBottom: '10px',
+                          fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                          marginBottom: 'clamp(8px, 1.5vw, 10px)',
                           fontWeight: '600',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '10px'
+                          gap: 'clamp(5px, 1.5vw, 10px)'
                         }}>
                           <span>🎭</span> Metaphor/Analogy
                           <span style={{ marginLeft: 'auto' }}>
@@ -1990,7 +1997,8 @@ function WebDetectorQuiz() {
                           <p style={{ 
                             color: '#2c3e50',
                             lineHeight: '1.6',
-                            margin: '0'
+                            margin: '0',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             {q.metaphor}
                           </p>
@@ -1999,8 +2007,8 @@ function WebDetectorQuiz() {
                     </div>
 
                     <div style={{ 
-                      marginTop: '20px',
-                      padding: '20px',
+                      marginTop: 'clamp(15px, 3vw, 20px)',
+                      padding: 'clamp(15px, 3vw, 20px)',
                       backgroundColor: '#e6f3ff',
                       borderRadius: '10px',
                       borderLeft: '4px solid #2980b9',
@@ -2008,12 +2016,12 @@ function WebDetectorQuiz() {
                     }}>
                       <h6 style={{ 
                         color: '#2c3e50',
-                        fontSize: '1.2rem',
-                        marginBottom: '15px',
+                        fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                        marginBottom: 'clamp(10px, 2vw, 15px)',
                         fontWeight: '700',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '10px'
+                        gap: 'clamp(5px, 1.5vw, 10px)'
                       }}>
                         <span>🛡️</span> Counter-Strategy: {q.counterStrategy.name}
                       </h6>
@@ -2021,30 +2029,32 @@ function WebDetectorQuiz() {
                       <div style={{ 
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                        gap: '20px'
+                        gap: 'clamp(15px, 3vw, 20px)'
                       }}>
                         <div>
                           <p style={{ 
                             color: '#444',
                             lineHeight: '1.6',
-                            margin: '0 0 10px 0'
+                            margin: '0 0 clamp(8px, 1.5vw, 10px) 0',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             <strong style={{ color: '#2c3e50' }}>Action:</strong> {q.counterStrategy.action}
                           </p>
                           
-                          <div style={{ margin: '10px 0' }}>
+                          <div style={{ margin: 'clamp(8px, 1.5vw, 10px) 0' }}>
                             <strong style={{ color: '#2c3e50' }}>Examples:</strong>
                             <ul style={{ 
-                              margin: '8px 0 0 0',
-                              paddingLeft: '20px',
+                              margin: 'clamp(5px, 1.5vw, 8px) 0 0 0',
+                              paddingLeft: 'clamp(15px, 3vw, 20px)',
                               color: '#444',
-                              lineHeight: '1.6'
+                              lineHeight: '1.6',
+                              fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                             }}>
                               {q.counterStrategy.examples.map((example, i) => (
                                 <li key={i} style={{ 
-                                  marginBottom: '8px',
+                                  marginBottom: 'clamp(5px, 1.5vw, 8px)',
                                   position: 'relative',
-                                  paddingLeft: '25px'
+                                  paddingLeft: 'clamp(20px, 4vw, 25px)'
                                 }}>
                                   <span style={{
                                     position: 'absolute',
@@ -2064,19 +2074,21 @@ function WebDetectorQuiz() {
                           <p style={{ 
                             color: '#444',
                             lineHeight: '1.6',
-                            margin: '0 0 10px 0'
+                            margin: '0 0 clamp(8px, 1.5vw, 10px) 0',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             <strong style={{ color: '#2c3e50' }}>Psychology:</strong> {q.counterStrategy.psychology}
                           </p>
                           
                           <p style={{ 
-                            marginTop: '10px',
+                            marginTop: 'clamp(8px, 1.5vw, 10px)',
                             fontStyle: 'italic',
                             color: '#2c3e50',
                             lineHeight: '1.6',
-                            padding: '10px',
+                            padding: 'clamp(8px, 1.5vw, 10px)',
                             backgroundColor: 'rgba(255,255,255,0.5)',
-                            borderRadius: '8px'
+                            borderRadius: '8px',
+                            fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                           }}>
                             <strong>Power Move:</strong> {q.counterStrategy.powerMove}
                           </p>
@@ -2089,13 +2101,13 @@ function WebDetectorQuiz() {
             )}
             
             <div style={{ 
-              marginTop: '20px',
+              marginTop: 'clamp(15px, 3vw, 20px)',
               textAlign: 'center'
             }}>
               <Link to="/">
                 <button style={{ 
-                  padding: '12px 25px',
-                  fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                  padding: 'clamp(10px, 2vw, 12px) clamp(20px, 4vw, 25px)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                   backgroundColor: '#2c3e50',
                   color: 'white',
                   border: 'none',
@@ -2172,6 +2184,20 @@ function WebDetectorQuiz() {
             
             .counter-strategy {
               padding: 15px !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .question-card {
+              padding: 12px !important;
+            }
+            
+            .result-card {
+              padding: 12px !important;
+            }
+            
+            .counter-strategy {
+              padding: 12px !important;
             }
           }
         `}
