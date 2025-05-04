@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: 'center', paddingTop: '100px' }}>
+      <h1>Welcome to Silk 🕸️</h1>
+      <p>You’re safe here. Let’s begin cutting through the web.</p>
+      <button
+        onClick={() => alert('Web Detector coming soon')}
+        style={{
+          padding: '10px 20px',
+          fontSize: '1rem',
+          marginTop: '20px',
+          cursor: 'pointer'
+        }}
+      >
+        Start
+      </button>
     </div>
   );
 }
