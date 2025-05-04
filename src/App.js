@@ -440,6 +440,14 @@ function WebDetectorQuiz() {
   const [submitted, setSubmitted] = useState(false);
   const [selectedCount, setSelectedCount] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({});
+
+  const toggleSection = (questionIndex, section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [`${questionIndex}-${section}`]: !prev[`${questionIndex}-${section}`]
+    }));
+  };
 
   // Add sound effects
   const playClickSound = () => {
@@ -1804,73 +1812,105 @@ function WebDetectorQuiz() {
                     }}>
                       <span>🚩</span> {q.tactic}
                     </h6>
-                    
+
                     <div style={{ 
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
                       gap: '15px',
                       marginBottom: '15px'
                     }}>
-                      <div style={{ 
-                        padding: '15px',
-                        backgroundColor: '#f8f9fa',
-                        borderRadius: '10px',
-                        borderLeft: '4px solid #3498db'
-                      }}>
+                      <div 
+                        onClick={() => toggleSection(idx, 'howItWorks')}
+                        style={{ 
+                          padding: '15px',
+                          backgroundColor: '#f8f9fa',
+                          borderRadius: '10px',
+                          borderLeft: '4px solid #3498db',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          ':hover': {
+                            backgroundColor: '#e8f4ff'
+                          }
+                        }}
+                      >
                         <h6 style={{ 
                           color: '#2c3e50',
                           fontSize: '1.1rem',
                           marginBottom: '10px',
-                          fontWeight: '600'
+                          fontWeight: '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px'
                         }}>
-                          How It Works
+                          <span>🔍</span> How It Works
+                          <span style={{ marginLeft: 'auto' }}>
+                            {expandedSections[`${idx}-howItWorks`] ? '▼' : '▶'}
+                          </span>
                         </h6>
-                        <p style={{ 
-                          color: '#444',
-                          lineHeight: '1.6',
-                          margin: '0'
-                        }}>
-                          {q.howItWorks}
-                        </p>
+                        {expandedSections[`${idx}-howItWorks`] && (
+                          <p style={{ 
+                            color: '#444',
+                            lineHeight: '1.6',
+                            margin: '0'
+                          }}>
+                            {q.howItWorks}
+                          </p>
+                        )}
                       </div>
 
-                      <div style={{ 
-                        padding: '15px',
-                        backgroundColor: '#f8f9fa',
-                        borderRadius: '10px',
-                        borderLeft: '4px solid #e74c3c'
-                      }}>
+                      <div 
+                        onClick={() => toggleSection(idx, 'redFlags')}
+                        style={{ 
+                          padding: '15px',
+                          backgroundColor: '#f8f9fa',
+                          borderRadius: '10px',
+                          borderLeft: '4px solid #e74c3c',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          ':hover': {
+                            backgroundColor: '#fff5f5'
+                          }
+                        }}
+                      >
                         <h6 style={{ 
                           color: '#2c3e50',
                           fontSize: '1.1rem',
                           marginBottom: '10px',
-                          fontWeight: '600'
+                          fontWeight: '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px'
                         }}>
-                          Red Flags
+                          <span>🚩</span> Red Flags
+                          <span style={{ marginLeft: 'auto' }}>
+                            {expandedSections[`${idx}-redFlags`] ? '▼' : '▶'}
+                          </span>
                         </h6>
-                        <ul style={{ 
-                          margin: '0',
-                          paddingLeft: '20px',
-                          color: '#444',
-                          lineHeight: '1.6'
-                        }}>
-                          {q.redFlags.map((flag, i) => (
-                            <li key={i} style={{ 
-                              marginBottom: '8px',
-                              position: 'relative',
-                              paddingLeft: '25px'
-                            }}>
-                              <span style={{
-                                position: 'absolute',
-                                left: '0',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                color: '#e74c3c'
-                              }}>•</span>
-                              {flag}
-                            </li>
-                          ))}
-                        </ul>
+                        {expandedSections[`${idx}-redFlags`] && (
+                          <ul style={{ 
+                            margin: '0',
+                            paddingLeft: '20px',
+                            color: '#444',
+                            lineHeight: '1.6'
+                          }}>
+                            {q.redFlags.map((flag, i) => (
+                              <li key={i} style={{ 
+                                marginBottom: '8px',
+                                position: 'relative',
+                                paddingLeft: '25px'
+                              }}>
+                                <span style={{
+                                  position: 'absolute',
+                                  left: '0',
+                                  top: '50%',
+                                  transform: 'translateY(-50%)',
+                                  color: '#e74c3c'
+                                }}>•</span>
+                                {flag}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     </div>
 
@@ -1879,50 +1919,82 @@ function WebDetectorQuiz() {
                       gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                       gap: '20px'
                     }}>
-                      <div style={{ 
-                        padding: '15px',
-                        backgroundColor: '#fff5e6',
-                        borderRadius: '10px',
-                        borderLeft: '4px solid #f39c12'
-                      }}>
+                      <div 
+                        onClick={() => toggleSection(idx, 'emotionalImpact')}
+                        style={{ 
+                          padding: '15px',
+                          backgroundColor: '#fff5e6',
+                          borderRadius: '10px',
+                          borderLeft: '4px solid #f39c12',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          ':hover': {
+                            backgroundColor: '#fff0d9'
+                          }
+                        }}
+                      >
                         <h6 style={{ 
                           color: '#d35400',
                           fontSize: '1.1rem',
                           marginBottom: '10px',
-                          fontWeight: '600'
+                          fontWeight: '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px'
                         }}>
-                          Emotional Impact
+                          <span>💭</span> Emotional Impact
+                          <span style={{ marginLeft: 'auto' }}>
+                            {expandedSections[`${idx}-emotionalImpact`] ? '▼' : '▶'}
+                          </span>
                         </h6>
-                        <p style={{ 
-                          color: '#7f4c00',
-                          lineHeight: '1.6',
-                          margin: '0'
-                        }}>
-                          {q.emotionalImpact}
-                        </p>
+                        {expandedSections[`${idx}-emotionalImpact`] && (
+                          <p style={{ 
+                            color: '#7f4c00',
+                            lineHeight: '1.6',
+                            margin: '0'
+                          }}>
+                            {q.emotionalImpact}
+                          </p>
+                        )}
                       </div>
 
-                      <div style={{ 
-                        padding: '15px',
-                        backgroundColor: '#f0f7ff',
-                        borderRadius: '10px',
-                        borderLeft: '4px solid #3498db'
-                      }}>
+                      <div 
+                        onClick={() => toggleSection(idx, 'metaphor')}
+                        style={{ 
+                          padding: '15px',
+                          backgroundColor: '#f0f7ff',
+                          borderRadius: '10px',
+                          borderLeft: '4px solid #3498db',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          ':hover': {
+                            backgroundColor: '#e6f2ff'
+                          }
+                        }}
+                      >
                         <h6 style={{ 
                           color: '#2980b9',
                           fontSize: '1.1rem',
                           marginBottom: '10px',
-                          fontWeight: '600'
+                          fontWeight: '600',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px'
                         }}>
-                          Metaphor/Analogy
+                          <span>🎭</span> Metaphor/Analogy
+                          <span style={{ marginLeft: 'auto' }}>
+                            {expandedSections[`${idx}-metaphor`] ? '▼' : '▶'}
+                          </span>
                         </h6>
-                        <p style={{ 
-                          color: '#2c3e50',
-                          lineHeight: '1.6',
-                          margin: '0'
-                        }}>
-                          {q.metaphor}
-                        </p>
+                        {expandedSections[`${idx}-metaphor`] && (
+                          <p style={{ 
+                            color: '#2c3e50',
+                            lineHeight: '1.6',
+                            margin: '0'
+                          }}>
+                            {q.metaphor}
+                          </p>
+                        )}
                       </div>
                     </div>
 
