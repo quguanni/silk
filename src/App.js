@@ -442,6 +442,16 @@ function WebDetectorQuiz() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [expandedSections, setExpandedSections] = useState({});
 
+  // Add scroll to top effect
+  useEffect(() => {
+    if (submitted) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, [submitted]);
+
   const toggleSection = (questionIndex, section) => {
     setExpandedSections(prev => ({
       ...prev,
