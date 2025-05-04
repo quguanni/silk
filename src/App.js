@@ -514,15 +514,59 @@ function WebDetectorQuiz() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
       padding: '40px 20px',
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      position: 'relative',
+      overflow: 'hidden'
     }}>
+      {/* Background decorative elements */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        pointerEvents: 'none',
+        opacity: 0.1
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          fontSize: '3rem',
+          transform: 'rotate(-15deg)'
+        }}>🚩</div>
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          right: '10%',
+          fontSize: '4rem',
+          transform: 'rotate(15deg)'
+        }}>⚠️</div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          left: '15%',
+          fontSize: '3.5rem',
+          transform: 'rotate(-10deg)'
+        }}>🔍</div>
+        <div style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '5%',
+          fontSize: '3rem',
+          transform: 'rotate(20deg)'
+        }}>🎯</div>
+      </div>
+
       <div style={{ 
-        maxWidth: '800px', 
+        maxWidth: '1200px', 
         margin: '0 auto',
         background: 'rgba(255, 255, 255, 0.9)',
         borderRadius: '20px',
         boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-        padding: '30px'
+        padding: '30px',
+        position: 'relative',
+        zIndex: 1
       }}>
         <div style={{
           textAlign: 'center',
@@ -562,12 +606,14 @@ function WebDetectorQuiz() {
         </div>
 
         {!submitted ? (
-          <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <form onSubmit={handleSubmit} style={{ maxWidth: '100%', margin: '0 auto' }}>
             <div style={{ 
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               padding: '30px',
               borderRadius: '15px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              minHeight: '500px',
+              position: 'relative'
             }}>
               <p style={{ 
                 fontSize: '1.2rem',
@@ -577,54 +623,66 @@ function WebDetectorQuiz() {
                 lineHeight: '1.6',
                 fontWeight: '500'
               }}>
-                Check the boxes that apply to your situation. Be honest with yourself.
+                Click on the red flags you've noticed in your situation. Be honest with yourself.
               </p>
               
               <div style={{ 
                 display: 'grid',
-                gap: '20px'
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: '20px',
+                padding: '20px'
               }}>
                 {questions.map((q, idx) => (
-                  <label 
-                    key={idx} 
+                  <div 
+                    key={idx}
+                    onClick={() => handleChange(idx)}
                     style={{ 
-                      display: 'flex',
-                      alignItems: 'flex-start',
+                      position: 'relative',
                       padding: '20px',
-                      backgroundColor: responses[idx] ? '#e6f3ff' : '#f8f9fa',
-                      borderRadius: '12px',
+                      backgroundColor: responses[idx] ? '#ffe6e6' : '#f8f9fa',
+                      borderRadius: '15px',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
-                      border: `2px solid ${responses[idx] ? '#3498db' : '#e0e0e0'}`,
+                      border: `3px solid ${responses[idx] ? '#e74c3c' : '#e0e0e0'}`,
+                      boxShadow: responses[idx] ? '0 8px 16px rgba(231, 76, 60, 0.2)' : '0 4px 8px rgba(0,0,0,0.1)',
+                      transform: responses[idx] ? 'scale(1.05)' : 'scale(1)',
                       ':hover': {
-                        backgroundColor: '#e6f3ff',
-                        borderColor: '#3498db',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                        backgroundColor: '#ffe6e6',
+                        borderColor: '#e74c3c',
+                        transform: 'scale(1.05)',
+                        boxShadow: '0 8px 16px rgba(231, 76, 60, 0.2)'
                       }
                     }}
                   >
-                    <input
-                      type="checkbox"
-                      checked={responses[idx]}
-                      onChange={() => handleChange(idx)}
-                      style={{ 
-                        marginRight: '15px',
-                        marginTop: '3px',
-                        width: '20px',
-                        height: '20px',
-                        cursor: 'pointer',
-                        accentColor: '#3498db'
-                      }}
-                    />
-                    <span style={{ 
+                    <div style={{
+                      position: 'absolute',
+                      top: '-15px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      fontSize: '2rem',
+                      backgroundColor: responses[idx] ? '#e74c3c' : '#95a5a6',
+                      color: 'white',
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                    }}>
+                      {responses[idx] ? '🚩' : '?'}
+                    </div>
+                    <p style={{ 
                       fontSize: '1.1rem',
                       color: '#2c3e50',
-                      lineHeight: '1.5'
+                      lineHeight: '1.5',
+                      marginTop: '20px',
+                      textAlign: 'center',
+                      fontWeight: '500'
                     }}>
                       {q.question}
-                    </span>
-                  </label>
+                    </p>
+                  </div>
                 ))}
               </div>
               
