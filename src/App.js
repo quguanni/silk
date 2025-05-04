@@ -630,6 +630,7 @@ function WebDetectorQuiz() {
   const [showCopiedToast, setShowCopiedToast] = useState(false);
 
   const toggleRedFlag = (idx) => {
+    playClickSound();
     setExpandedRedFlags(prev => ({
       ...prev,
       [idx]: !prev[idx]
@@ -637,6 +638,7 @@ function WebDetectorQuiz() {
   };
 
   const toggleDetail = (redFlagIdx, detailType) => {
+    playClickSound();
     setExpandedDetails(prev => ({
       ...prev,
       [`${redFlagIdx}-${detailType}`]: !prev[`${redFlagIdx}-${detailType}`]
