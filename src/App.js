@@ -74,6 +74,37 @@ function WelcomeScreen() {
 function WebDetectorQuiz() {
   const [responses, setResponses] = useState([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedCount, setSelectedCount] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  // Add sound effects
+  const playClickSound = () => {
+    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3');
+    audio.volume = 0.3;
+    audio.play();
+  };
+
+  const playSuccessSound = () => {
+    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3');
+    audio.volume = 0.3;
+    audio.play();
+  };
+
+  const handleChange = (index) => {
+    const newResponses = [...responses];
+    newResponses[index] = !newResponses[index];
+    setResponses(newResponses);
+    setSelectedCount(newResponses.filter(Boolean).length);
+    playClickSound();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    playSuccessSound();
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 5000);
+    setSubmitted(true);
+  };
 
   const questions = [
     {
@@ -495,17 +526,6 @@ function WebDetectorQuiz() {
     }
   ];
 
-  const handleChange = (index) => {
-    const newResponses = [...responses];
-    newResponses[index] = !newResponses[index];
-    setResponses(newResponses);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   const score = responses.filter(Boolean).length;
   const flaggedQuestions = questions.filter((_, index) => responses[index]);
 
@@ -518,7 +538,7 @@ function WebDetectorQuiz() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background decorative elements */}
+      {/* Animated background elements */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -526,37 +546,89 @@ function WebDetectorQuiz() {
         right: 0,
         bottom: 0,
         pointerEvents: 'none',
-        opacity: 0.1
+        opacity: 0.1,
+        animation: 'float 6s ease-in-out infinite'
       }}>
         <div style={{
           position: 'absolute',
           top: '10%',
           left: '5%',
           fontSize: '3rem',
-          transform: 'rotate(-15deg)'
+          transform: 'rotate(-15deg)',
+          animation: 'float 4s ease-in-out infinite'
         }}>🚩</div>
         <div style={{
           position: 'absolute',
           top: '20%',
           right: '10%',
           fontSize: '4rem',
-          transform: 'rotate(15deg)'
+          transform: 'rotate(15deg)',
+          animation: 'float 5s ease-in-out infinite'
         }}>⚠️</div>
         <div style={{
           position: 'absolute',
           bottom: '15%',
           left: '15%',
           fontSize: '3.5rem',
-          transform: 'rotate(-10deg)'
+          transform: 'rotate(-10deg)',
+          animation: 'float 4.5s ease-in-out infinite'
         }}>🔍</div>
         <div style={{
           position: 'absolute',
           bottom: '25%',
           right: '5%',
           fontSize: '3rem',
-          transform: 'rotate(20deg)'
+          transform: 'rotate(20deg)',
+          animation: 'float 5.5s ease-in-out infinite'
         }}>🎯</div>
       </div>
+
+      {/* Progress indicator */}
+      <div style={{
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        padding: '10px 20px',
+        borderRadius: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        zIndex: 1000,
+        animation: 'pulse 2s infinite'
+      }}>
+        <span style={{ fontSize: '1.2rem', fontWeight: '600', color: '#2c3e50' }}>
+          Red Flags Found: {selectedCount} 🚩
+        </span>
+      </div>
+
+      {/* Confetti effect */}
+      {showConfetti && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'none',
+          zIndex: 1000
+        }}>
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                left: `${Math.random() * 100}%`,
+                width: '10px',
+                height: '10px',
+                backgroundColor: ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f'][Math.floor(Math.random() * 4)],
+                borderRadius: '50%',
+                animation: `confetti ${Math.random() * 3 + 2}s linear forwards`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div style={{ 
         maxWidth: '1200px', 
@@ -657,6 +729,7 @@ function WebDetectorQuiz() {
                   border: `3px solid ${responses[idx] ? '#e74c3c' : '#e0e0e0'}`,
                   boxShadow: responses[idx] ? '0 8px 16px rgba(231, 76, 60, 0.2)' : '0 4px 8px rgba(0,0,0,0.1)',
                   transform: responses[idx] ? 'scale(1.05)' : 'scale(1)',
+                  animation: responses[idx] ? 'bounce 0.5s' : 'none',
                   ':hover': {
                     backgroundColor: '#fff5f5',
                     borderColor: '#e74c3c',
@@ -679,7 +752,8 @@ function WebDetectorQuiz() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                  animation: responses[idx] ? 'spin 0.5s' : 'none'
                 }}>
                   {responses[idx] ? '🚩' : '?'}
                 </div>
@@ -715,6 +789,7 @@ function WebDetectorQuiz() {
                     transition: 'all 0.3s ease',
                     fontWeight: '600',
                     boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                    animation: 'pulse 2s infinite',
                     ':hover': {
                       backgroundColor: '#2980b9',
                       transform: 'translateY(-2px)',
@@ -1062,6 +1137,36 @@ function WebDetectorQuiz() {
         </div>
       )}
       </div>
+
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
+            50% { transform: translateY(-20px) rotate(var(--rotation)); }
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+          }
+          
+          @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+          }
+          
+          @keyframes spin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+          }
+          
+          @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+          }
+        `}
+      </style>
     </div>
   );
 }
