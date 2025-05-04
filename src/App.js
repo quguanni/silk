@@ -442,6 +442,8 @@ function WebDetectorQuiz() {
   const [selectedCount, setSelectedCount] = useState(0);
   const [expandedRedFlags, setExpandedRedFlags] = useState({});
   const [expandedDetails, setExpandedDetails] = useState({});
+  const [shareVibe, setShareVibe] = useState('empowered');
+  const [showCopiedToast, setShowCopiedToast] = useState(false);
 
   const toggleRedFlag = (idx) => {
     setExpandedRedFlags(prev => ({
@@ -494,6 +496,43 @@ function WebDetectorQuiz() {
     setShowConfetti(true);
     setTimeout(() => setShowConfetti(false), 5000);
     setSubmitted(true);
+  };
+
+  const generateShareText = () => {
+    const baseUrl = 'silk-blush.vercel.app';
+    const flags = responses.filter(Boolean).length;
+    
+    const vibes = {
+      empowered: `Just Silked through ${flags} red flags 🕸️ Turns out my 'anxiety' was gaslighting in disguise. ${baseUrl}`,
+      funny: `Oops. Turns out it wasn't me—it was a guilt trip.exe 🕸️ Found ${flags} bugs in my relationship code. ${baseUrl}`,
+      soft: `Caught in a web I didn't weave. Now I see ${flags} red flags clearly. 🕸️ ${baseUrl}`,
+      tech: `Ran Silk debugger. Found ${flags} emotional CVEs. Patched and thriving. 💻 ${baseUrl}`
+    };
+
+    return vibes[shareVibe];
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(generateShareText());
+    setShowCopiedToast(true);
+    setTimeout(() => setShowCopiedToast(false), 2000);
+  };
+
+  const shareOnTwitter = () => {
+    const text = encodeURIComponent(generateShareText());
+    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+  };
+
+  const shareOnInstagram = () => {
+    copyToClipboard();
+    // Show a different toast for Instagram
+    setShowCopiedToast(true);
+    setTimeout(() => setShowCopiedToast(false), 2000);
+  };
+
+  const shareOnLinkedIn = () => {
+    const text = encodeURIComponent(`Normalize debugging toxic work culture 🧠 ${generateShareText()}`);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('silk-blush.vercel.app')}&text=${text}`, '_blank');
   };
 
   const questions = [
@@ -2132,6 +2171,219 @@ function WebDetectorQuiz() {
                 ))}
               </div>
             )}
+            
+            {/* Share Section */}
+            <div style={{ 
+              marginTop: 'clamp(20px, 4vw, 30px)',
+              padding: 'clamp(20px, 4vw, 30px)',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '15px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              animation: 'slideUp 0.5s ease-out'
+            }}>
+              <h4 style={{ 
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                color: '#2c3e50',
+                marginBottom: 'clamp(15px, 3vw, 20px)',
+                fontWeight: '800',
+                textAlign: 'center',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                letterSpacing: '0.5px',
+                background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                lineHeight: '1.3'
+              }}>
+                Share Your Silk Journey
+              </h4>
+
+              <div style={{ 
+                marginBottom: 'clamp(15px, 3vw, 20px)',
+                padding: 'clamp(15px, 3vw, 20px)',
+                backgroundColor: '#fff',
+                borderRadius: '12px',
+                border: '1px solid #e0e0e0'
+              }}>
+                <div style={{ 
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 'clamp(10px, 2vw, 15px)',
+                  marginBottom: 'clamp(15px, 3vw, 20px)'
+                }}>
+                  {[
+                    { id: 'empowered', label: 'Empowered', emoji: '💪' },
+                    { id: 'funny', label: 'Funny', emoji: '😂' },
+                    { id: 'soft', label: 'Soft', emoji: '💅' },
+                    { id: 'tech', label: 'Techy', emoji: '💻' }
+                  ].map((vibe) => (
+                    <button
+                      key={vibe.id}
+                      onClick={() => setShareVibe(vibe.id)}
+                      style={{
+                        padding: 'clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px)',
+                        borderRadius: '20px',
+                        border: `2px solid ${shareVibe === vibe.id ? '#3498db' : '#e0e0e0'}`,
+                        backgroundColor: shareVibe === vibe.id ? '#e8f4ff' : '#fff',
+                        color: '#2c3e50',
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1rem)',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 'clamp(5px, 1.5vw, 8px)',
+                        ':hover': {
+                          backgroundColor: '#f0f7ff',
+                          borderColor: '#3498db'
+                        }
+                      }}
+                    >
+                      <span>{vibe.emoji}</span>
+                      {vibe.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div style={{ 
+                  padding: 'clamp(15px, 3vw, 20px)',
+                  backgroundColor: '#f0f7ff',
+                  borderRadius: '10px',
+                  border: '1px solid #e0e0e0',
+                  marginBottom: 'clamp(15px, 3vw, 20px)',
+                  position: 'relative'
+                }}>
+                  <p style={{ 
+                    color: '#2c3e50',
+                    fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                    lineHeight: '1.5',
+                    margin: '0',
+                    textAlign: 'center'
+                  }}>
+                    {generateShareText()}
+                  </p>
+                </div>
+
+                <div style={{ 
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 'clamp(10px, 2vw, 15px)',
+                  justifyContent: 'center'
+                }}>
+                  <button
+                    onClick={copyToClipboard}
+                    style={{
+                      padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
+                      borderRadius: '8px',
+                      backgroundColor: '#3498db',
+                      color: '#fff',
+                      fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 'clamp(5px, 1.5vw, 8px)',
+                      ':hover': {
+                        backgroundColor: '#2980b9',
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  >
+                    <span>📋</span>
+                    Copy to Clipboard
+                  </button>
+
+                  <button
+                    onClick={shareOnTwitter}
+                    style={{
+                      padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
+                      borderRadius: '8px',
+                      backgroundColor: '#1da1f2',
+                      color: '#fff',
+                      fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 'clamp(5px, 1.5vw, 8px)',
+                      ':hover': {
+                        backgroundColor: '#1991db',
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  >
+                    <span>🐦</span>
+                    Share on Twitter
+                  </button>
+
+                  <button
+                    onClick={shareOnInstagram}
+                    style={{
+                      padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
+                      borderRadius: '8px',
+                      background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
+                      color: '#fff',
+                      fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 'clamp(5px, 1.5vw, 8px)',
+                      ':hover': {
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  >
+                    <span>📸</span>
+                    Share on Instagram
+                  </button>
+
+                  <button
+                    onClick={shareOnLinkedIn}
+                    style={{
+                      padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
+                      borderRadius: '8px',
+                      backgroundColor: '#0077b5',
+                      color: '#fff',
+                      fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 'clamp(5px, 1.5vw, 8px)',
+                      ':hover': {
+                        backgroundColor: '#006699',
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  >
+                    <span>💼</span>
+                    Share on LinkedIn
+                  </button>
+                </div>
+              </div>
+
+              {showCopiedToast && (
+                <div style={{
+                  position: 'fixed',
+                  bottom: '20px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  backgroundColor: '#2c3e50',
+                  color: '#fff',
+                  padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  animation: 'slideUp 0.3s ease-out, fadeOut 0.3s ease-out 1.7s forwards',
+                  zIndex: 1000
+                }}>
+                  {shareVibe === 'soft' ? 'Paste into your Story caption 💅' : 'Copied. Go be iconic.'}
+                </div>
+              )}
+            </div>
             
             <div style={{ 
               marginTop: 'clamp(15px, 3vw, 20px)',
