@@ -42,9 +42,9 @@ function WelcomeScreen() {
         </p>
         
         <div style={{ marginTop: '20px' }}>
-          <Link to="/quiz">
-            <button
-              style={{
+      <Link to="/quiz">
+        <button
+          style={{
                 padding: '15px 30px',
                 fontSize: '1.2rem',
                 cursor: 'pointer',
@@ -63,8 +63,8 @@ function WelcomeScreen() {
               }}
             >
               Start Quiz
-            </button>
-          </Link>
+        </button>
+      </Link>
         </div>
       </div>
     </div>
@@ -605,7 +605,7 @@ function WebDetectorQuiz() {
           </p>
         </div>
 
-        {!submitted ? (
+      {!submitted ? (
           <form onSubmit={handleSubmit} style={{ maxWidth: '100%', margin: '0 auto' }}>
             <div style={{ 
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -632,58 +632,70 @@ function WebDetectorQuiz() {
                 gap: '20px',
                 padding: '20px'
               }}>
-                {questions.map((q, idx) => (
-                  <div 
-                    key={idx}
-                    onClick={() => handleChange(idx)}
-                    style={{ 
-                      position: 'relative',
-                      padding: '20px',
-                      backgroundColor: responses[idx] ? '#ffe6e6' : '#f8f9fa',
-                      borderRadius: '15px',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      border: `3px solid ${responses[idx] ? '#e74c3c' : '#e0e0e0'}`,
-                      boxShadow: responses[idx] ? '0 8px 16px rgba(231, 76, 60, 0.2)' : '0 4px 8px rgba(0,0,0,0.1)',
-                      transform: responses[idx] ? 'scale(1.05)' : 'scale(1)',
-                      ':hover': {
-                        backgroundColor: '#ffe6e6',
-                        borderColor: '#e74c3c',
-                        transform: 'scale(1.05)',
-                        boxShadow: '0 8px 16px rgba(231, 76, 60, 0.2)'
-                      }
-                    }}
-                  >
-                    <div style={{
-                      position: 'absolute',
-                      top: '-15px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      fontSize: '2rem',
-                      backgroundColor: responses[idx] ? '#e74c3c' : '#95a5a6',
-                      color: 'white',
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-                    }}>
-                      {responses[idx] ? '🚩' : '?'}
-                    </div>
-                    <p style={{ 
-                      fontSize: '1.1rem',
-                      color: '#2c3e50',
-                      lineHeight: '1.5',
-                      marginTop: '20px',
-                      textAlign: 'center',
-                      fontWeight: '500'
-                    }}>
-                      {q.question}
-                    </p>
-                  </div>
-                ))}
+          {questions.map((q, idx) => {
+            // Split the question into parts to emphasize key words
+            const parts = q.question.split(/(\b\w+\b)/g);
+            const emphasizedQuestion = parts.map((part, i) => {
+              const lowerPart = part.toLowerCase();
+              if (['do', 'they', 'you', 'your', 'feel', 'like', 'that', 'this', 'their', 'them', 'the', 'a', 'an', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'from', 'of', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', '?', '!', ',', '.', ';', ':', '"', "'", '(', ')', '[', ']', '{', '}'].includes(lowerPart)) {
+                return part;
+              }
+              return <span key={i} style={{ fontWeight: '600', color: '#2c3e50' }}>{part}</span>;
+            });
+
+            return (
+              <div 
+                key={idx}
+                onClick={() => handleChange(idx)}
+                style={{ 
+                  position: 'relative',
+                  padding: '25px',
+                  backgroundColor: responses[idx] ? '#fff5f5' : '#f8f9fa',
+                  borderRadius: '15px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  border: `3px solid ${responses[idx] ? '#e74c3c' : '#e0e0e0'}`,
+                  boxShadow: responses[idx] ? '0 8px 16px rgba(231, 76, 60, 0.2)' : '0 4px 8px rgba(0,0,0,0.1)',
+                  transform: responses[idx] ? 'scale(1.05)' : 'scale(1)',
+                  ':hover': {
+                    backgroundColor: '#fff5f5',
+                    borderColor: '#e74c3c',
+                    transform: 'scale(1.05)',
+                    boxShadow: '0 8px 16px rgba(231, 76, 60, 0.2)'
+                  }
+                }}
+              >
+                <div style={{
+                  position: 'absolute',
+                  top: '-15px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  fontSize: '2rem',
+                  backgroundColor: responses[idx] ? '#e74c3c' : '#95a5a6',
+                  color: 'white',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                }}>
+                  {responses[idx] ? '🚩' : '?'}
+                </div>
+                <p style={{ 
+                  fontSize: '1.2rem',
+                  color: '#34495e',
+                  lineHeight: '1.6',
+                  marginTop: '20px',
+                  textAlign: 'center',
+                  fontWeight: '500'
+                }}>
+                  {emphasizedQuestion}
+                </p>
+              </div>
+            );
+          })}
               </div>
               
               <div style={{ 
@@ -710,12 +722,12 @@ function WebDetectorQuiz() {
                     }
                   }}
                 >
-                  See Results
-                </button>
+            See Results
+          </button>
               </div>
             </div>
-          </form>
-        ) : (
+        </form>
+      ) : (
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             <div style={{
               textAlign: 'center',
@@ -1032,7 +1044,7 @@ function WebDetectorQuiz() {
               marginTop: '30px',
               textAlign: 'center'
             }}>
-              <Link to="/">
+          <Link to="/">
                 <button style={{ 
                   padding: '12px 24px',
                   fontSize: '1rem',
@@ -1045,10 +1057,10 @@ function WebDetectorQuiz() {
                 }}>
                   Go Back Home
                 </button>
-              </Link>
+          </Link>
             </div>
-          </div>
-        )}
+        </div>
+      )}
       </div>
     </div>
   );
