@@ -222,12 +222,8 @@ function WelcomeScreen() {
           Welcome to Silk 🕸️
         </h1>
         
-        <p style={{ 
-          fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
-          color: '#34495e',
+        <div style={{ 
           marginBottom: '40px',
-          lineHeight: '1.6',
-          fontWeight: '500',
           animation: 'fadeIn 1s ease-out 0.3s forwards',
           opacity: 0,
           maxWidth: '500px',
@@ -238,8 +234,74 @@ function WelcomeScreen() {
           overflowWrap: 'break-word',
           hyphens: 'none'
         }}>
-          You're safe here. Let's begin cutting through the web.
-        </p>
+          <p style={{ 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            color: '#34495e',
+            marginBottom: '20px',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px'
+          }}>
+            You're safe here. Let's begin cutting through the web of
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            color: '#34495e',
+            marginBottom: '20px',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px'
+          }}>
+            <span>🕷️</span>
+            <span style={{ 
+              color: '#2c3e50',
+              fontWeight: '600'
+            }}>Cognitive Fog</span>
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            color: '#34495e',
+            marginBottom: '20px',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px'
+          }}>
+            <span>💔</span>
+            <span style={{ 
+              color: '#2c3e50',
+              fontWeight: '600'
+            }}>Gaslight War</span>
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            color: '#34495e',
+            marginBottom: '20px',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px'
+          }}>
+            <span>📈</span>
+            <span style={{ 
+              color: '#2c3e50',
+              fontWeight: '600'
+            }}>Hustle Malware</span>
+          </p>
+        </div>
         
         <div style={{ 
           marginTop: '20px',
@@ -263,6 +325,10 @@ function WelcomeScreen() {
                 overflow: 'hidden',
                 wordBreak: 'keep-all',
                 whiteSpace: 'nowrap',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                margin: '0 auto',
                 ':hover': {
                   backgroundColor: '#2980b9',
                   transform: 'translateY(-2px)',
@@ -283,7 +349,7 @@ function WelcomeScreen() {
                 }
               }}
             >
-              Start Quiz
+              Begin Silking →
             </button>
           </Link>
         </div>
@@ -406,7 +472,7 @@ function WebDetectorQuiz() {
 
   const questions = [
     {
-      question: "Do they move fast—too fast emotionally or romantically?",
+      question: "Move fast—too fast emotionally or romantically?",
       tactic: "Love-Bombing (Intensity That Skips Intimacy)",
       howItWorks: "The manipulator overwhelms you with excessive affection, grand gestures, or future-faking early on to create artificial intimacy. This bypasses natural emotional pacing, creating a false sense of deep connection.",
       redFlags: [
@@ -429,7 +495,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they make you doubt your memory or instincts?",
+      question: "Make you doubt your memory or instincts?",
       tactic: "Gaslighting",
       howItWorks: "The manipulator denies your reality, twists facts, or insists you're \"overreacting\" to destabilize your self-trust. Over time, you rely on their version of events instead of your own.",
       redFlags: [
@@ -452,7 +518,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they isolate you from people you trust?",
+      question: "Isolate you from people you trust?",
       tactic: "Social Isolation (\"They're Toxic,\" \"They Don't Get Us\")",
       howItWorks: "The manipulator frames friends/family as \"jealous,\" \"controlling,\" or \"bad influences\" to cut off your support system. This makes you dependent on them for validation.",
       redFlags: [
@@ -476,7 +542,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do you feel guilty for asserting your needs or saying no?",
+      question: "Make you feel guilty for asserting your needs or saying no?",
       tactic: "Guilt-Tripping",
       howItWorks: "They frame your boundaries as personal failures (\"After all I've done for you?\") or emotional betrayals (\"I guess you don't care about me\").",
       redFlags: [
@@ -499,7 +565,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they alternate between really kind and really cruel?",
+      question: "Alternate between really kind and really cruel?",
       tactic: "Intermittent Reinforcement",
       howItWorks: "Unpredictable rewards (affection, cruelty) keep you hooked, like a slot machine. The brain becomes addicted to the \"maybe\" of kindness.",
       redFlags: [
@@ -523,7 +589,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do you feel like you owe them something?",
+      question: "Make you feel like you owe them something?",
       tactic: "Emotional Debt Traps",
       howItWorks: "They keep score of favors, gifts, or sacrifices to create a sense of obligation. You feel indebted, so you tolerate poor treatment.",
       redFlags: [
@@ -546,7 +612,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they make you feel 'special' in a way that feels hard to leave?",
+      question: "Make you feel 'special' in a way that feels hard to leave?",
       tactic: "Identity Entanglement",
       howItWorks: "They fuse your self-worth with their approval (\"No one will ever love you like I do\"). You fear losing not just them, but your sense of self.",
       redFlags: [
@@ -569,7 +635,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do you feel like you're shrinking or silencing yourself around them?",
+      question: "Feel like you're shrinking or silencing yourself around them?",
       tactic: "Boundary Erosion",
       howItWorks: "They punish subtle displays of autonomy (opinions, preferences) until you self-censor to avoid conflict.",
       redFlags: [
@@ -593,7 +659,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they punish you with silence or withdrawal when upset?",
+      question: "Punish you with silence or withdrawal when upset?",
       tactic: "Stonewalling",
       howItWorks: "They use silence as a weapon to force compliance or guilt-trip you into apologizing for nonexistent offenses.",
       redFlags: [
@@ -616,7 +682,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they twist your words to make you sound unreasonable?",
+      question: "Twist your words to make you sound unreasonable?",
       tactic: "Word Salad",
       howItWorks: "They distort your statements into absurd or offensive versions to derail conversations.",
       redFlags: [
@@ -639,7 +705,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they compare you to others to make you feel inadequate?",
+      question: "Compare you to others to make you feel inadequate?",
       tactic: "Triangulation",
       howItWorks: "They use real or fictional rivals (\"My ex would never…\") to create insecurity.",
       redFlags: [
@@ -662,7 +728,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they demand access to your phone/social media?",
+      question: "Demand access to your phone/social media?",
       tactic: "Surveillance Control",
       howItWorks: "Positions invasion of privacy as \"trust-building\" to isolate you.",
       redFlags: [
@@ -685,7 +751,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they blame you for their reactions?",
+      question: "Blame you for their reactions?",
       tactic: "Emotional Hijacking",
       howItWorks: "Claims their outbursts are your fault (\"Look what you made me do!\").",
       redFlags: [
@@ -708,7 +774,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they sabotage your achievements or milestones?",
+      question: "Sabotage your achievements or milestones?",
       tactic: "Success Sabotage",
       howItWorks: "Undermines your joy (e.g., ghosting you on your birthday) to keep you small.",
       redFlags: [
@@ -731,7 +797,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they insist they \"know you better than you know yourself\"?",
+      question: "Insist they \"know you better than you know yourself\"?",
       tactic: "Identity Override",
       howItWorks: "Dismisses your feelings/choices as \"wrong\" to dominate your self-perception.",
       redFlags: [
@@ -754,7 +820,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they use gifts/acts of service to manipulate you later?",
+      question: "Use gifts/acts of service to manipulate you later?",
       tactic: "Covert Contracts",
       howItWorks: "Does \"nice\" things with unstated strings attached (\"After all I've done…\").",
       redFlags: [
@@ -777,7 +843,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they pressure you to forgive them instantly?",
+      question: "Pressure you to forgive them instantly?",
       tactic: "False Reconciliation",
       howItWorks: "Rushes forgiveness (\"Get over it!\") to avoid accountability.",
       redFlags: [
@@ -800,7 +866,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they frame their demands as \"tests\" of your love?",
+      question: "Frame their demands as \"tests\" of your love?",
       tactic: "Loyalty Testing",
       howItWorks: "Creates arbitrary hoops (e.g., \"Cut off your friend\") to prove devotion.",
       redFlags: [
@@ -823,7 +889,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they deny your reality or make you question your memory?",
+      question: "Deny your reality or make you question your memory?",
       tactic: "Gaslighting in Tech",
       howItWorks: "A founder or manager denies facts, memories, or feelings you know to be true, undermining your confidence in your perceptions. They might say 'I never said that' or 'You're overreacting' to make you doubt your reality.",
       redFlags: [
@@ -848,7 +914,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they use guilt to pressure you into working more?",
+      question: "Use guilt to pressure you into working more?",
       tactic: "Guilt-Tripping in Startups",
       howItWorks: "They make you feel guilty so you'll do what they want, playing on your sense of obligation. Instead of directly asking, they induce guilt to influence your behavior.",
       redFlags: [
@@ -873,7 +939,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they shower you with praise then suddenly withdraw it?",
+      question: "Shower you with praise then suddenly withdraw it?",
       tactic: "Love-Bombing in Tech",
       howItWorks: "They overwhelm you with praise and promises to gain your trust, then pull back once you're invested. This creates a rush of validation that lowers your guard.",
       redFlags: [
@@ -898,7 +964,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they use fear or threats to control you?",
+      question: "Use fear or threats to control you?",
       tactic: "Threats and Intimidation",
       howItWorks: "They use fear to control behavior, either through explicit threats or subtle hints of negative consequences. This exploits power imbalances and survival instincts.",
       redFlags: [
@@ -923,7 +989,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they pressure you to conform to group decisions?",
+      question: "Pressure you to conform to group decisions?",
       tactic: "Peer Pressure and Groupthink",
       howItWorks: "They exploit the natural human desire to fit in by implying 'everyone else' agrees or is doing something, so you should too. This suppresses dissenting opinions.",
       redFlags: [
@@ -948,7 +1014,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they create false urgency to pressure you?",
+      question: "Create false urgency to pressure you?",
       tactic: "False Urgency and Overwork Culture",
       howItWorks: "They frame everything as critical to prevent scrutiny and induce panic-driven compliance. This ties into hustle culture, pushing people to ignore their limits.",
       redFlags: [
@@ -973,7 +1039,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they dangle rewards that never materialize?",
+      question: "Dangle rewards that never materialize?",
       tactic: "Carrot-and-Stick Promises",
       howItWorks: "They alternate between promised rewards and implied negative outcomes to influence behavior. The 'carrot' is always just out of reach, while the 'stick' is the implied punishment.",
       redFlags: [
@@ -998,7 +1064,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they keep you in the dark about important information?",
+      question: "Keep you in the dark about important information?",
       tactic: "Gatekeeping Information",
       howItWorks: "They control access to information or resources to maintain power. By keeping you partially informed or excluding you from key discussions, they ensure you remain dependent.",
       redFlags: [
@@ -1023,7 +1089,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they take credit for your work or shift blame to you?",
+      question: "Take credit for your work or shift blame to you?",
       tactic: "Credit Stealing & Blame Shifting",
       howItWorks: "They take undue praise for your work while casting responsibility for mistakes onto you. This protects their ego at your expense and rewrites the narrative of events.",
       redFlags: [
@@ -1048,7 +1114,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they control every detail of your work?",
+      question: "Control every detail of your work?",
       tactic: "Micromanagement",
       howItWorks: "They monitor and dictate every small detail of your work, not trusting others and ensuring they maintain control. This chips away at your autonomy and confidence.",
       redFlags: [
@@ -1073,7 +1139,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they play team members against each other?",
+      question: "Play team members against each other?",
       tactic: "Divide and Conquer",
       howItWorks: "They create divisions between people to maintain control, often using triangulation – involving a third party to mediate or carry messages rather than addressing issues directly.",
       redFlags: [
@@ -1098,7 +1164,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they dismiss real issues with forced positivity?",
+      question: "Dismiss real issues with forced positivity?",
       tactic: "Toxic Positivity",
       howItWorks: "They insist on being positive to an unhealthy degree, rejecting or shaming negative emotions or valid concerns. This silences dissent and avoids addressing real issues.",
       redFlags: [
@@ -1123,7 +1189,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they treat the founder like an infallible hero?",
+      question: "Treat the person above like an infallible hero?",
       tactic: "Cult of Personality",
       howItWorks: "The leader is elevated to near-hero status, and their persona dominates the company's culture. Questioning them feels like heresy, and their flaws are excused as 'just what brilliant founders are like'.",
       redFlags: [
@@ -1148,7 +1214,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they undermine you with backhanded compliments?",
+      question: "Undermine you with backhanded compliments?",
       tactic: "Negging and Undermining",
       howItWorks: "They use sarcasm, teasing, or 'just joking' remarks that carry an insult. This allows them to put you down while maintaining plausible deniability.",
       redFlags: [
@@ -1173,7 +1239,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they exploit your self-doubt by comparing you to others?",
+      question: "Exploit your self-doubt by comparing you to others?",
       tactic: "Exploiting Imposter Syndrome",
       howItWorks: "They leverage your inner critic by constantly comparing you to others or highlighting how you stack up unfavorably against peers. This makes you more pliable through feelings of inadequacy.",
       redFlags: [
@@ -1198,7 +1264,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they blur professional boundaries by calling the company 'family'?",
+      question: "Blur professional boundaries by calling the company 'family'?",
       tactic: "Boundary-Blurring Guilt",
       howItWorks: "They equate the company to a 'family' to create a sense of obligation and loyalty. This emotionalizes the workplace and can guilt you into tolerating or doing things you normally wouldn't.",
       redFlags: [
@@ -1223,7 +1289,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they alternate between supportive and critical behavior?",
+      question: "Alternate between supportive and critical behavior?",
       tactic: "Hot-and-Cold Behavior",
       howItWorks: "They alternate between positive and negative treatment unpredictably – one day supportive, the next day critical or distant. This creates strong attachment through intermittent reinforcement.",
       redFlags: [
@@ -1248,7 +1314,7 @@ function WebDetectorQuiz() {
       }
     },
     {
-      question: "Do they use silence or exclusion as punishment?",
+      question: "Use silence or exclusion as punishment?",
       tactic: "Silent Treatment and Exclusion",
       howItWorks: "They refuse to communicate or acknowledge you as a way to punish or control. This plays on our discomfort with social rejection and creates a power dynamic where they decide when you're 'worthy' of interaction.",
       redFlags: [
@@ -1418,7 +1484,8 @@ function WebDetectorQuiz() {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            🎮 Manipulation Shield: The Game
+            You Are Stuck in the Web of Manipulation...
+            How Did You Get Stuck?
           </h2>
           
           <p style={{ 
@@ -1432,7 +1499,7 @@ function WebDetectorQuiz() {
             margin: '0 auto',
             padding: '0 10px'
           }}>
-            Level up your emotional defense skills and spot the red flags!
+            Click on the red flags you've noticed in your situation. Be honest with yourself.
           </p>
         </div>
 
@@ -1454,7 +1521,7 @@ function WebDetectorQuiz() {
                 lineHeight: '1.6',
                 fontWeight: '500'
               }}>
-                Click on the red flags you've noticed in your situation. Be honest with yourself.
+                Did The Sus Individual(s)
               </p>
               
               <div style={{ 
