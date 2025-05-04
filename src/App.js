@@ -1600,29 +1600,47 @@ function WebDetectorQuiz() {
       position: 'relative'
     }}>
       {/* Theme Toggle Button */}
-      <button
-        onClick={toggleTheme}
-        style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          padding: '10px',
-          borderRadius: '50%',
-          border: 'none',
-          backgroundColor: colors.button,
-          color: 'white',
-          cursor: 'pointer',
-          boxShadow: `0 4px 6px ${colors.shadow}`,
-          transition: 'all 0.3s ease',
-          zIndex: 1000,
-          ':hover': {
-            transform: 'scale(1.1)',
-            backgroundColor: colors.buttonHover
-          }
-        }}
-      >
-        {theme === 'blue' ? '🌸' : '🌊'}
-      </button>
+      <div style={{
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        zIndex: 1000
+      }}>
+        <span style={{
+          color: colors.text,
+          fontSize: 'clamp(0.8rem, 1.5vw, 1rem)',
+          fontWeight: '600',
+          opacity: 0.8,
+          animation: 'wiggle 2s infinite',
+          transform: 'rotate(-5deg)',
+          textShadow: `1px 1px 2px ${colors.shadow}`
+        }}>
+          Don't Toggle Me!
+        </span>
+        <button
+          onClick={toggleTheme}
+          style={{
+            padding: '10px',
+            borderRadius: '50%',
+            border: 'none',
+            backgroundColor: colors.button,
+            color: 'white',
+            cursor: 'pointer',
+            boxShadow: `0 4px 6px ${colors.shadow}`,
+            transition: 'all 0.3s ease',
+            zIndex: 1000,
+            ':hover': {
+              transform: 'scale(1.1)',
+              backgroundColor: colors.buttonHover
+            }
+          }}
+        >
+          {theme === 'blue' ? '🌸' : '🌊'}
+        </button>
+      </div>
 
       {/* Animated background elements */}
       <div style={{
@@ -2700,6 +2718,13 @@ function WebDetectorQuiz() {
             .counter-strategy {
               padding: 12px !important;
             }
+          }
+
+          @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
           }
         `}
       </style>
