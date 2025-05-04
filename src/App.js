@@ -3,21 +3,69 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function WelcomeScreen() {
   return (
-    <div style={{ textAlign: 'center', paddingTop: '100px' }}>
-      <h1>Welcome to Silk 🕸️</h1>
-      <p>You're safe here. Let's begin cutting through the web.</p>
-      <div style={{ marginTop: '20px' }}>
-        <Link to="/quiz">
-          <button
-            style={{
-              padding: '10px 20px',
-              fontSize: '1rem',
-              cursor: 'pointer'
-            }}
-          >
-            Start Quiz
-          </button>
-        </Link>
+    <div style={{ 
+      textAlign: 'center', 
+      paddingTop: '100px',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      minHeight: '100vh',
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+    }}>
+      <div style={{
+        maxWidth: '600px',
+        margin: '0 auto',
+        padding: '40px',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderRadius: '20px',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
+      }}>
+        <h1 style={{ 
+          fontSize: '3rem',
+          color: '#2c3e50',
+          marginBottom: '20px',
+          fontWeight: '800',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+          background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>
+          Welcome to Silk 🕸️
+        </h1>
+        
+        <p style={{ 
+          fontSize: '1.4rem',
+          color: '#34495e',
+          marginBottom: '40px',
+          lineHeight: '1.6',
+          fontWeight: '500'
+        }}>
+          You're safe here. Let's begin cutting through the web.
+        </p>
+        
+        <div style={{ marginTop: '20px' }}>
+          <Link to="/quiz">
+            <button
+              style={{
+                padding: '15px 30px',
+                fontSize: '1.2rem',
+                cursor: 'pointer',
+                backgroundColor: '#3498db',
+                color: 'white',
+                border: 'none',
+                borderRadius: '10px',
+                fontWeight: '600',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                ':hover': {
+                  backgroundColor: '#2980b9',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
+                }
+              }}
+            >
+              Start Quiz
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -468,17 +516,40 @@ function WebDetectorQuiz() {
       padding: '20px',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }}>
-      <h2 style={{ 
-        fontSize: '2.2rem',
-        color: '#2c3e50',
+      <div style={{
         textAlign: 'center',
         marginBottom: '40px',
-        fontWeight: '700',
-        textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+        padding: '20px',
+        backgroundColor: '#f8f9fa',
+        borderRadius: '12px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
       }}>
-        🧠 Web Detector Quiz
-      </h2>
-      
+        <h2 style={{ 
+          fontSize: '2.5rem',
+          color: '#2c3e50',
+          marginBottom: '15px',
+          fontWeight: '800',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+          letterSpacing: '0.5px'
+        }}>
+          🎮 Manipulation Shield: The Game
+        </h2>
+        
+        <p style={{ 
+          fontSize: '1.4rem',
+          color: '#34495e',
+          marginBottom: '0',
+          fontStyle: 'italic',
+          lineHeight: '1.6',
+          fontWeight: '500',
+          maxWidth: '600px',
+          margin: '0 auto',
+          padding: '0 20px'
+        }}>
+          Level up your emotional defense skills and spot the red flags!
+        </p>
+      </div>
+
       {!submitted ? (
         <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
           <div style={{ 
@@ -572,21 +643,35 @@ function WebDetectorQuiz() {
         </form>
       ) : (
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h3 style={{ 
-            fontSize: '1.8rem', 
-            marginBottom: '20px',
-            color: '#333',
-            fontWeight: '600'
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '40px',
+            padding: '20px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
           }}>
-            Your Results
-          </h3>
+            <h3 style={{ 
+              fontSize: '2.2rem',
+              color: '#2c3e50',
+              marginBottom: '15px',
+              fontWeight: '800',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+              letterSpacing: '0.5px',
+              background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>
+              Your Results
+            </h3>
+          </div>
           
           <div style={{ 
             marginBottom: '30px',
             padding: '20px',
             backgroundColor: '#f8f9fa',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
           }}>
             <p style={{ 
               fontSize: '1.2rem',
@@ -655,14 +740,28 @@ function WebDetectorQuiz() {
 
           {flaggedQuestions.length > 0 && (
             <div style={{ marginTop: '30px' }}>
-              <h4 style={{ 
-                fontSize: '1.4rem',
-                marginBottom: '20px',
-                color: '#2c3e50',
-                fontWeight: '600'
+              <div style={{
+                textAlign: 'center',
+                marginBottom: '40px',
+                padding: '20px',
+                backgroundColor: '#f8f9fa',
+                borderRadius: '12px',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
               }}>
-                Details About the Red Flags You Identified
-              </h4>
+                <h4 style={{ 
+                  fontSize: '1.8rem',
+                  color: '#2c3e50',
+                  marginBottom: '15px',
+                  fontWeight: '800',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                  letterSpacing: '0.5px',
+                  background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}>
+                  Details About the Red Flags You Identified
+                </h4>
+              </div>
               
               {flaggedQuestions.map((q, idx) => (
                 <div 
