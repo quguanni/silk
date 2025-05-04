@@ -4,29 +4,85 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 function WelcomeScreen() {
   return (
     <div style={{ 
-      textAlign: 'center', 
-      paddingTop: '100px',
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
       minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      position: 'relative',
+      overflow: 'hidden',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }}>
+      {/* Animated background elements */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        pointerEvents: 'none',
+        opacity: 0.1
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          fontSize: '4rem',
+          transform: 'rotate(-15deg)',
+          animation: 'float 6s ease-in-out infinite'
+        }}>🕸️</div>
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          right: '10%',
+          fontSize: '3rem',
+          transform: 'rotate(15deg)',
+          animation: 'float 5s ease-in-out infinite'
+        }}>🛡️</div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          left: '15%',
+          fontSize: '3.5rem',
+          transform: 'rotate(-10deg)',
+          animation: 'float 4.5s ease-in-out infinite'
+        }}>✨</div>
+        <div style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '5%',
+          fontSize: '3rem',
+          transform: 'rotate(20deg)',
+          animation: 'float 5.5s ease-in-out infinite'
+        }}>💫</div>
+      </div>
+
       <div style={{
         maxWidth: '600px',
-        margin: '0 auto',
+        width: '100%',
         padding: '40px',
         backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        borderRadius: '20px',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
+        borderRadius: '30px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+        textAlign: 'center',
+        position: 'relative',
+        zIndex: 1,
+        animation: 'fadeIn 1s ease-out',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.2)'
       }}>
         <h1 style={{ 
-          fontSize: '3rem',
+          fontSize: '3.5rem',
           color: '#2c3e50',
           marginBottom: '20px',
           fontWeight: '800',
           textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
           background: 'linear-gradient(45deg, #2c3e50, #3498db)',
           WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
+          WebkitTextFillColor: 'transparent',
+          animation: 'slideDown 0.8s ease-out',
+          letterSpacing: '1px'
         }}>
           Welcome to Silk 🕸️
         </h1>
@@ -36,37 +92,86 @@ function WelcomeScreen() {
           color: '#34495e',
           marginBottom: '40px',
           lineHeight: '1.6',
-          fontWeight: '500'
+          fontWeight: '500',
+          animation: 'fadeIn 1s ease-out 0.3s forwards',
+          opacity: 0,
+          maxWidth: '500px',
+          margin: '0 auto 40px',
+          padding: '0 20px'
         }}>
           You're safe here. Let's begin cutting through the web.
         </p>
         
-        <div style={{ marginTop: '20px' }}>
-      <Link to="/quiz">
-        <button
-          style={{
-                padding: '15px 30px',
+        <div style={{ 
+          marginTop: '20px',
+          animation: 'fadeIn 1s ease-out 0.6s forwards',
+          opacity: 0
+        }}>
+          <Link to="/quiz">
+            <button
+              style={{
+                padding: '18px 36px',
                 fontSize: '1.2rem',
                 cursor: 'pointer',
                 backgroundColor: '#3498db',
                 color: 'white',
                 border: 'none',
-                borderRadius: '10px',
+                borderRadius: '15px',
                 fontWeight: '600',
                 transition: 'all 0.3s ease',
                 boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                position: 'relative',
+                overflow: 'hidden',
                 ':hover': {
                   backgroundColor: '#2980b9',
                   transform: 'translateY(-2px)',
                   boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
+                },
+                ':before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                  transition: '0.5s'
+                },
+                ':hover:before': {
+                  left: '100%'
                 }
               }}
             >
               Start Quiz
-        </button>
-      </Link>
+            </button>
+          </Link>
         </div>
       </div>
+
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
+            50% { transform: translateY(-20px) rotate(var(--rotation)); }
+          }
+          
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          
+          @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -1230,7 +1335,7 @@ function WebDetectorQuiz() {
           
           @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
           }
           
