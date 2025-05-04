@@ -462,32 +462,113 @@ function WebDetectorQuiz() {
   const flaggedQuestions = questions.filter((_, index) => responses[index]);
 
   return (
-    <div style={{ maxWidth: '800px', margin: '80px auto', padding: '20px' }}>
-      <h2>🧠 Web Detector Quiz</h2>
+    <div style={{ 
+      maxWidth: '800px', 
+      margin: '80px auto', 
+      padding: '20px',
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+    }}>
+      <h2 style={{ 
+        fontSize: '2.2rem',
+        color: '#2c3e50',
+        textAlign: 'center',
+        marginBottom: '40px',
+        fontWeight: '700',
+        textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+      }}>
+        🧠 Web Detector Quiz
+      </h2>
+      
       {!submitted ? (
-        <form onSubmit={handleSubmit}>
-          {questions.map((q, idx) => (
-            <label key={idx} style={{ display: 'block', marginBottom: '15px' }}>
-              <input
-                type="checkbox"
-                checked={responses[idx]}
-                onChange={() => handleChange(idx)}
-                style={{ marginRight: '10px' }}
-              />
-              {q.question}
-            </label>
-          ))}
-          <button 
-            type="submit" 
-            style={{ 
-              marginTop: '20px',
-              padding: '10px 20px',
-              fontSize: '1rem',
-              cursor: 'pointer'
-            }}
-          >
-            See Results
-          </button>
+        <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <div style={{ 
+            backgroundColor: '#fff',
+            padding: '30px',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          }}>
+            <p style={{ 
+              fontSize: '1.1rem',
+              color: '#34495e',
+              marginBottom: '25px',
+              textAlign: 'center',
+              lineHeight: '1.6'
+            }}>
+              Check the boxes that apply to your situation. Be honest with yourself.
+            </p>
+            
+            <div style={{ 
+              display: 'grid',
+              gap: '20px'
+            }}>
+              {questions.map((q, idx) => (
+                <label 
+                  key={idx} 
+                  style={{ 
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    padding: '15px',
+                    backgroundColor: responses[idx] ? '#f0f7ff' : '#f8f9fa',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    border: `1px solid ${responses[idx] ? '#3498db' : '#e0e0e0'}`,
+                    ':hover': {
+                      backgroundColor: '#f0f7ff',
+                      borderColor: '#3498db'
+                    }
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={responses[idx]}
+                    onChange={() => handleChange(idx)}
+                    style={{ 
+                      marginRight: '15px',
+                      marginTop: '3px',
+                      width: '18px',
+                      height: '18px',
+                      cursor: 'pointer'
+                    }}
+                  />
+                  <span style={{ 
+                    fontSize: '1.1rem',
+                    color: '#2c3e50',
+                    lineHeight: '1.5'
+                  }}>
+                    {q.question}
+                  </span>
+                </label>
+              ))}
+            </div>
+            
+            <div style={{ 
+              textAlign: 'center',
+              marginTop: '30px'
+            }}>
+              <button 
+                type="submit" 
+                style={{ 
+                  padding: '12px 30px',
+                  fontSize: '1.1rem',
+                  backgroundColor: '#2c3e50',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  fontWeight: '600',
+                  ':hover': {
+                    backgroundColor: '#34495e',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                  }
+                }}
+              >
+                See Results
+              </button>
+            </div>
+          </div>
         </form>
       ) : (
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
