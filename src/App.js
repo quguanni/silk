@@ -5,33 +5,446 @@ function WelcomeScreen() {
   return (
     <div style={{ textAlign: 'center', paddingTop: '100px' }}>
       <h1>Welcome to Silk 🕸️</h1>
-      <p>You’re safe here. Let’s begin cutting through the web.</p>
-      <Link to="/quiz">
-        <button
-          style={{
-            padding: '10px 20px',
-            fontSize: '1rem',
-            marginTop: '20px',
-            cursor: 'pointer'
-          }}
-        >
-          Start
-        </button>
-      </Link>
+      <p>You're safe here. Let's begin cutting through the web.</p>
+      <div style={{ marginTop: '20px' }}>
+        <Link to="/quiz">
+          <button
+            style={{
+              padding: '10px 20px',
+              fontSize: '1rem',
+              cursor: 'pointer'
+            }}
+          >
+            Start Quiz
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
 
 function WebDetectorQuiz() {
-  const [responses, setResponses] = useState([false, false, false, false, false]);
+  const [responses, setResponses] = useState([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]);
   const [submitted, setSubmitted] = useState(false);
 
   const questions = [
-    "Do they make you doubt your memory?",
-    "Do they isolate you from support?",
-    "Do they switch from kind to cruel suddenly?",
-    "Do you feel guilty saying no to them?",
-    "Do you feel smaller around them?"
+    {
+      question: "Do they move fast—too fast emotionally or romantically?",
+      tactic: "Love-Bombing (Intensity That Skips Intimacy)",
+      howItWorks: "The manipulator overwhelms you with excessive affection, grand gestures, or future-faking early on to create artificial intimacy. This bypasses natural emotional pacing, creating a false sense of deep connection.",
+      redFlags: [
+        "\"Soulmate\" claims within days/weeks.",
+        "Over-the-top gifts, constant praise, or rapid commitment talks (moving in, marriage).",
+        "Rushing past your boundaries under the guise of \"passion.\""
+      ],
+      longTermEffect: "You normalize intensity over stability, making genuine, slow-building relationships feel \"boring.\"",
+      emotionalImpact: "At first, you feel adored, special, and \"swept off your feet\" by the sudden romance. But it can also be overwhelming – you might sense things are moving too fast yet doubt yourself because the attention feels so good. Over time, this intensity can make you feel indebted to them and increasingly dependent on their approval, as if the relationship has become the center of your world.",
+      metaphor: "It's like a whirlwind or sugar rush – exhilarating at first, but it skips the slow, mutual growth of real intimacy. The relationship flares up like a bright firework that dazzles you, then quickly fades, leaving you in the dark once the sparkle settles.",
+      counterStrategy: {
+        name: "The Pause Test",
+        action: "Deliberately slow their momentum.",
+        examples: [
+          "If they say, \"You're my soulmate\" too soon: Respond: \"That's a big claim—let's see how we feel in a few months.\"",
+          "If they push for quick commitment: Boundary: \"I need time to build trust. If that's a problem, we're not compatible.\""
+        ],
+        psychology: "Forces them to either respect your pace (revealing sincerity) or escalate (exposing manipulation).",
+        powerMove: "\"I'm flattered, but real connection takes time.\""
+      }
+    },
+    {
+      question: "Do they make you doubt your memory or instincts?",
+      tactic: "Gaslighting",
+      howItWorks: "The manipulator denies your reality, twists facts, or insists you're \"overreacting\" to destabilize your self-trust. Over time, you rely on their version of events instead of your own.",
+      redFlags: [
+        "\"You're too sensitive,\" \"That never happened,\" or \"You're imagining things.\"",
+        "You constantly apologize for \"misremembering.\"",
+        "You keep journals or recordings to \"prove\" your sanity."
+      ],
+      longTermEffect: "Erodes your ability to make decisions without external validation.",
+      emotionalImpact: "You end up feeling confused and second-guessing yourself constantly. It can be very damaging – you start to question your own judgment, self-worth, and even sanity. You might feel like you're \"going crazy\" or become convinced that you misinterpret everything. This self-doubt and mental fog are exactly what the gaslighter wants, because it makes you more insecure and reliant on them to define reality.",
+      metaphor: "It's like being in a hall of mirrors – everything you see and remember is distorted until you can't trust your own eyes. Or like someone slowly dimming the lights and insisting nothing's changed, leading you to feel lost in a fog of self-doubt while they hold the only flashlight.",
+      counterStrategy: {
+        name: "The Receipts Method",
+        action: "Document interactions (texts, emails, voice memos).",
+        examples: [
+          "When they deny reality: Calmly state, \"I wrote it down when it happened. Here's what I recorded.\"",
+          "If they deflect: \"Whether you remember or not, my feelings are valid.\""
+        ],
+        psychology: "Removes their power to distort facts.",
+        powerMove: "\"I don't debate reality. Take it or leave it.\""
+      }
+    },
+    {
+      question: "Do they isolate you from people you trust?",
+      tactic: "Social Isolation (\"They're Toxic,\" \"They Don't Get Us\")",
+      howItWorks: "The manipulator frames friends/family as \"jealous,\" \"controlling,\" or \"bad influences\" to cut off your support system. This makes you dependent on them for validation.",
+      redFlags: [
+        "They criticize your loved ones' motives.",
+        "They guilt you for spending time with others.",
+        "You start hiding relationships to avoid conflict."
+      ],
+      longTermEffect: "You lose objectivity—no outside perspective means no reality checks.",
+      emotionalImpact: "You may begin to feel alone and cut off, as your world shrinks to revolve around them. Initially, spending so much time together might feel flattering or intense, but eventually you notice you've drifted from your support network. You might also feel guilty or ashamed for seeing friends or family (or for not noticing the isolation sooner), as if you've done something wrong by \"choosing\" them over your partner. This isolation can leave you dependent on the abusive person for companionship, advice, and emotional needs – making it even harder to reach out for help or to trust your own perspective apart from them.",
+      metaphor: "It's like being slowly moved onto a deserted island with just the two of you. At first it seems romantic to be \"away from the world,\" but soon you realize you're cut off from lifelines you need. One by one, the bridges to your friends, family, and community are burned or blocked, until you're stranded with only the manipulator as your source of reality and support.",
+      counterStrategy: {
+        name: "The Network Audit",
+        action: "Preemptive Transparency",
+        examples: [
+          "Reconnect with your support system privately.",
+          "If they criticize loved ones: \"I decide who's in my life. Let's change the subject.\"",
+          "If they demand exclusivity: \"Healthy relationships don't require cutting people out.\""
+        ],
+        psychology: "Shows you're immune to divide-and-conquer tactics.",
+        powerMove: "\"My friends/family aren't up for discussion.\""
+      }
+    },
+    {
+      question: "Do you feel guilty for asserting your needs or saying no?",
+      tactic: "Guilt-Tripping",
+      howItWorks: "They frame your boundaries as personal failures (\"After all I've done for you?\") or emotional betrayals (\"I guess you don't care about me\").",
+      redFlags: [
+        "They play the victim when you say no.",
+        "You feel responsible for their emotions.",
+        "They use phrases like \"Fine, I'll just suffer alone.\""
+      ],
+      longTermEffect: "Self-abandonment—you suppress your needs to avoid guilt.",
+      emotionalImpact: "You end up feeling like the \"bad guy\" whenever you assert a need or say no. Your own needs start to seem selfish or trivial, because they always make it seem like you're hurting them if you don't comply. Over time, constant guilt-tripping can cause anxiety and self-doubt – you might give in quickly, apologize profusely, or not voice your needs at all, just to avoid that wave of guilt. It wears down your self-esteem, because you're made to feel as though you're always in the wrong; in a sense, you become conditioned to put their feelings first and neglect your own.",
+      metaphor: "It's like carrying an invisible debt that never actually gets paid off – no matter how much you do, they keep adding to what you \"owe\" them. You're constantly trying to make up for some vague shortcoming, like a hamster running in a wheel but never reaching the finish line. The weight of the guilt is always on your shoulders, pushing you to concede to their demands just to feel like a \"good\" partner again.",
+      counterStrategy: {
+        name: "The \"No\" Without Apology",
+        action: "Non-Negotiable Framing",
+        examples: [
+          "Remove justifications. Example: \"I can't do that.\" (No \"sorry\" or \"maybe next time!\")",
+          "If they guilt-trip: \"I hear you're upset, but my answer stands.\""
+        ],
+        psychology: "Guilt relies on your willingness to entertain their narrative. Starve it.",
+        powerMove: "\"I don't owe you my discomfort.\""
+      }
+    },
+    {
+      question: "Do they alternate between really kind and really cruel?",
+      tactic: "Intermittent Reinforcement",
+      howItWorks: "Unpredictable rewards (affection, cruelty) keep you hooked, like a slot machine. The brain becomes addicted to the \"maybe\" of kindness.",
+      redFlags: [
+        "They're warm after being cold, with no accountability.",
+        "You rationalize their cruelty as \"stress\" or \"a bad day.\"",
+        "You obsess over their moods to predict their behavior."
+      ],
+      longTermEffect: "Trauma bonding—you confuse pain with love.",
+      emotionalImpact: "The roller coaster of affection and cruelty is emotionally exhausting and very confusing. During the loving phases, you feel hopeful, relieved, even euphoric – these moments convince you that the relationship can be wonderful. During the cruel phases, you feel hurt, anxious, and desperate to get back in their good graces. Paradoxically, the sharp contrast makes you bond more deeply: the brief \"highs\" of kindness reinforce your attachment and make you willing to endure the lows, constantly chasing that honeymoon phase again. You might find yourself rationalizing the bad behavior (\"They're stressed\" or \"It's my fault for upsetting them\") because when they are kind, it's so good that you don't want to lose it. This intermittent reward system can make it extremely hard to break away – it creates a trauma bond where you feel addicted to the cyclical hope and payoff.",
+      metaphor: "It's like being on a roller coaster that you can't get off – exhilarating highs followed by stomach-dropping lows. Or like a slot machine: most pulls bring nothing but heartbreak, yet every now and then you get just enough of a jackpot (affection) to keep you hooked, pulling the lever again and again. The unpredictability itself becomes the trap, binding you to the cycle.",
+      counterStrategy: {
+        name: "The Detox Protocol",
+        action: "Predictable Withdrawal",
+        examples: [
+          "When they're cruel: Disengage immediately. No anger, no pleading.",
+          "When they're kind: Stay neutral. \"Glad you're in a better mood.\"",
+          "End the cycle: \"I'm done with rollercoaster dynamics. Take care.\""
+        ],
+        psychology: "Removes their power to addict you with \"maybe\" rewards.",
+        powerMove: "\"I'm not a slot machine for your moods.\""
+      }
+    },
+    {
+      question: "Do you feel like you owe them something?",
+      tactic: "Emotional Debt Traps",
+      howItWorks: "They keep score of favors, gifts, or sacrifices to create a sense of obligation. You feel indebted, so you tolerate poor treatment.",
+      redFlags: [
+        "\"I did X for you, so you owe me Y.\"",
+        "They resent your independence.",
+        "You feel pressured to \"repay\" them emotionally/physically."
+      ],
+      longTermEffect: "Resentment and eroded self-worth.",
+      emotionalImpact: "You carry a constant sense of guilt and obligation, as if asserting yourself or setting boundaries would mean you're betraying or cheating them. You might feel trapped – how can you leave or say no when you \"owe\" them so much? The gratitude or loyalty you naturally felt becomes coerced: you start doing things not out of love, but out of fear of being labeled ungrateful. This can lead to walking on eggshells and an inability to prioritize your own well-being, because any refusal triggers intense guilt, like you're defaulting on a moral debt. Over time, this burden can crush your self-confidence; you begin to believe you don't deserve to refuse or that you'd be a bad person to ever hurt or leave them given their \"sacrifices.\"",
+      metaphor: "Imagine a gift wrapped in chains – it looks like kindness, but accepting it locks you into an unwritten contract. Their favors come with invisible strings attached. You find yourself tied up by these strings of obligation, like a puppet whose movements are controlled by the debts you supposedly owe. In a healthy relationship, kindness is given freely; here, it's more like a bank loan that accumulates interest and never really ends.",
+      counterStrategy: {
+        name: "The Ledger Reset",
+        action: "Preemptive Refusal",
+        examples: [
+          "Reject unrequested \"favors\": \"I didn't ask for this, so there's no debt.\"",
+          "If they keep score: \"Gifts with strings aren't gifts.\""
+        ],
+        psychology: "Reframes their \"generosity\" as the control tactic it is.",
+        powerMove: "\"I'm not an investment. Stop keeping score.\""
+      }
+    },
+    {
+      question: "Do they make you feel 'special' in a way that feels hard to leave?",
+      tactic: "Identity Entanglement",
+      howItWorks: "They fuse your self-worth with their approval (\"No one will ever love you like I do\"). You fear losing not just them, but your sense of self.",
+      redFlags: [
+        "They claim to be your \"only true supporter.\"",
+        "You lose hobbies, values, or friendships to align with them.",
+        "The thought of leaving feels like losing your identity."
+      ],
+      longTermEffect: "Identity collapse—you don't know who you are without them.",
+      emotionalImpact: "You likely feel deeply flattered and bonded. Being told you're so important to someone, or feeling like you're the only one who can help them, feeds a sense of purpose and attachment. However, that flattery comes with chains: you may feel guilt, fear, or intense responsibility at the thought of ending the relationship or even taking time for yourself. It's not just losing them; it feels like you'd be losing a part of yourself or abandoning a special mission. Over time, you might notice you've let go of other parts of your life – hobbies, friendships, even pieces of your personality – to keep this bond intact. Your world and identity narrow to revolve around keeping that person happy. This erosion of your independent identity can leave you feeling hollow or unsure who you are outside of the relationship.",
+      metaphor: "It's like two vines growing tightly entwined around each other – they've wrapped around you so much that pulling away feels like tearing out roots. Or think of being cast in a role in a play that only you can fill; you're made to believe if you step off the stage, the show (and the other person) will collapse. In short, they've tangled their identity with yours so deeply that leaving feels like losing a piece of yourself, which is exactly what makes this trap so powerful.",
+      counterStrategy: {
+        name: "The Self-Reclamation",
+        action: "The \"Who Was I?\" Exercise",
+        examples: [
+          "List 5 things you loved before them (hobbies, values, quirks).",
+          "Reintroduce one weekly, regardless of their reaction."
+        ],
+        psychology: "Rebuilds neural pathways tied to autonomy.",
+        powerMove: "\"I'm rediscovering myself. You'll adjust or go.\""
+      }
+    },
+    {
+      question: "Do you feel like you're shrinking or silencing yourself around them?",
+      tactic: "Boundary Erosion",
+      howItWorks: "They punish subtle displays of autonomy (opinions, preferences) until you self-censor to avoid conflict.",
+      redFlags: [
+        "You downplay your achievements to avoid their jealousy.",
+        "You avoid topics that trigger their anger.",
+        "You feel like a \"shell\" of yourself."
+      ],
+      longTermEffect: "Chronic self-betrayal leads to anxiety/depression.",
+      emotionalImpact: "You begin to feel like a shrinking version of yourself. Instead of a partner or equal, you feel more like a child who's always in the wrong, or an object with no say. It's common to experience low self-worth, depression, or a sense of helplessness. You might think, \"Nothing I do is ever right,\" and indeed the abuser often reinforces that by finding fault in whatever you do. Over time, you become anxious and hypervigilant about not upsetting them – your life revolves around avoiding their anger or disapproval. This might mean constantly monitoring your words and actions, giving up hobbies or relationships they don't like, and ignoring your own needs. Ultimately, your personal boundaries – the lines that define you – have been worn down so much that you feel almost invisible. You \"go along to get along,\" losing the confident, vibrant parts of yourself in order to survive the relationship.",
+      metaphor: "Imagine a brightly colored painting left out in harsh sunlight day after day – the colors slowly fade away. Similarly, under constant criticism and control, your bright sense of self bleaches out over time. You become like a turtle that's learned to stay in its shell; it feels safer to hide your true thoughts and feelings. In the end, you occupy less and less space in your own life – as if you're shrinking into a corner, while the manipulator's presence looms large over everything.",
+      counterStrategy: {
+        name: "The Zero-Tolerance Policy",
+        action: "The \"Three Strikes\" Rule",
+        examples: [
+          "1st violation: \"I don't like that. Don't do it again.\"",
+          "2nd violation: \"I warned you. Next time, I walk.\"",
+          "3rd violation: Leave. No explanation."
+        ],
+        psychology: "Conditions them to respect your limits or lose access.",
+        powerMove: "\"My boundaries aren't negotiations.\""
+      }
+    },
+    {
+      question: "Do they punish you with silence or withdrawal when upset?",
+      tactic: "Stonewalling",
+      howItWorks: "They use silence as a weapon to force compliance or guilt-trip you into apologizing for nonexistent offenses.",
+      redFlags: [
+        "They ignore you for days after minor disagreements.",
+        "You feel frantic to \"fix\" things to end the silence.",
+        "They deny they're punishing you (\"I'm just busy\")."
+      ],
+      longTermEffect: "Emotional exhaustion and hypervigilance.",
+      emotionalImpact: "You feel anxious and desperate when they withdraw, constantly trying to 'fix' things to regain their attention. The silence feels like punishment, and you start walking on eggshells to avoid triggering their withdrawal. Over time, you become hypervigilant about their moods and reactions, always trying to prevent the next silent treatment.",
+      metaphor: "It's like being trapped in a soundproof room – you can see them through the glass, but no matter how much you try to communicate, they remain silent. The more you try to break through, the more they reinforce the barrier, leaving you feeling isolated and desperate for any sign of connection.",
+      counterStrategy: {
+        name: "The Silent Treatment Response",
+        action: "Refuse to chase their approval during silence.",
+        examples: [
+          "When they withdraw: \"I'll talk when you're ready to communicate respectfully. Until then, I'll live my life.\"",
+          "If they deny it's punishment: \"Whether you call it busy or not, your silence is hurtful.\""
+        ],
+        psychology: "Removes the power from their silence by not reacting to it.",
+        powerMove: "\"Your silence speaks volumes, but I won't beg for your attention.\""
+      }
+    },
+    {
+      question: "Do they twist your words to make you sound unreasonable?",
+      tactic: "Word Salad",
+      howItWorks: "They distort your statements into absurd or offensive versions to derail conversations.",
+      redFlags: [
+        "You say: \"I need space.\" They reply: \"So you hate me now?\"",
+        "Conversations feel like circular arguments.",
+        "You constantly find yourself explaining what you 'really meant'"
+      ],
+      longTermEffect: "Self-censorship and communication anxiety.",
+      emotionalImpact: "You start doubting your ability to communicate clearly. Every conversation feels like walking through a minefield, where your words might be twisted against you. You become hesitant to express yourself, constantly rehearsing what you'll say to avoid misinterpretation. Over time, you may stop sharing your thoughts altogether to avoid the exhausting process of defending your words.",
+      metaphor: "It's like trying to have a conversation in a hall of mirrors – your words get distorted and reflected back to you in unrecognizable ways. No matter how clearly you try to express yourself, your message gets warped and twisted until you're left questioning your own sanity.",
+      counterStrategy: {
+        name: "The Clear Boundary Method",
+        action: "Refuse to engage in word-twisting games.",
+        examples: [
+          "When they distort your words: \"I said what I meant. If you misrepresent me again, this conversation is over.\"",
+          "If they continue: \"I'm not playing this game. Let me know when you're ready to have a real conversation.\""
+        ],
+        psychology: "Removes their power to derail conversations through distortion.",
+        powerMove: "\"I won't defend my words against your distortions.\""
+      }
+    },
+    {
+      question: "Do they compare you to others to make you feel inadequate?",
+      tactic: "Triangulation",
+      howItWorks: "They use real or fictional rivals (\"My ex would never…\") to create insecurity.",
+      redFlags: [
+        "\"Why can't you be more like [person]?\"",
+        "They flirt with others to provoke jealousy.",
+        "They frequently mention how others treat them better"
+      ],
+      longTermEffect: "Erodes self-esteem and fosters toxic competition.",
+      emotionalImpact: "You constantly feel like you're in competition with others, never quite measuring up. Their comparisons make you doubt your worth and abilities. You might find yourself trying harder to please them, only to have the goalposts constantly moved. Over time, you lose confidence in your own value and become dependent on their approval.",
+      metaphor: "It's like being in a never-ending beauty pageant where the judges keep changing the criteria, and you're always the runner-up. No matter how hard you try, there's always someone else who's 'better' in their eyes, keeping you in a perpetual state of striving and never quite reaching the mark.",
+      counterStrategy: {
+        name: "The Comparison Cutoff",
+        action: "Refuse to engage in comparison games.",
+        examples: [
+          "When they compare you: \"Compare me again, and I'll remove myself from this dynamic.\"",
+          "If they mention others: \"If you prefer how others treat you, you're free to pursue those relationships.\""
+        ],
+        psychology: "Removes their power to manipulate through comparison.",
+        powerMove: "\"I'm not in competition with anyone for your approval.\""
+      }
+    },
+    {
+      question: "Do they demand access to your phone/social media?",
+      tactic: "Surveillance Control",
+      howItWorks: "Positions invasion of privacy as \"trust-building\" to isolate you.",
+      redFlags: [
+        "They accuse you of cheating with no evidence.",
+        "You delete messages to avoid drama.",
+        "They insist on knowing all your passwords"
+      ],
+      longTermEffect: "Paranoia and loss of autonomy.",
+      emotionalImpact: "You feel constantly watched and controlled, as if you're under surveillance. Your private communications become sources of anxiety rather than comfort. You might start self-censoring or deleting innocent messages to avoid conflict. Over time, you lose your sense of privacy and autonomy, feeling like you're always under suspicion.",
+      metaphor: "It's like living in a glass house where every move is monitored and scrutinized. Your private spaces become public property, and you're constantly performing for an audience of one, never able to truly relax or be yourself.",
+      counterStrategy: {
+        name: "The Privacy Protection Plan",
+        action: "Firmly maintain your boundaries around privacy.",
+        examples: [
+          "When they demand access: \"My privacy isn't negotiable. Trust me or don't—your choice.\"",
+          "If they accuse you: \"Your accusations say more about you than about me.\""
+        ],
+        psychology: "Reclaims your right to privacy and autonomy.",
+        powerMove: "\"My phone is not up for discussion.\""
+      }
+    },
+    {
+      question: "Do they blame you for their reactions?",
+      tactic: "Emotional Hijacking",
+      howItWorks: "Claims their outbursts are your fault (\"Look what you made me do!\").",
+      redFlags: [
+        "You apologize for their anger.",
+        "They threaten self-harm if you leave.",
+        "They say you 'provoked' their bad behavior"
+      ],
+      longTermEffect: "Walking on eggshells to avoid \"triggering\" them.",
+      emotionalImpact: "You feel responsible for their emotions and reactions, constantly trying to manage their moods. Their outbursts leave you feeling guilty and confused, even when you've done nothing wrong. Over time, you become hypervigilant about avoiding anything that might 'trigger' them, losing your sense of what's reasonable behavior.",
+      metaphor: "It's like being held hostage by their emotions – you're constantly trying to defuse a bomb that could go off at any moment. Their emotional explosions become your responsibility to prevent, and you're always walking on eggshells, afraid of setting them off.",
+      counterStrategy: {
+        name: "The Emotional Responsibility Reset",
+        action: "Refuse to accept responsibility for their emotions.",
+        examples: [
+          "When they blame you: \"You're responsible for your actions. Full stop.\"",
+          "If they threaten self-harm: \"I'll call emergency services if you're in danger, but I won't stay out of fear.\""
+        ],
+        psychology: "Reclaims your emotional autonomy and boundaries.",
+        powerMove: "\"Your feelings are your responsibility, not mine.\""
+      }
+    },
+    {
+      question: "Do they sabotage your achievements or milestones?",
+      tactic: "Success Sabotage",
+      howItWorks: "Undermines your joy (e.g., ghosting you on your birthday) to keep you small.",
+      redFlags: [
+        "They \"forget\" important events.",
+        "They dismiss your accomplishments (\"Big deal\").",
+        "They create drama during your special moments"
+      ],
+      longTermEffect: "Internalized shame for wanting recognition.",
+      emotionalImpact: "You start doubting whether your achievements are worth celebrating. Their dismissive or sabotaging behavior makes you feel guilty for wanting recognition. Over time, you might stop sharing your successes or even downplay them to avoid their negative reactions. Your joy becomes tainted with anxiety about how they'll respond.",
+      metaphor: "It's like trying to light a candle in a windstorm – every time you try to celebrate your light, they create a gust to blow it out. Your achievements become sources of tension rather than joy, and you learn to keep your successes small to avoid their sabotage.",
+      counterStrategy: {
+        name: "The Success Celebration Strategy",
+        action: "Celebrate your achievements regardless of their response.",
+        examples: [
+          "When they dismiss your success: \"I celebrate my wins—with or without you.\"",
+          "If they create drama: \"I won't let your mood ruin my celebration.\""
+        ],
+        psychology: "Reclaims your right to celebrate and be proud of your achievements.",
+        powerMove: "\"My success isn't up for debate.\""
+      }
+    },
+    {
+      question: "Do they insist they \"know you better than you know yourself\"?",
+      tactic: "Identity Override",
+      howItWorks: "Dismisses your feelings/choices as \"wrong\" to dominate your self-perception.",
+      redFlags: [
+        "\"You don't really want that.\"",
+        "They define your personality for you.",
+        "They tell you how you 'really' feel"
+      ],
+      longTermEffect: "Loss of identity and decision-making paralysis.",
+      emotionalImpact: "You start doubting your own thoughts, feelings, and choices. Their constant assertions about who you 'really' are create confusion about your own identity. Over time, you become dependent on their interpretation of your experiences, losing trust in your own perceptions. Making decisions becomes increasingly difficult as you second-guess yourself.",
+      metaphor: "It's like having someone constantly repainting your portrait – they keep telling you the colors are wrong, the shape is off, until you can't recognize yourself in the mirror anymore. Your reflection becomes distorted through their lens, and you lose sight of your true image.",
+      counterStrategy: {
+        name: "The Identity Reclamation",
+        action: "Reassert your authority over your own identity.",
+        examples: [
+          "When they define you: \"I'm the authority on me. Period.\"",
+          "If they dismiss your feelings: \"My feelings are valid, whether you understand them or not.\""
+        ],
+        psychology: "Reclaims your right to define yourself and your experiences.",
+        powerMove: "\"I know myself better than anyone else.\""
+      }
+    },
+    {
+      question: "Do they use gifts/acts of service to manipulate you later?",
+      tactic: "Covert Contracts",
+      howItWorks: "Does \"nice\" things with unstated strings attached (\"After all I've done…\").",
+      redFlags: [
+        "Gifts come before demands.",
+        "They keep a mental ledger of favors.",
+        "They remind you of their 'generosity' when you disagree"
+      ],
+      longTermEffect: "Resentment and transactional relationships.",
+      emotionalImpact: "You start feeling guilty for accepting any kindness, knowing it will be used against you later. Their 'generosity' becomes a source of anxiety rather than joy. Over time, you might refuse their help or gifts to avoid future manipulation, or you might feel trapped in a cycle of trying to 'repay' their kindness.",
+      metaphor: "It's like receiving a beautifully wrapped gift that turns out to be a Trojan horse – what appears to be generosity is actually a vehicle for control. Each 'gift' comes with invisible strings that slowly wrap around you, binding you to their expectations.",
+      counterStrategy: {
+        name: "The Gift Refusal Protocol",
+        action: "Reject manipulative gifts and favors.",
+        examples: [
+          "When they use past favors: \"I don't accept gifts with invisible strings.\"",
+          "If they keep score: \"Kindness shouldn't come with a price tag.\""
+        ],
+        psychology: "Removes their power to create obligation through 'generosity'.",
+        powerMove: "\"Your gifts don't buy my compliance.\""
+      }
+    },
+    {
+      question: "Do they pressure you to forgive them instantly?",
+      tactic: "False Reconciliation",
+      howItWorks: "Rushes forgiveness (\"Get over it!\") to avoid accountability.",
+      redFlags: [
+        "\"Why are you still upset?\"",
+        "They love-bomb after abuse to \"reset\" the relationship.",
+        "They demand immediate forgiveness"
+      ],
+      longTermEffect: "Normalizes abuse cycles.",
+      emotionalImpact: "You feel pressured to suppress your hurt and move on before you're ready. Their rush to 'forgive and forget' makes you doubt whether your feelings are valid. Over time, you might stop expressing hurt altogether, knowing it will be dismissed or used against you. The cycle of hurt and rushed reconciliation becomes normalized.",
+      metaphor: "It's like being forced to eat a meal before the previous one has digested – there's no time to process what happened before being expected to move on. Your emotional digestion is constantly interrupted, leaving you with unresolved pain that builds up over time.",
+      counterStrategy: {
+        name: "The Healing Timeline Protection",
+        action: "Insist on your right to process hurt in your own time.",
+        examples: [
+          "When they rush forgiveness: \"Forgiveness is earned, not demanded.\"",
+          "If they love-bomb: \"Your kindness now doesn't erase what happened then.\""
+        ],
+        psychology: "Reclaims your right to heal at your own pace.",
+        powerMove: "\"I'll forgive when I'm ready, not when you demand it.\""
+      }
+    },
+    {
+      question: "Do they frame their demands as \"tests\" of your love?",
+      tactic: "Loyalty Testing",
+      howItWorks: "Creates arbitrary hoops (e.g., \"Cut off your friend\") to prove devotion.",
+      redFlags: [
+        "\"If you loved me, you'd ______.\"",
+        "Tests escalate over time.",
+        "They create situations to test your loyalty"
+      ],
+      longTermEffect: "You abandon your values to \"prove\" loyalty.",
+      emotionalImpact: "You constantly feel like you're being tested, never quite sure if you've proven your love enough. Their demands make you question whether you're a good partner, and you might start compromising your values to pass their 'tests.' Over time, you lose sight of your own boundaries as you try to meet their ever-increasing demands.",
+      metaphor: "It's like being in a never-ending obstacle course where the hurdles keep getting higher and the rules keep changing. No matter how many hoops you jump through, there's always another test waiting, keeping you in a perpetual state of trying to prove your worth.",
+      counterStrategy: {
+        name: "The Test Refusal Strategy",
+        action: "Refuse to participate in loyalty tests.",
+        examples: [
+          "When they test you: \"Love doesn't come with pop quizzes. Stop testing me.\"",
+          "If they make demands: \"My love isn't measured by how many hoops I'll jump through.\""
+        ],
+        psychology: "Removes their power to manipulate through testing.",
+        powerMove: "\"I won't prove my love through your tests.\""
+      }
+    }
   ];
 
   const handleChange = (index) => {
@@ -46,39 +459,340 @@ function WebDetectorQuiz() {
   };
 
   const score = responses.filter(Boolean).length;
+  const flaggedQuestions = questions.filter((_, index) => responses[index]);
 
   return (
-    <div style={{ maxWidth: '600px', margin: '80px auto', padding: '20px' }}>
+    <div style={{ maxWidth: '800px', margin: '80px auto', padding: '20px' }}>
       <h2>🧠 Web Detector Quiz</h2>
       {!submitted ? (
         <form onSubmit={handleSubmit}>
           {questions.map((q, idx) => (
-            <label key={idx}>
+            <label key={idx} style={{ display: 'block', marginBottom: '15px' }}>
               <input
                 type="checkbox"
                 checked={responses[idx]}
                 onChange={() => handleChange(idx)}
+                style={{ marginRight: '10px' }}
               />
-              {' '}{q}
-              <br />
+              {q.question}
             </label>
           ))}
-          <button type="submit" style={{ marginTop: '20px' }}>
+          <button 
+            type="submit" 
+            style={{ 
+              marginTop: '20px',
+              padding: '10px 20px',
+              fontSize: '1rem',
+              cursor: 'pointer'
+            }}
+          >
             See Results
           </button>
         </form>
       ) : (
-        <div>
-          <h3>Your Results:</h3>
-          <p>You checked <strong>{score}</strong> out of {questions.length} red flags.</p>
-          {score === 0 && <p>You're probably safe in this situation. But trust your instincts.</p>}
-          {score >= 1 && score <= 2 && <p>There may be mild manipulation patterns. Stay aware.</p>}
-          {score >= 3 && score <= 4 && <p>You're likely experiencing manipulative behavior. Trust your gut. Set boundaries.</p>}
-          {score === 5 && <p>This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support if needed.</p>}
-          <br />
-          <Link to="/">
-            <button>Go Back Home</button>
-          </Link>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h3 style={{ 
+            fontSize: '1.8rem', 
+            marginBottom: '20px',
+            color: '#333',
+            fontWeight: '600'
+          }}>
+            Your Results
+          </h3>
+          
+          <div style={{ 
+            marginBottom: '30px',
+            padding: '20px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}>
+            <p style={{ 
+              fontSize: '1.2rem',
+              marginBottom: '10px',
+              color: '#444'
+            }}>
+              You checked <strong style={{ color: '#2c3e50' }}>{score}</strong> out of {questions.length} red flags.
+            </p>
+            
+            {score === 0 && (
+              <div style={{ 
+                margin: '20px 0', 
+                padding: '15px', 
+                backgroundColor: '#e6ffe6', 
+                borderRadius: '8px',
+                borderLeft: '4px solid #2ecc71'
+              }}>
+                <p style={{ margin: '0', color: '#27ae60' }}>
+                  You're probably safe in this situation. But trust your instincts.
+                </p>
+              </div>
+            )}
+            
+            {score >= 1 && score <= 2 && (
+              <div style={{ 
+                margin: '20px 0', 
+                padding: '15px', 
+                backgroundColor: '#fff3e6', 
+                borderRadius: '8px',
+                borderLeft: '4px solid #f39c12'
+              }}>
+                <p style={{ margin: '0', color: '#d35400' }}>
+                  There may be mild manipulation patterns. Stay aware.
+                </p>
+              </div>
+            )}
+            
+            {score >= 3 && score <= 4 && (
+              <div style={{ 
+                margin: '20px 0', 
+                padding: '15px', 
+                backgroundColor: '#ffe6e6', 
+                borderRadius: '8px',
+                borderLeft: '4px solid #e74c3c'
+              }}>
+                <p style={{ margin: '0', color: '#c0392b' }}>
+                  You're likely experiencing manipulative behavior. Trust your gut. Set boundaries.
+                </p>
+              </div>
+            )}
+            
+            {score >= 5 && (
+              <div style={{ 
+                margin: '20px 0', 
+                padding: '15px', 
+                backgroundColor: '#ffcccc', 
+                borderRadius: '8px',
+                borderLeft: '4px solid #c0392b'
+              }}>
+                <p style={{ margin: '0', color: '#7f0000' }}>
+                  This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support if needed.
+                </p>
+              </div>
+            )}
+          </div>
+
+          {flaggedQuestions.length > 0 && (
+            <div style={{ marginTop: '30px' }}>
+              <h4 style={{ 
+                fontSize: '1.4rem',
+                marginBottom: '20px',
+                color: '#2c3e50',
+                fontWeight: '600'
+              }}>
+                Details About the Red Flags You Identified
+              </h4>
+              
+              {flaggedQuestions.map((q, idx) => (
+                <div 
+                  key={idx} 
+                  style={{ 
+                    marginBottom: '30px', 
+                    padding: '25px', 
+                    border: '1px solid #e0e0e0', 
+                    borderRadius: '8px',
+                    backgroundColor: '#fff',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                  }}
+                >
+                  <h5 style={{ 
+                    color: '#2c3e50',
+                    fontSize: '1.2rem',
+                    marginBottom: '10px',
+                    fontWeight: '600'
+                  }}>
+                    {q.question}
+                  </h5>
+                  
+                  <h6 style={{ 
+                    color: '#34495e',
+                    fontSize: '1.1rem',
+                    marginBottom: '15px',
+                    fontWeight: '500'
+                  }}>
+                    Manipulative Tactic: {q.tactic}
+                  </h6>
+                  
+                  <div style={{ margin: '20px 0' }}>
+                    <h6 style={{ 
+                      color: '#2c3e50',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      How It Works
+                    </h6>
+                    <p style={{ 
+                      color: '#444',
+                      lineHeight: '1.6',
+                      margin: '0'
+                    }}>
+                      {q.howItWorks}
+                    </p>
+                  </div>
+                  
+                  <div style={{ margin: '20px 0' }}>
+                    <h6 style={{ 
+                      color: '#2c3e50',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      Red Flags
+                    </h6>
+                    <ul style={{ 
+                      margin: '0',
+                      paddingLeft: '20px',
+                      color: '#444',
+                      lineHeight: '1.6'
+                    }}>
+                      {q.redFlags.map((flag, i) => (
+                        <li key={i} style={{ marginBottom: '8px' }}>{flag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div style={{ margin: '20px 0' }}>
+                    <h6 style={{ 
+                      color: '#2c3e50',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      Long-Term Effect
+                    </h6>
+                    <p style={{ 
+                      color: '#444',
+                      lineHeight: '1.6',
+                      margin: '0'
+                    }}>
+                      {q.longTermEffect}
+                    </p>
+                  </div>
+
+                  <div style={{ 
+                    margin: '20px 0', 
+                    padding: '15px', 
+                    backgroundColor: '#fff5e6', 
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #f39c12'
+                  }}>
+                    <h6 style={{ 
+                      color: '#d35400',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      Emotional Impact
+                    </h6>
+                    <p style={{ 
+                      color: '#7f4c00',
+                      lineHeight: '1.6',
+                      margin: '0'
+                    }}>
+                      {q.emotionalImpact}
+                    </p>
+                  </div>
+
+                  <div style={{ 
+                    margin: '20px 0', 
+                    padding: '15px', 
+                    backgroundColor: '#f0f7ff', 
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #3498db'
+                  }}>
+                    <h6 style={{ 
+                      color: '#2980b9',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      Metaphor/Analogy
+                    </h6>
+                    <p style={{ 
+                      color: '#2c3e50',
+                      lineHeight: '1.6',
+                      margin: '0'
+                    }}>
+                      {q.metaphor}
+                    </p>
+                  </div>
+
+                  <div style={{ 
+                    margin: '20px 0', 
+                    padding: '15px', 
+                    backgroundColor: '#e6f3ff', 
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #2980b9'
+                  }}>
+                    <h6 style={{ 
+                      color: '#2c3e50',
+                      fontSize: '1rem',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}>
+                      Counter-Strategy: {q.counterStrategy.name}
+                    </h6>
+                    <p style={{ 
+                      color: '#444',
+                      lineHeight: '1.6',
+                      margin: '0 0 10px 0'
+                    }}>
+                      <strong style={{ color: '#2c3e50' }}>Action:</strong> {q.counterStrategy.action}
+                    </p>
+                    <div style={{ margin: '10px 0' }}>
+                      <strong style={{ color: '#2c3e50' }}>Examples:</strong>
+                      <ul style={{ 
+                        margin: '8px 0 0 0',
+                        paddingLeft: '20px',
+                        color: '#444',
+                        lineHeight: '1.6'
+                      }}>
+                        {q.counterStrategy.examples.map((example, i) => (
+                          <li key={i} style={{ marginBottom: '8px' }}>{example}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <p style={{ 
+                      color: '#444',
+                      lineHeight: '1.6',
+                      margin: '10px 0'
+                    }}>
+                      <strong style={{ color: '#2c3e50' }}>Psychology:</strong> {q.counterStrategy.psychology}
+                    </p>
+                    <p style={{ 
+                      marginTop: '10px',
+                      fontStyle: 'italic',
+                      color: '#2c3e50',
+                      lineHeight: '1.6'
+                    }}>
+                      <strong>Power Move:</strong> {q.counterStrategy.powerMove}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <div style={{ 
+            marginTop: '30px',
+            textAlign: 'center'
+          }}>
+            <Link to="/">
+              <button style={{ 
+                padding: '12px 24px',
+                fontSize: '1rem',
+                backgroundColor: '#2c3e50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s'
+              }}>
+                Go Back Home
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </div>
