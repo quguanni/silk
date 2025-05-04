@@ -1,7 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function WelcomeScreen() {
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.3);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Initialize audio
+    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-soft-piano-ambient-117.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = volume;
+    audioRef.current.play().catch(error => console.log('Audio play failed:', error));
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+
+  const toggleMute = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
   return (
     <div style={{ 
       minHeight: '100vh',
@@ -14,6 +47,69 @@ function WelcomeScreen() {
       overflow: 'hidden',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }}>
+      {/* Audio Controls */}
+      <div style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        padding: '10px 15px',
+        borderRadius: '20px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        zIndex: 1000,
+        animation: 'fadeIn 1s ease-out'
+      }}>
+        <button
+          onClick={toggleMute}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '1.5rem',
+            padding: '5px',
+            color: '#2c3e50',
+            transition: 'transform 0.2s ease',
+            ':hover': {
+              transform: 'scale(1.1)'
+            }
+          }}
+        >
+          {isMuted ? '🔇' : '🔊'}
+        </button>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value={volume}
+          onChange={handleVolumeChange}
+          style={{
+            width: '100px',
+            height: '4px',
+            borderRadius: '2px',
+            background: '#e0e0e0',
+            outline: 'none',
+            cursor: 'pointer',
+            '::-webkit-slider-thumb': {
+              appearance: 'none',
+              width: '15px',
+              height: '15px',
+              borderRadius: '50%',
+              background: '#3498db',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            },
+            '::-webkit-slider-thumb:hover': {
+              background: '#2980b9',
+              transform: 'scale(1.1)'
+            }
+          }}
+        />
+      </div>
+
       {/* Animated background elements */}
       <div style={{
         position: 'absolute',
@@ -68,9 +164,11 @@ function WelcomeScreen() {
         textAlign: 'center',
         position: 'relative',
         zIndex: 1,
-        animation: 'fadeIn 1s ease-out',
+        animation: 'cloudFloat 8s ease-in-out infinite, fadeIn 1s ease-out',
         backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255,255,255,0.2)'
+        border: '1px solid rgba(255,255,255,0.2)',
+        transform: 'translateY(0)',
+        willChange: 'transform'
       }}>
         <h1 style={{ 
           fontSize: '3.5rem',
@@ -153,6 +251,21 @@ function WelcomeScreen() {
           @keyframes float {
             0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
             50% { transform: translateY(-20px) rotate(var(--rotation)); }
+          }
+          
+          @keyframes cloudFloat {
+            0%, 100% { 
+              transform: translateY(0) translateX(0) rotate(0deg); 
+            }
+            25% { 
+              transform: translateY(-10px) translateX(5px) rotate(1deg); 
+            }
+            50% { 
+              transform: translateY(0) translateX(0) rotate(0deg); 
+            }
+            75% { 
+              transform: translateY(-10px) translateX(-5px) rotate(-1deg); 
+            }
           }
           
           @keyframes fadeIn {
