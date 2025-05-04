@@ -511,470 +511,487 @@ function WebDetectorQuiz() {
 
   return (
     <div style={{ 
-      maxWidth: '800px', 
-      margin: '80px auto', 
-      padding: '20px',
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      padding: '40px 20px',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }}>
-      <div style={{
-        textAlign: 'center',
-        marginBottom: '40px',
-        padding: '20px',
-        backgroundColor: '#f8f9fa',
-        borderRadius: '12px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+      <div style={{ 
+        maxWidth: '800px', 
+        margin: '0 auto',
+        background: 'rgba(255, 255, 255, 0.9)',
+        borderRadius: '20px',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+        padding: '30px'
       }}>
-        <h2 style={{ 
-          fontSize: '2.5rem',
-          color: '#2c3e50',
-          marginBottom: '15px',
-          fontWeight: '800',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
-          letterSpacing: '0.5px'
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '40px',
+          padding: '30px',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '15px',
+          boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
-          🎮 Manipulation Shield: The Game
-        </h2>
-        
-        <p style={{ 
-          fontSize: '1.4rem',
-          color: '#34495e',
-          marginBottom: '0',
-          fontStyle: 'italic',
-          lineHeight: '1.6',
-          fontWeight: '500',
-          maxWidth: '600px',
-          margin: '0 auto',
-          padding: '0 20px'
-        }}>
-          Level up your emotional defense skills and spot the red flags!
-        </p>
-      </div>
-
-      {!submitted ? (
-        <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
-          <div style={{ 
-            backgroundColor: '#fff',
-            padding: '30px',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          <h2 style={{ 
+            fontSize: '2.5rem',
+            color: '#2c3e50',
+            marginBottom: '15px',
+            fontWeight: '800',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+            letterSpacing: '0.5px',
+            background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
           }}>
-            <p style={{ 
-              fontSize: '1.1rem',
-              color: '#34495e',
-              marginBottom: '25px',
-              textAlign: 'center',
-              lineHeight: '1.6'
-            }}>
-              Check the boxes that apply to your situation. Be honest with yourself.
-            </p>
-            
+            🎮 Manipulation Shield: The Game
+          </h2>
+          
+          <p style={{ 
+            fontSize: '1.4rem',
+            color: '#34495e',
+            marginBottom: '0',
+            fontStyle: 'italic',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            maxWidth: '600px',
+            margin: '0 auto',
+            padding: '0 20px'
+          }}>
+            Level up your emotional defense skills and spot the red flags!
+          </p>
+        </div>
+
+        {!submitted ? (
+          <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
             <div style={{ 
-              display: 'grid',
-              gap: '20px'
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              padding: '30px',
+              borderRadius: '15px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
             }}>
-              {questions.map((q, idx) => (
-                <label 
-                  key={idx} 
+              <p style={{ 
+                fontSize: '1.2rem',
+                color: '#34495e',
+                marginBottom: '25px',
+                textAlign: 'center',
+                lineHeight: '1.6',
+                fontWeight: '500'
+              }}>
+                Check the boxes that apply to your situation. Be honest with yourself.
+              </p>
+              
+              <div style={{ 
+                display: 'grid',
+                gap: '20px'
+              }}>
+                {questions.map((q, idx) => (
+                  <label 
+                    key={idx} 
+                    style={{ 
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      padding: '20px',
+                      backgroundColor: responses[idx] ? '#e6f3ff' : '#f8f9fa',
+                      borderRadius: '12px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      border: `2px solid ${responses[idx] ? '#3498db' : '#e0e0e0'}`,
+                      ':hover': {
+                        backgroundColor: '#e6f3ff',
+                        borderColor: '#3498db',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                      }
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={responses[idx]}
+                      onChange={() => handleChange(idx)}
+                      style={{ 
+                        marginRight: '15px',
+                        marginTop: '3px',
+                        width: '20px',
+                        height: '20px',
+                        cursor: 'pointer',
+                        accentColor: '#3498db'
+                      }}
+                    />
+                    <span style={{ 
+                      fontSize: '1.1rem',
+                      color: '#2c3e50',
+                      lineHeight: '1.5'
+                    }}>
+                      {q.question}
+                    </span>
+                  </label>
+                ))}
+              </div>
+              
+              <div style={{ 
+                textAlign: 'center',
+                marginTop: '30px'
+              }}>
+                <button 
+                  type="submit" 
                   style={{ 
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    padding: '15px',
-                    backgroundColor: responses[idx] ? '#f0f7ff' : '#f8f9fa',
-                    borderRadius: '8px',
+                    padding: '15px 30px',
+                    fontSize: '1.2rem',
+                    backgroundColor: '#3498db',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '10px',
                     cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    border: `1px solid ${responses[idx] ? '#3498db' : '#e0e0e0'}`,
+                    transition: 'all 0.3s ease',
+                    fontWeight: '600',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                     ':hover': {
-                      backgroundColor: '#f0f7ff',
-                      borderColor: '#3498db'
+                      backgroundColor: '#2980b9',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
                     }
                   }}
                 >
-                  <input
-                    type="checkbox"
-                    checked={responses[idx]}
-                    onChange={() => handleChange(idx)}
-                    style={{ 
-                      marginRight: '15px',
-                      marginTop: '3px',
-                      width: '18px',
-                      height: '18px',
-                      cursor: 'pointer'
-                    }}
-                  />
-                  <span style={{ 
-                    fontSize: '1.1rem',
-                    color: '#2c3e50',
-                    lineHeight: '1.5'
-                  }}>
-                    {q.question}
-                  </span>
-                </label>
-              ))}
+                  See Results
+                </button>
+              </div>
+            </div>
+          </form>
+        ) : (
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '40px',
+              padding: '30px',
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: '15px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}>
+              <h3 style={{ 
+                fontSize: '2.2rem',
+                color: '#2c3e50',
+                marginBottom: '15px',
+                fontWeight: '800',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                letterSpacing: '0.5px',
+                background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                Your Results
+              </h3>
             </div>
             
             <div style={{ 
-              textAlign: 'center',
-              marginTop: '30px'
+              marginBottom: '30px',
+              padding: '20px',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '12px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
             }}>
-              <button 
-                type="submit" 
-                style={{ 
-                  padding: '12px 30px',
-                  fontSize: '1.1rem',
-                  backgroundColor: '#2c3e50',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  fontWeight: '600',
-                  ':hover': {
-                    backgroundColor: '#34495e',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
-                  }
-                }}
-              >
-                See Results
-              </button>
-            </div>
-          </div>
-        </form>
-      ) : (
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '40px',
-            padding: '20px',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ 
-              fontSize: '2.2rem',
-              color: '#2c3e50',
-              marginBottom: '15px',
-              fontWeight: '800',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
-              letterSpacing: '0.5px',
-              background: 'linear-gradient(45deg, #2c3e50, #3498db)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>
-              Your Results
-            </h3>
-          </div>
-          
-          <div style={{ 
-            marginBottom: '30px',
-            padding: '20px',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-          }}>
-            <p style={{ 
-              fontSize: '1.2rem',
-              marginBottom: '10px',
-              color: '#444'
-            }}>
-              You checked <strong style={{ color: '#2c3e50' }}>{score}</strong> out of {questions.length} red flags.
-            </p>
-            
-            {score === 0 && (
-              <div style={{ 
-                margin: '20px 0', 
-                padding: '15px', 
-                backgroundColor: '#e6ffe6', 
-                borderRadius: '8px',
-                borderLeft: '4px solid #2ecc71'
+              <p style={{ 
+                fontSize: '1.2rem',
+                marginBottom: '10px',
+                color: '#444'
               }}>
-                <p style={{ margin: '0', color: '#27ae60' }}>
-                  You're probably safe in this situation. But trust your instincts.
-                </p>
-              </div>
-            )}
-            
-            {score >= 1 && score <= 2 && (
-              <div style={{ 
-                margin: '20px 0', 
-                padding: '15px', 
-                backgroundColor: '#fff3e6', 
-                borderRadius: '8px',
-                borderLeft: '4px solid #f39c12'
-              }}>
-                <p style={{ margin: '0', color: '#d35400' }}>
-                  There may be mild manipulation patterns. Stay aware.
-                </p>
-              </div>
-            )}
-            
-            {score >= 3 && score <= 4 && (
-              <div style={{ 
-                margin: '20px 0', 
-                padding: '15px', 
-                backgroundColor: '#ffe6e6', 
-                borderRadius: '8px',
-                borderLeft: '4px solid #e74c3c'
-              }}>
-                <p style={{ margin: '0', color: '#c0392b' }}>
-                  You're likely experiencing manipulative behavior. Trust your gut. Set boundaries.
-                </p>
-              </div>
-            )}
-            
-            {score >= 5 && (
-              <div style={{ 
-                margin: '20px 0', 
-                padding: '15px', 
-                backgroundColor: '#ffcccc', 
-                borderRadius: '8px',
-                borderLeft: '4px solid #c0392b'
-              }}>
-                <p style={{ margin: '0', color: '#7f0000' }}>
-                  This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support if needed.
-                </p>
-              </div>
-            )}
-          </div>
-
-          {flaggedQuestions.length > 0 && (
-            <div style={{ marginTop: '30px' }}>
-              <div style={{
-                textAlign: 'center',
-                marginBottom: '40px',
-                padding: '20px',
-                backgroundColor: '#f8f9fa',
-                borderRadius: '12px',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-              }}>
-                <h4 style={{ 
-                  fontSize: '1.8rem',
-                  color: '#2c3e50',
-                  marginBottom: '15px',
-                  fontWeight: '800',
-                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
-                  letterSpacing: '0.5px',
-                  background: 'linear-gradient(45deg, #2c3e50, #3498db)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>
-                  Details About the Red Flags You Identified
-                </h4>
-              </div>
+                You checked <strong style={{ color: '#2c3e50' }}>{score}</strong> out of {questions.length} red flags.
+              </p>
               
-              {flaggedQuestions.map((q, idx) => (
-                <div 
-                  key={idx} 
-                  style={{ 
-                    marginBottom: '30px', 
-                    padding: '25px', 
-                    border: '1px solid #e0e0e0', 
-                    borderRadius: '8px',
-                    backgroundColor: '#fff',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                  }}
-                >
-                  <h5 style={{ 
+              {score === 0 && (
+                <div style={{ 
+                  margin: '20px 0', 
+                  padding: '15px', 
+                  backgroundColor: '#e6ffe6', 
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #2ecc71'
+                }}>
+                  <p style={{ margin: '0', color: '#27ae60' }}>
+                    You're probably safe in this situation. But trust your instincts.
+                  </p>
+                </div>
+              )}
+              
+              {score >= 1 && score <= 2 && (
+                <div style={{ 
+                  margin: '20px 0', 
+                  padding: '15px', 
+                  backgroundColor: '#fff3e6', 
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #f39c12'
+                }}>
+                  <p style={{ margin: '0', color: '#d35400' }}>
+                    There may be mild manipulation patterns. Stay aware.
+                  </p>
+                </div>
+              )}
+              
+              {score >= 3 && score <= 4 && (
+                <div style={{ 
+                  margin: '20px 0', 
+                  padding: '15px', 
+                  backgroundColor: '#ffe6e6', 
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #e74c3c'
+                }}>
+                  <p style={{ margin: '0', color: '#c0392b' }}>
+                    You're likely experiencing manipulative behavior. Trust your gut. Set boundaries.
+                  </p>
+                </div>
+              )}
+              
+              {score >= 5 && (
+                <div style={{ 
+                  margin: '20px 0', 
+                  padding: '15px', 
+                  backgroundColor: '#ffcccc', 
+                  borderRadius: '8px',
+                  borderLeft: '4px solid #c0392b'
+                }}>
+                  <p style={{ margin: '0', color: '#7f0000' }}>
+                    This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support if needed.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {flaggedQuestions.length > 0 && (
+              <div style={{ marginTop: '30px' }}>
+                <div style={{
+                  textAlign: 'center',
+                  marginBottom: '40px',
+                  padding: '20px',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                }}>
+                  <h4 style={{ 
+                    fontSize: '1.8rem',
                     color: '#2c3e50',
-                    fontSize: '1.2rem',
-                    marginBottom: '10px',
-                    fontWeight: '600'
-                  }}>
-                    {q.question}
-                  </h5>
-                  
-                  <h6 style={{ 
-                    color: '#34495e',
-                    fontSize: '1.1rem',
                     marginBottom: '15px',
-                    fontWeight: '500'
+                    fontWeight: '800',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                    letterSpacing: '0.5px',
+                    background: 'linear-gradient(45deg, #2c3e50, #3498db)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
                   }}>
-                    Manipulative Tactic: {q.tactic}
-                  </h6>
-                  
-                  <div style={{ margin: '20px 0' }}>
-                    <h6 style={{ 
+                    Details About the Red Flags You Identified
+                  </h4>
+                </div>
+                
+                {flaggedQuestions.map((q, idx) => (
+                  <div 
+                    key={idx} 
+                    style={{ 
+                      marginBottom: '30px', 
+                      padding: '25px', 
+                      border: '1px solid #e0e0e0', 
+                      borderRadius: '8px',
+                      backgroundColor: '#fff',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                    }}
+                  >
+                    <h5 style={{ 
                       color: '#2c3e50',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
+                      fontSize: '1.2rem',
+                      marginBottom: '10px',
                       fontWeight: '600'
                     }}>
-                      How It Works
-                    </h6>
-                    <p style={{ 
-                      color: '#444',
-                      lineHeight: '1.6',
-                      margin: '0'
-                    }}>
-                      {q.howItWorks}
-                    </p>
-                  </div>
-                  
-                  <div style={{ margin: '20px 0' }}>
+                      {q.question}
+                    </h5>
+                    
                     <h6 style={{ 
-                      color: '#2c3e50',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
-                      fontWeight: '600'
+                      color: '#34495e',
+                      fontSize: '1.1rem',
+                      marginBottom: '15px',
+                      fontWeight: '500'
                     }}>
-                      Red Flags
+                      Manipulative Tactic: {q.tactic}
                     </h6>
-                    <ul style={{ 
-                      margin: '0',
-                      paddingLeft: '20px',
-                      color: '#444',
-                      lineHeight: '1.6'
-                    }}>
-                      {q.redFlags.map((flag, i) => (
-                        <li key={i} style={{ marginBottom: '8px' }}>{flag}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div style={{ margin: '20px 0' }}>
-                    <h6 style={{ 
-                      color: '#2c3e50',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
-                      fontWeight: '600'
-                    }}>
-                      Long-Term Effect
-                    </h6>
-                    <p style={{ 
-                      color: '#444',
-                      lineHeight: '1.6',
-                      margin: '0'
-                    }}>
-                      {q.longTermEffect}
-                    </p>
-                  </div>
-
-                  <div style={{ 
-                    margin: '20px 0', 
-                    padding: '15px', 
-                    backgroundColor: '#fff5e6', 
-                    borderRadius: '8px',
-                    borderLeft: '4px solid #f39c12'
-                  }}>
-                    <h6 style={{ 
-                      color: '#d35400',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
-                      fontWeight: '600'
-                    }}>
-                      Emotional Impact
-                    </h6>
-                    <p style={{ 
-                      color: '#7f4c00',
-                      lineHeight: '1.6',
-                      margin: '0'
-                    }}>
-                      {q.emotionalImpact}
-                    </p>
-                  </div>
-
-                  <div style={{ 
-                    margin: '20px 0', 
-                    padding: '15px', 
-                    backgroundColor: '#f0f7ff', 
-                    borderRadius: '8px',
-                    borderLeft: '4px solid #3498db'
-                  }}>
-                    <h6 style={{ 
-                      color: '#2980b9',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
-                      fontWeight: '600'
-                    }}>
-                      Metaphor/Analogy
-                    </h6>
-                    <p style={{ 
-                      color: '#2c3e50',
-                      lineHeight: '1.6',
-                      margin: '0'
-                    }}>
-                      {q.metaphor}
-                    </p>
-                  </div>
-
-                  <div style={{ 
-                    margin: '20px 0', 
-                    padding: '15px', 
-                    backgroundColor: '#e6f3ff', 
-                    borderRadius: '8px',
-                    borderLeft: '4px solid #2980b9'
-                  }}>
-                    <h6 style={{ 
-                      color: '#2c3e50',
-                      fontSize: '1rem',
-                      marginBottom: '8px',
-                      fontWeight: '600'
-                    }}>
-                      Counter-Strategy: {q.counterStrategy.name}
-                    </h6>
-                    <p style={{ 
-                      color: '#444',
-                      lineHeight: '1.6',
-                      margin: '0 0 10px 0'
-                    }}>
-                      <strong style={{ color: '#2c3e50' }}>Action:</strong> {q.counterStrategy.action}
-                    </p>
-                    <div style={{ margin: '10px 0' }}>
-                      <strong style={{ color: '#2c3e50' }}>Examples:</strong>
+                    
+                    <div style={{ margin: '20px 0' }}>
+                      <h6 style={{ 
+                        color: '#2c3e50',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        How It Works
+                      </h6>
+                      <p style={{ 
+                        color: '#444',
+                        lineHeight: '1.6',
+                        margin: '0'
+                      }}>
+                        {q.howItWorks}
+                      </p>
+                    </div>
+                    
+                    <div style={{ margin: '20px 0' }}>
+                      <h6 style={{ 
+                        color: '#2c3e50',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        Red Flags
+                      </h6>
                       <ul style={{ 
-                        margin: '8px 0 0 0',
+                        margin: '0',
                         paddingLeft: '20px',
                         color: '#444',
                         lineHeight: '1.6'
                       }}>
-                        {q.counterStrategy.examples.map((example, i) => (
-                          <li key={i} style={{ marginBottom: '8px' }}>{example}</li>
+                        {q.redFlags.map((flag, i) => (
+                          <li key={i} style={{ marginBottom: '8px' }}>{flag}</li>
                         ))}
                       </ul>
                     </div>
-                    <p style={{ 
-                      color: '#444',
-                      lineHeight: '1.6',
-                      margin: '10px 0'
+                    
+                    <div style={{ margin: '20px 0' }}>
+                      <h6 style={{ 
+                        color: '#2c3e50',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        Long-Term Effect
+                      </h6>
+                      <p style={{ 
+                        color: '#444',
+                        lineHeight: '1.6',
+                        margin: '0'
+                      }}>
+                        {q.longTermEffect}
+                      </p>
+                    </div>
+
+                    <div style={{ 
+                      margin: '20px 0', 
+                      padding: '15px', 
+                      backgroundColor: '#fff5e6', 
+                      borderRadius: '8px',
+                      borderLeft: '4px solid #f39c12'
                     }}>
-                      <strong style={{ color: '#2c3e50' }}>Psychology:</strong> {q.counterStrategy.psychology}
-                    </p>
-                    <p style={{ 
-                      marginTop: '10px',
-                      fontStyle: 'italic',
-                      color: '#2c3e50',
-                      lineHeight: '1.6'
+                      <h6 style={{ 
+                        color: '#d35400',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        Emotional Impact
+                      </h6>
+                      <p style={{ 
+                        color: '#7f4c00',
+                        lineHeight: '1.6',
+                        margin: '0'
+                      }}>
+                        {q.emotionalImpact}
+                      </p>
+                    </div>
+
+                    <div style={{ 
+                      margin: '20px 0', 
+                      padding: '15px', 
+                      backgroundColor: '#f0f7ff', 
+                      borderRadius: '8px',
+                      borderLeft: '4px solid #3498db'
                     }}>
-                      <strong>Power Move:</strong> {q.counterStrategy.powerMove}
-                    </p>
+                      <h6 style={{ 
+                        color: '#2980b9',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        Metaphor/Analogy
+                      </h6>
+                      <p style={{ 
+                        color: '#2c3e50',
+                        lineHeight: '1.6',
+                        margin: '0'
+                      }}>
+                        {q.metaphor}
+                      </p>
+                    </div>
+
+                    <div style={{ 
+                      margin: '20px 0', 
+                      padding: '15px', 
+                      backgroundColor: '#e6f3ff', 
+                      borderRadius: '8px',
+                      borderLeft: '4px solid #2980b9'
+                    }}>
+                      <h6 style={{ 
+                        color: '#2c3e50',
+                        fontSize: '1rem',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        Counter-Strategy: {q.counterStrategy.name}
+                      </h6>
+                      <p style={{ 
+                        color: '#444',
+                        lineHeight: '1.6',
+                        margin: '0 0 10px 0'
+                      }}>
+                        <strong style={{ color: '#2c3e50' }}>Action:</strong> {q.counterStrategy.action}
+                      </p>
+                      <div style={{ margin: '10px 0' }}>
+                        <strong style={{ color: '#2c3e50' }}>Examples:</strong>
+                        <ul style={{ 
+                          margin: '8px 0 0 0',
+                          paddingLeft: '20px',
+                          color: '#444',
+                          lineHeight: '1.6'
+                        }}>
+                          {q.counterStrategy.examples.map((example, i) => (
+                            <li key={i} style={{ marginBottom: '8px' }}>{example}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <p style={{ 
+                        color: '#444',
+                        lineHeight: '1.6',
+                        margin: '10px 0'
+                      }}>
+                        <strong style={{ color: '#2c3e50' }}>Psychology:</strong> {q.counterStrategy.psychology}
+                      </p>
+                      <p style={{ 
+                        marginTop: '10px',
+                        fontStyle: 'italic',
+                        color: '#2c3e50',
+                        lineHeight: '1.6'
+                      }}>
+                        <strong>Power Move:</strong> {q.counterStrategy.powerMove}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
+            
+            <div style={{ 
+              marginTop: '30px',
+              textAlign: 'center'
+            }}>
+              <Link to="/">
+                <button style={{ 
+                  padding: '12px 24px',
+                  fontSize: '1rem',
+                  backgroundColor: '#2c3e50',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s'
+                }}>
+                  Go Back Home
+                </button>
+              </Link>
             </div>
-          )}
-          
-          <div style={{ 
-            marginTop: '30px',
-            textAlign: 'center'
-          }}>
-            <Link to="/">
-              <button style={{ 
-                padding: '12px 24px',
-                fontSize: '1rem',
-                backgroundColor: '#2c3e50',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s'
-              }}>
-                Go Back Home
-              </button>
-            </Link>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
