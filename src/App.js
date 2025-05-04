@@ -1,5 +1,109 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+// Theme context
+const ThemeContext = createContext();
+
+const ThemeProvider = ({ children }) => {
+  const themeColors = {
+    blue: {
+      primary: '#2c3e50',
+      secondary: '#3498db',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#3498db',
+      buttonHover: '#2980b9',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    pink: {
+      primary: '#ff6b6b',
+      secondary: '#ff8e8e',
+      accent: '#ff4757',
+      background: 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)',
+      text: '#3e2f2f',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#ff6b6b',
+      buttonHover: '#ff5252',
+      border: '#ffd6d6',
+      shadow: 'rgba(255,107,107,0.2)'
+    },
+    sunset: {
+      primary: '#ff6b6b',
+      secondary: '#ff8e8e',
+      accent: '#ff4757',
+      background: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
+      text: '#3e2f2f',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#ff6b6b',
+      buttonHover: '#ff5252',
+      border: '#ffd6d6',
+      shadow: 'rgba(255,107,107,0.2)'
+    },
+    ocean: {
+      primary: '#2c3e50',
+      secondary: '#3498db',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#3498db',
+      buttonHover: '#2980b9',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    forest: {
+      primary: '#2c3e50',
+      secondary: '#2ecc71',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#2ecc71',
+      buttonHover: '#27ae60',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    galaxy: {
+      primary: '#2c3e50',
+      secondary: '#9b59b6',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#9b59b6',
+      buttonHover: '#8e44ad',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    }
+  };
+
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme || 'blue';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const themes = Object.keys(themeColors);
+    const currentIndex = themes.indexOf(theme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    setTheme(themes[nextIndex]);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+const useTheme = () => useContext(ThemeContext);
 
 function WelcomeScreen() {
   return (
@@ -436,6 +540,86 @@ function WelcomeScreen() {
 }
 
 function WebDetectorQuiz() {
+  const { theme, toggleTheme } = useTheme();
+  
+  // Theme colors
+  const themeColors = {
+    blue: {
+      primary: '#2c3e50',
+      secondary: '#3498db',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#3498db',
+      buttonHover: '#2980b9',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    pink: {
+      primary: '#ff6b6b',
+      secondary: '#ff8e8e',
+      accent: '#ff4757',
+      background: 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)',
+      text: '#3e2f2f',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#ff6b6b',
+      buttonHover: '#ff5252',
+      border: '#ffd6d6',
+      shadow: 'rgba(255,107,107,0.2)'
+    },
+    sunset: {
+      primary: '#ff6b6b',
+      secondary: '#ff8e8e',
+      accent: '#ff4757',
+      background: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
+      text: '#3e2f2f',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#ff6b6b',
+      buttonHover: '#ff5252',
+      border: '#ffd6d6',
+      shadow: 'rgba(255,107,107,0.2)'
+    },
+    ocean: {
+      primary: '#2c3e50',
+      secondary: '#3498db',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#3498db',
+      buttonHover: '#2980b9',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    forest: {
+      primary: '#2c3e50',
+      secondary: '#2ecc71',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#2ecc71',
+      buttonHover: '#27ae60',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    },
+    galaxy: {
+      primary: '#2c3e50',
+      secondary: '#9b59b6',
+      accent: '#e74c3c',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      text: '#2c3e50',
+      card: 'rgba(255, 255, 255, 0.9)',
+      button: '#9b59b6',
+      buttonHover: '#8e44ad',
+      border: '#e0e0e0',
+      shadow: 'rgba(0,0,0,0.1)'
+    }
+  };
+
+  const colors = themeColors[theme];
+
   const [responses, setResponses] = useState([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]);
   const [submitted, setSubmitted] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
@@ -1411,12 +1595,35 @@ function WebDetectorQuiz() {
   return (
     <div style={{ 
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-      padding: 'clamp(10px, 3vw, 20px)',
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      position: 'relative',
-      overflow: 'hidden'
+      background: colors.background,
+      padding: 'clamp(20px, 4vw, 40px)',
+      position: 'relative'
     }}>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          padding: '10px',
+          borderRadius: '50%',
+          border: 'none',
+          backgroundColor: colors.button,
+          color: 'white',
+          cursor: 'pointer',
+          boxShadow: `0 4px 6px ${colors.shadow}`,
+          transition: 'all 0.3s ease',
+          zIndex: 1000,
+          ':hover': {
+            transform: 'scale(1.1)',
+            backgroundColor: colors.buttonHover
+          }
+        }}
+      >
+        {theme === 'blue' ? '🌸' : '🌊'}
+      </button>
+
       {/* Animated background elements */}
       <div style={{
         position: 'absolute',
@@ -1483,7 +1690,7 @@ function WebDetectorQuiz() {
         <span style={{ 
           fontSize: 'clamp(0.9rem, 2vw, 1rem)',
           fontWeight: '600',
-          color: '#2c3e50',
+          color: colors.text,
           textAlign: 'center'
         }}>
           Red Flags Found: {selectedCount} 🚩
@@ -1523,9 +1730,9 @@ function WebDetectorQuiz() {
       <div style={{ 
         maxWidth: '1200px', 
         margin: 'clamp(40px, 8vw, 60px) auto 20px',
-        background: 'rgba(255, 255, 255, 0.9)',
+        background: colors.card,
         borderRadius: '20px',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+        boxShadow: `0 10px 20px ${colors.shadow}`,
         padding: 'clamp(15px, 3vw, 20px)',
         position: 'relative',
         zIndex: 1
@@ -1534,16 +1741,16 @@ function WebDetectorQuiz() {
           textAlign: 'center',
           marginBottom: 'clamp(20px, 4vw, 30px)',
           padding: 'clamp(15px, 3vw, 20px)',
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: colors.card,
           borderRadius: '15px',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          boxShadow: `0 4px 6px ${colors.shadow}`
         }}>
           <h2 style={{ 
             fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-            color: '#2c3e50',
+            color: colors.text,
             marginBottom: 'clamp(10px, 2vw, 15px)',
             fontWeight: '800',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+            textShadow: `2px 2px 4px ${colors.shadow}`,
             letterSpacing: '0.5px',
             background: 'linear-gradient(45deg, #2c3e50, #3498db)',
             WebkitBackgroundClip: 'text',
@@ -1556,7 +1763,7 @@ function WebDetectorQuiz() {
           
           <p style={{ 
             fontSize: 'clamp(0.9rem, 2vw, 1.4rem)',
-            color: '#34495e',
+            color: colors.text,
             marginBottom: '0',
             fontStyle: 'italic',
             lineHeight: '1.6',
@@ -1572,16 +1779,16 @@ function WebDetectorQuiz() {
         {!submitted ? (
           <form onSubmit={handleSubmit} style={{ maxWidth: '100%', margin: '0 auto' }}>
             <div style={{ 
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              backgroundColor: colors.card,
               padding: 'clamp(15px, 3vw, 20px)',
               borderRadius: '15px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              boxShadow: `0 4px 6px ${colors.shadow}`,
               minHeight: '500px',
               position: 'relative'
             }}>
               <p style={{ 
                 fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
-                color: '#34495e',
+                color: colors.text,
                 marginBottom: 'clamp(15px, 3vw, 20px)',
                 textAlign: 'center',
                 lineHeight: '1.6',
@@ -1603,7 +1810,7 @@ function WebDetectorQuiz() {
                     if (['do', 'they', 'you', 'your', 'feel', 'like', 'that', 'this', 'their', 'them', 'the', 'a', 'an', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'from', 'of', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', '?', '!', ',', '.', ';', ':', '"', "'", '(', ')', '[', ']', '{', '}'].includes(lowerPart)) {
                       return part;
                     }
-                    return <span key={i} style={{ fontWeight: '600', color: '#2c3e50' }}>{part}</span>;
+                    return <span key={i} style={{ fontWeight: '600', color: colors.text }}>{part}</span>;
                   });
 
                   return (
@@ -1613,19 +1820,19 @@ function WebDetectorQuiz() {
                       style={{ 
                         position: 'relative',
                         padding: 'clamp(15px, 3vw, 20px)',
-                        backgroundColor: responses[idx] ? '#fff5f5' : '#f8f9fa',
+                        backgroundColor: responses[idx] ? '#fff5f5' : colors.card,
                         borderRadius: '15px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        border: `3px solid ${responses[idx] ? '#e74c3c' : '#e0e0e0'}`,
-                        boxShadow: responses[idx] ? '0 8px 16px rgba(231, 76, 60, 0.2)' : '0 4px 8px rgba(0,0,0,0.1)',
+                        border: `3px solid ${responses[idx] ? colors.accent : colors.border}`,
+                        boxShadow: responses[idx] ? `0 8px 16px ${colors.shadow}` : `0 4px 8px ${colors.shadow}`,
                         transform: responses[idx] ? 'scale(1.05)' : 'scale(1)',
                         animation: responses[idx] ? 'bounce 0.5s' : 'none',
                         ':hover': {
                           backgroundColor: '#fff5f5',
-                          borderColor: '#e74c3c',
+                          borderColor: colors.accent,
                           transform: 'scale(1.05)',
-                          boxShadow: '0 8px 16px rgba(231, 76, 60, 0.2)'
+                          boxShadow: `0 8px 16px ${colors.shadow}`
                         }
                       }}
                     >
@@ -1635,7 +1842,7 @@ function WebDetectorQuiz() {
                         left: '50%',
                         transform: 'translateX(-50%)',
                         fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
-                        backgroundColor: responses[idx] ? '#e74c3c' : '#95a5a6',
+                        backgroundColor: responses[idx] ? colors.accent : colors.secondary,
                         color: 'white',
                         width: 'clamp(25px, 5vw, 30px)',
                         height: 'clamp(25px, 5vw, 30px)',
@@ -1643,14 +1850,14 @@ function WebDetectorQuiz() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                        boxShadow: `0 2px 4px ${colors.shadow}`,
                         animation: responses[idx] ? 'spin 0.5s' : 'none'
                       }}>
                         {responses[idx] ? '🚩' : '?'}
                       </div>
                       <p style={{ 
                         fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
-                        color: '#34495e',
+                        color: colors.text,
                         lineHeight: '1.6',
                         marginTop: 'clamp(10px, 2vw, 15px)',
                         textAlign: 'center',
@@ -1672,19 +1879,19 @@ function WebDetectorQuiz() {
                   style={{ 
                     padding: 'clamp(10px, 2vw, 12px) clamp(20px, 4vw, 25px)',
                     fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
-                    backgroundColor: '#3498db',
+                    backgroundColor: colors.button,
                     color: 'white',
                     border: 'none',
                     borderRadius: '10px',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     fontWeight: '600',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                    boxShadow: `0 4px 6px ${colors.shadow}`,
                     animation: 'pulse 2s infinite',
                     ':hover': {
-                      backgroundColor: '#2980b9',
+                      backgroundColor: colors.buttonHover,
                       transform: 'translateY(-2px)',
-                      boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
+                      boxShadow: `0 6px 8px ${colors.shadow}`
                     }
                   }}
                 >
@@ -1700,17 +1907,17 @@ function WebDetectorQuiz() {
               textAlign: 'center',
               marginBottom: 'clamp(20px, 4vw, 30px)',
               padding: 'clamp(15px, 3vw, 20px)',
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              backgroundColor: colors.card,
               borderRadius: '15px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              boxShadow: `0 4px 6px ${colors.shadow}`,
               animation: 'slideDown 0.5s ease-out'
             }}>
               <h3 style={{ 
                 fontSize: 'clamp(1.2rem, 3vw, 2.2rem)',
-                color: '#2c3e50',
+                color: colors.text,
                 marginBottom: 'clamp(10px, 2vw, 15px)',
                 fontWeight: '800',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                textShadow: `2px 2px 4px ${colors.shadow}`,
                 letterSpacing: '0.5px',
                 background: 'linear-gradient(45deg, #2c3e50, #3498db)',
                 WebkitBackgroundClip: 'text',
@@ -1725,28 +1932,28 @@ function WebDetectorQuiz() {
             <div style={{ 
               marginBottom: 'clamp(15px, 3vw, 20px)',
               padding: 'clamp(15px, 3vw, 20px)',
-              backgroundColor: '#f8f9fa',
+              backgroundColor: colors.card,
               borderRadius: '15px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              boxShadow: `0 4px 6px ${colors.shadow}`,
               borderLeft: `8px solid ${
-                score === 0 ? '#2ecc71' :
-                score <= 2 ? '#f1c40f' :
-                score <= 4 ? '#e67e22' :
-                '#e74c3c'
+                score === 0 ? colors.secondary :
+                score <= 2 ? colors.accent :
+                score <= 4 ? colors.text :
+                colors.accent
               }`,
               animation: 'fadeIn 0.5s ease-out'
             }}>
               <p style={{ 
                 fontSize: 'clamp(1rem, 2vw, 1.3rem)',
                 marginBottom: 'clamp(10px, 2vw, 15px)',
-                color: '#2c3e50',
+                color: colors.text,
                 fontWeight: '600',
                 textAlign: 'center'
               }}>
                 You identified <span style={{ 
                   fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
                   fontWeight: '800',
-                  color: '#e74c3c'
+                  color: colors.accent
                 }}>{score}</span> out of {questions.length} red flags
               </p>
               
@@ -1757,7 +1964,7 @@ function WebDetectorQuiz() {
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#27ae60', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
+                  <p style={{ margin: '0', color: colors.secondary, fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🎉 Great job! You're probably safe in this situation. But keep trusting your instincts!
                   </p>
                 </div>
@@ -1770,7 +1977,7 @@ function WebDetectorQuiz() {
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#d35400', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
+                  <p style={{ margin: '0', color: colors.accent, fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     ⚠️ There may be mild manipulation patterns. Stay aware and keep your boundaries strong!
                   </p>
                 </div>
@@ -1783,7 +1990,7 @@ function WebDetectorQuiz() {
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#c0392b', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
+                  <p style={{ margin: '0', color: colors.accent, fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🚨 You're likely experiencing manipulative behavior. Trust your gut and set clear boundaries!
                   </p>
                 </div>
@@ -1796,7 +2003,7 @@ function WebDetectorQuiz() {
                   borderRadius: '10px',
                   animation: 'pulse 2s infinite'
                 }}>
-                  <p style={{ margin: '0', color: '#7f0000', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
+                  <p style={{ margin: '0', color: colors.accent, fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', textAlign: 'center' }}>
                     🔥 This shows strong signs of emotional manipulation. You deserve safety and clarity. Reach out for support!
                   </p>
                 </div>
@@ -1810,17 +2017,17 @@ function WebDetectorQuiz() {
                   textAlign: 'center',
                   marginBottom: 'clamp(20px, 4vw, 30px)',
                   padding: 'clamp(10px, 2vw, 15px)',
-                  backgroundColor: '#f8f9fa',
+                  backgroundColor: colors.card,
                   borderRadius: '12px',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  boxShadow: `0 4px 6px ${colors.shadow}`,
                   animation: 'slideUp 0.5s ease-out'
                 }}>
                   <h4 style={{ 
                     fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
-                    color: '#2c3e50',
+                    color: colors.text,
                     marginBottom: 'clamp(10px, 2vw, 15px)',
                     fontWeight: '800',
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                    textShadow: `2px 2px 4px ${colors.shadow}`,
                     letterSpacing: '0.5px',
                     background: 'linear-gradient(45deg, #2c3e50, #3498db)',
                     WebkitBackgroundClip: 'text',
@@ -1837,17 +2044,17 @@ function WebDetectorQuiz() {
                     style={{ 
                       marginBottom: 'clamp(15px, 3vw, 20px)', 
                       padding: 'clamp(15px, 3vw, 20px)', 
-                      border: '1px solid #e0e0e0', 
+                      border: `1px solid ${colors.border}`, 
                       borderRadius: '15px',
-                      backgroundColor: '#fff',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                      backgroundColor: colors.card,
+                      boxShadow: `0 2px 4px ${colors.shadow}`,
                       transition: 'all 0.3s ease',
                       animation: `slideUp 0.5s ease-out ${idx * 0.1}s forwards`,
                       opacity: 0,
                       transform: 'translateY(20px)',
                       ':hover': {
                         transform: 'translateY(-5px)',
-                        boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                        boxShadow: `0 8px 16px ${colors.shadow}`
                       }
                     }}
                   >
@@ -1856,9 +2063,9 @@ function WebDetectorQuiz() {
                       style={{ 
                         cursor: 'pointer',
                         padding: 'clamp(10px, 2vw, 15px)',
-                        backgroundColor: '#f8f9fa',
+                        backgroundColor: colors.card,
                         borderRadius: '10px',
-                        borderLeft: '4px solid #e74c3c',
+                        borderLeft: `4px solid ${colors.accent}`,
                         transition: 'all 0.3s ease',
                         ':hover': {
                           backgroundColor: '#fff5f5'
@@ -1866,7 +2073,7 @@ function WebDetectorQuiz() {
                       }}
                     >
                       <h5 style={{ 
-                        color: '#2c3e50',
+                        color: colors.text,
                         fontSize: 'clamp(1rem, 2vw, 1.3rem)',
                         marginBottom: 'clamp(10px, 2vw, 15px)',
                         fontWeight: '700',
@@ -1884,7 +2091,7 @@ function WebDetectorQuiz() {
                     {expandedRedFlags[idx] && (
                       <div style={{ marginTop: 'clamp(15px, 3vw, 20px)' }}>
                         <h6 style={{ 
-                          color: '#e74c3c',
+                          color: colors.accent,
                           fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
                           marginBottom: 'clamp(10px, 2vw, 15px)',
                           fontWeight: '600',
@@ -1904,18 +2111,20 @@ function WebDetectorQuiz() {
                             onClick={() => toggleDetail(idx, 'howItWorks')}
                             style={{ 
                               padding: 'clamp(10px, 2vw, 15px)',
-                              backgroundColor: '#f8f9fa',
+                              backgroundColor: '#e6f7ff',
                               borderRadius: '10px',
-                              borderLeft: '4px solid #3498db',
+                              borderLeft: `4px solid #1890ff`,
                               cursor: 'pointer',
                               transition: 'all 0.3s ease',
                               ':hover': {
-                                backgroundColor: '#f0f7ff'
+                                backgroundColor: '#bae7ff',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 8px rgba(24, 144, 255, 0.2)'
                               }
                             }}
                           >
                             <h6 style={{ 
-                              color: '#2c3e50',
+                              color: '#1890ff',
                               fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                               marginBottom: 'clamp(8px, 1.5vw, 10px)',
                               fontWeight: '600',
@@ -1930,7 +2139,7 @@ function WebDetectorQuiz() {
                             </h6>
                             {expandedDetails[`${idx}-howItWorks`] && (
                               <p style={{ 
-                                color: '#444',
+                                color: colors.text,
                                 lineHeight: '1.6',
                                 margin: '0',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
@@ -1944,18 +2153,20 @@ function WebDetectorQuiz() {
                             onClick={() => toggleDetail(idx, 'redFlags')}
                             style={{ 
                               padding: 'clamp(10px, 2vw, 15px)',
-                              backgroundColor: '#f8f9fa',
+                              backgroundColor: '#fff1f0',
                               borderRadius: '10px',
-                              borderLeft: '4px solid #e74c3c',
+                              borderLeft: `4px solid #ff4d4f`,
                               cursor: 'pointer',
                               transition: 'all 0.3s ease',
                               ':hover': {
-                                backgroundColor: '#fff5f5'
+                                backgroundColor: '#ffccc7',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 8px rgba(255, 77, 79, 0.2)'
                               }
                             }}
                           >
                             <h6 style={{ 
-                              color: '#2c3e50',
+                              color: '#ff4d4f',
                               fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                               marginBottom: 'clamp(8px, 1.5vw, 10px)',
                               fontWeight: '600',
@@ -1972,7 +2183,7 @@ function WebDetectorQuiz() {
                               <ul style={{ 
                                 margin: '0',
                                 paddingLeft: 'clamp(15px, 3vw, 20px)',
-                                color: '#444',
+                                color: colors.text,
                                 lineHeight: '1.6',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                               }}>
@@ -1987,7 +2198,7 @@ function WebDetectorQuiz() {
                                       left: '0',
                                       top: '50%',
                                       transform: 'translateY(-50%)',
-                                      color: '#e74c3c'
+                                      color: colors.accent
                                     }}>•</span>
                                     {flag}
                                   </li>
@@ -2000,18 +2211,20 @@ function WebDetectorQuiz() {
                             onClick={() => toggleDetail(idx, 'emotionalImpact')}
                             style={{ 
                               padding: 'clamp(10px, 2vw, 15px)',
-                              backgroundColor: '#f8f9fa',
+                              backgroundColor: '#f6ffed',
                               borderRadius: '10px',
-                              borderLeft: '4px solid #f39c12',
+                              borderLeft: `4px solid #52c41a`,
                               cursor: 'pointer',
                               transition: 'all 0.3s ease',
                               ':hover': {
-                                backgroundColor: '#fff9e6'
+                                backgroundColor: '#d9f7be',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 8px rgba(82, 196, 26, 0.2)'
                               }
                             }}
                           >
                             <h6 style={{ 
-                              color: '#2c3e50',
+                              color: '#52c41a',
                               fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                               marginBottom: 'clamp(8px, 1.5vw, 10px)',
                               fontWeight: '600',
@@ -2026,7 +2239,7 @@ function WebDetectorQuiz() {
                             </h6>
                             {expandedDetails[`${idx}-emotionalImpact`] && (
                               <p style={{ 
-                                color: '#7f4c00',
+                                color: colors.accent,
                                 lineHeight: '1.6',
                                 margin: '0',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
@@ -2040,18 +2253,20 @@ function WebDetectorQuiz() {
                             onClick={() => toggleDetail(idx, 'metaphor')}
                             style={{ 
                               padding: 'clamp(10px, 2vw, 15px)',
-                              backgroundColor: '#f8f9fa',
+                              backgroundColor: '#f9f0ff',
                               borderRadius: '10px',
-                              borderLeft: '4px solid #8e44ad',
+                              borderLeft: `4px solid #722ed1`,
                               cursor: 'pointer',
                               transition: 'all 0.3s ease',
                               ':hover': {
-                                backgroundColor: '#f9f0ff'
+                                backgroundColor: '#efdbff',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 8px rgba(114, 46, 209, 0.2)'
                               }
                             }}
                           >
                             <h6 style={{ 
-                              color: '#2c3e50',
+                              color: '#722ed1',
                               fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                               marginBottom: 'clamp(8px, 1.5vw, 10px)',
                               fontWeight: '600',
@@ -2066,7 +2281,7 @@ function WebDetectorQuiz() {
                             </h6>
                             {expandedDetails[`${idx}-metaphor`] && (
                               <p style={{ 
-                                color: '#2c3e50',
+                                color: colors.accent,
                                 lineHeight: '1.6',
                                 margin: '0',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
@@ -2080,12 +2295,13 @@ function WebDetectorQuiz() {
                         <div style={{ 
                           marginTop: 'clamp(15px, 3vw, 20px)',
                           padding: 'clamp(15px, 3vw, 20px)',
-                          backgroundColor: '#f8f9fa',
+                          backgroundColor: colors.card,
                           borderRadius: '15px',
-                          borderLeft: '4px solid #27ae60'
+                          borderLeft: `4px solid ${colors.secondary}`,
+                          boxShadow: `0 4px 6px ${colors.shadow}`
                         }}>
                           <h6 style={{ 
-                            color: '#2c3e50',
+                            color: colors.text,
                             fontSize: 'clamp(1rem, 2vw, 1.2rem)',
                             marginBottom: 'clamp(10px, 2vw, 15px)',
                             fontWeight: '700',
@@ -2103,20 +2319,20 @@ function WebDetectorQuiz() {
                           }}>
                             <div>
                               <p style={{ 
-                                color: '#444',
+                                color: colors.text,
                                 lineHeight: '1.6',
                                 margin: '0 0 clamp(8px, 1.5vw, 10px) 0',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                               }}>
-                                <strong style={{ color: '#2c3e50' }}>Action:</strong> {q.counterStrategy.action}
+                                <strong style={{ color: colors.text }}>Action:</strong> {q.counterStrategy.action}
                               </p>
                               
                               <div style={{ margin: 'clamp(8px, 1.5vw, 10px) 0' }}>
-                                <strong style={{ color: '#2c3e50' }}>Examples:</strong>
+                                <strong style={{ color: colors.text }}>Examples:</strong>
                                 <ul style={{ 
                                   margin: 'clamp(5px, 1.5vw, 8px) 0 0 0',
                                   paddingLeft: 'clamp(15px, 3vw, 20px)',
-                                  color: '#444',
+                                  color: colors.text,
                                   lineHeight: '1.6',
                                   fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                                 }}>
@@ -2131,7 +2347,7 @@ function WebDetectorQuiz() {
                                         left: '0',
                                         top: '50%',
                                         transform: 'translateY(-50%)',
-                                        color: '#27ae60'
+                                        color: colors.secondary
                                       }}>•</span>
                                       {example}
                                     </li>
@@ -2142,18 +2358,18 @@ function WebDetectorQuiz() {
 
                             <div>
                               <p style={{ 
-                                color: '#444',
+                                color: colors.text,
                                 lineHeight: '1.6',
                                 margin: '0 0 clamp(8px, 1.5vw, 10px) 0',
                                 fontSize: 'clamp(0.85rem, 1.8vw, 1rem)'
                               }}>
-                                <strong style={{ color: '#2c3e50' }}>Psychology:</strong> {q.counterStrategy.psychology}
+                                <strong style={{ color: colors.text }}>Psychology:</strong> {q.counterStrategy.psychology}
                               </p>
                               
                               <p style={{ 
                                 marginTop: 'clamp(8px, 1.5vw, 10px)',
                                 fontStyle: 'italic',
-                                color: '#2c3e50',
+                                color: colors.text,
                                 lineHeight: '1.6',
                                 padding: 'clamp(8px, 1.5vw, 10px)',
                                 backgroundColor: 'rgba(255,255,255,0.5)',
@@ -2176,18 +2392,18 @@ function WebDetectorQuiz() {
             <div style={{ 
               marginTop: 'clamp(20px, 4vw, 30px)',
               padding: 'clamp(20px, 4vw, 30px)',
-              backgroundColor: '#f8f9fa',
+              backgroundColor: colors.card,
               borderRadius: '15px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              boxShadow: `0 4px 6px ${colors.shadow}`,
               animation: 'slideUp 0.5s ease-out'
             }}>
               <h4 style={{ 
                 fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
-                color: '#2c3e50',
+                color: colors.text,
                 marginBottom: 'clamp(15px, 3vw, 20px)',
                 fontWeight: '800',
                 textAlign: 'center',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+                textShadow: `2px 2px 4px ${colors.shadow}`,
                 letterSpacing: '0.5px',
                 background: 'linear-gradient(45deg, #2c3e50, #3498db)',
                 WebkitBackgroundClip: 'text',
@@ -2200,9 +2416,9 @@ function WebDetectorQuiz() {
               <div style={{ 
                 marginBottom: 'clamp(15px, 3vw, 20px)',
                 padding: 'clamp(15px, 3vw, 20px)',
-                backgroundColor: '#fff',
+                backgroundColor: colors.card,
                 borderRadius: '12px',
-                border: '1px solid #e0e0e0'
+                border: `1px solid ${colors.border}`
               }}>
                 <div style={{ 
                   display: 'flex',
@@ -2222,9 +2438,9 @@ function WebDetectorQuiz() {
                       style={{
                         padding: 'clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px)',
                         borderRadius: '20px',
-                        border: `2px solid ${shareVibe === vibe.id ? '#3498db' : '#e0e0e0'}`,
-                        backgroundColor: shareVibe === vibe.id ? '#e8f4ff' : '#fff',
-                        color: '#2c3e50',
+                        border: `2px solid ${shareVibe === vibe.id ? colors.button : colors.border}`,
+                        backgroundColor: shareVibe === vibe.id ? '#e8f4ff' : colors.card,
+                        color: colors.text,
                         fontSize: 'clamp(0.85rem, 1.8vw, 1rem)',
                         fontWeight: '600',
                         cursor: 'pointer',
@@ -2234,7 +2450,7 @@ function WebDetectorQuiz() {
                         gap: 'clamp(5px, 1.5vw, 8px)',
                         ':hover': {
                           backgroundColor: '#f0f7ff',
-                          borderColor: '#3498db'
+                          borderColor: colors.button
                         }
                       }}
                     >
@@ -2246,14 +2462,14 @@ function WebDetectorQuiz() {
 
                 <div style={{ 
                   padding: 'clamp(15px, 3vw, 20px)',
-                  backgroundColor: '#f0f7ff',
+                  backgroundColor: colors.card,
                   borderRadius: '10px',
-                  border: '1px solid #e0e0e0',
+                  border: `1px solid ${colors.border}`,
                   marginBottom: 'clamp(15px, 3vw, 20px)',
                   position: 'relative'
                 }}>
                   <p style={{ 
-                    color: '#2c3e50',
+                    color: colors.text,
                     fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                     lineHeight: '1.5',
                     margin: '0',
@@ -2274,8 +2490,8 @@ function WebDetectorQuiz() {
                     style={{
                       padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
                       borderRadius: '8px',
-                      backgroundColor: '#3498db',
-                      color: '#fff',
+                      backgroundColor: colors.button,
+                      color: 'white',
                       fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -2284,7 +2500,7 @@ function WebDetectorQuiz() {
                       alignItems: 'center',
                       gap: 'clamp(5px, 1.5vw, 8px)',
                       ':hover': {
-                        backgroundColor: '#2980b9',
+                        backgroundColor: colors.buttonHover,
                         transform: 'translateY(-2px)'
                       }
                     }}
@@ -2299,7 +2515,7 @@ function WebDetectorQuiz() {
                       padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
                       borderRadius: '8px',
                       backgroundColor: '#1da1f2',
-                      color: '#fff',
+                      color: 'white',
                       fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -2323,7 +2539,7 @@ function WebDetectorQuiz() {
                       padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
                       borderRadius: '8px',
                       background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
-                      color: '#fff',
+                      color: 'white',
                       fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -2346,7 +2562,7 @@ function WebDetectorQuiz() {
                       padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
                       borderRadius: '8px',
                       backgroundColor: '#0077b5',
-                      color: '#fff',
+                      color: 'white',
                       fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -2372,11 +2588,11 @@ function WebDetectorQuiz() {
                   bottom: '20px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  backgroundColor: '#2c3e50',
-                  color: '#fff',
+                  backgroundColor: colors.text,
+                  color: 'white',
                   padding: 'clamp(10px, 2vw, 15px) clamp(15px, 3vw, 20px)',
                   borderRadius: '8px',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  boxShadow: `0 4px 6px ${colors.shadow}`,
                   animation: 'slideUp 0.3s ease-out, fadeOut 0.3s ease-out 1.7s forwards',
                   zIndex: 1000
                 }}>
@@ -2393,18 +2609,18 @@ function WebDetectorQuiz() {
                 <button style={{ 
                   padding: 'clamp(10px, 2vw, 12px) clamp(20px, 4vw, 25px)',
                   fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-                  backgroundColor: '#2c3e50',
+                  backgroundColor: colors.text,
                   color: 'white',
                   border: 'none',
                   borderRadius: '10px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   fontWeight: '600',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  boxShadow: `0 4px 6px ${colors.shadow}`,
                   ':hover': {
-                    backgroundColor: '#34495e',
+                    backgroundColor: colors.accent,
                     transform: 'translateY(-2px)',
-                    boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
+                    boxShadow: `0 6px 8px ${colors.shadow}`
                   }
                 }}>
                   Go Back Home
@@ -2493,12 +2709,14 @@ function WebDetectorQuiz() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<WelcomeScreen />} />
-        <Route path="/quiz" element={<WebDetectorQuiz />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<WelcomeScreen />} />
+          <Route path="/quiz" element={<WebDetectorQuiz />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
