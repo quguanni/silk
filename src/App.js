@@ -204,7 +204,7 @@ function WelcomeScreen() {
         willChange: 'transform'
       }}>
         <h1 style={{ 
-          fontSize: '3.5rem',
+          fontSize: 'clamp(2rem, 5vw, 3.5rem)',
           color: '#2c3e50',
           marginBottom: '20px',
           fontWeight: '800',
@@ -213,13 +213,17 @@ function WelcomeScreen() {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           animation: 'slideDown 0.8s ease-out',
-          letterSpacing: '1px'
+          letterSpacing: '1px',
+          wordBreak: 'keep-all',
+          whiteSpace: 'normal',
+          overflowWrap: 'break-word',
+          hyphens: 'none'
         }}>
           Welcome to Silk 🕸️
         </h1>
         
         <p style={{ 
-          fontSize: '1.4rem',
+          fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
           color: '#34495e',
           marginBottom: '40px',
           lineHeight: '1.6',
@@ -228,7 +232,11 @@ function WelcomeScreen() {
           opacity: 0,
           maxWidth: '500px',
           margin: '0 auto 40px',
-          padding: '0 20px'
+          padding: '0 20px',
+          wordBreak: 'keep-all',
+          whiteSpace: 'normal',
+          overflowWrap: 'break-word',
+          hyphens: 'none'
         }}>
           You're safe here. Let's begin cutting through the web.
         </p>
@@ -241,8 +249,8 @@ function WelcomeScreen() {
           <Link to="/quiz">
             <button
               style={{
-                padding: '18px 36px',
-                fontSize: '1.2rem',
+                padding: 'clamp(12px, 2vw, 18px) clamp(24px, 3vw, 36px)',
+                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
                 cursor: 'pointer',
                 backgroundColor: '#3498db',
                 color: 'white',
@@ -253,6 +261,8 @@ function WelcomeScreen() {
                 boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                 position: 'relative',
                 overflow: 'hidden',
+                wordBreak: 'keep-all',
+                whiteSpace: 'nowrap',
                 ':hover': {
                   backgroundColor: '#2980b9',
                   transform: 'translateY(-2px)',
@@ -335,6 +345,23 @@ function WelcomeScreen() {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+          }
+
+          @media (max-width: 480px) {
+            .welcome-container {
+              padding: 20px !important;
+            }
+            
+            .welcome-title {
+              font-size: 2rem !important;
+              line-height: 1.2 !important;
+            }
+            
+            .welcome-text {
+              font-size: 1.1rem !important;
+              line-height: 1.4 !important;
+              padding: 0 10px !important;
+            }
           }
         `}
       </style>
