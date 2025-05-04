@@ -2,39 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function WelcomeScreen() {
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.3);
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    // Initialize audio
-    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-soft-piano-ambient-117.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = volume;
-    audioRef.current.play().catch(error => console.log('Audio play failed:', error));
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, []);
-
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
-  };
-
   return (
     <div style={{ 
       minHeight: '100vh',
@@ -47,70 +14,7 @@ function WelcomeScreen() {
       overflow: 'hidden',
       fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }}>
-      {/* Audio Controls */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        padding: '10px 15px',
-        borderRadius: '20px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-        zIndex: 1000,
-        animation: 'fadeIn 1s ease-out'
-      }}>
-        <button
-          onClick={toggleMute}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '1.5rem',
-            padding: '5px',
-            color: '#2c3e50',
-            transition: 'transform 0.2s ease',
-            ':hover': {
-              transform: 'scale(1.1)'
-            }
-          }}
-        >
-          {isMuted ? '🔇' : '🔊'}
-        </button>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={handleVolumeChange}
-          style={{
-            width: '100px',
-            height: '4px',
-            borderRadius: '2px',
-            background: '#e0e0e0',
-            outline: 'none',
-            cursor: 'pointer',
-            '::-webkit-slider-thumb': {
-              appearance: 'none',
-              width: '15px',
-              height: '15px',
-              borderRadius: '50%',
-              background: '#3498db',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            },
-            '::-webkit-slider-thumb:hover': {
-              background: '#2980b9',
-              transform: 'scale(1.1)'
-            }
-          }}
-        />
-      </div>
-
-      {/* Animated background elements */}
+      {/* Spider Web Decorations */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -120,38 +24,167 @@ function WelcomeScreen() {
         pointerEvents: 'none',
         opacity: 0.1
       }}>
+        {/* Large Web 1 */}
         <div style={{
           position: 'absolute',
           top: '10%',
           left: '5%',
-          fontSize: '4rem',
-          transform: 'rotate(-15deg)',
-          animation: 'float 6s ease-in-out infinite'
-        }}>🕸️</div>
-        <div style={{
-          position: 'absolute',
-          top: '20%',
-          right: '10%',
-          fontSize: '3rem',
-          transform: 'rotate(15deg)',
-          animation: 'float 5s ease-in-out infinite'
-        }}>🛡️</div>
+          width: '200px',
+          height: '200px',
+          animation: 'webFloat 8s ease-in-out infinite',
+          transform: 'rotate(-15deg)'
+        }}>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%',
+            animation: 'webPulse 4s ease-in-out infinite'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(90deg)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(135deg)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+        </div>
+
+        {/* Large Web 2 */}
         <div style={{
           position: 'absolute',
           bottom: '15%',
-          left: '15%',
-          fontSize: '3.5rem',
-          transform: 'rotate(-10deg)',
-          animation: 'float 4.5s ease-in-out infinite'
-        }}>✨</div>
+          right: '10%',
+          width: '150px',
+          height: '150px',
+          animation: 'webFloat 10s ease-in-out infinite',
+          transform: 'rotate(15deg)'
+        }}>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%',
+            animation: 'webPulse 5s ease-in-out infinite'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(90deg)',
+            width: '100%',
+            height: '100%',
+            border: '2px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+        </div>
+
+        {/* Small Web 1 */}
         <div style={{
           position: 'absolute',
-          bottom: '25%',
-          right: '5%',
-          fontSize: '3rem',
-          transform: 'rotate(20deg)',
-          animation: 'float 5.5s ease-in-out infinite'
-        }}>💫</div>
+          top: '30%',
+          right: '20%',
+          width: '100px',
+          height: '100px',
+          animation: 'webFloat 12s ease-in-out infinite',
+          transform: 'rotate(-30deg)'
+        }}>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: '100%',
+            border: '1px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%',
+            animation: 'webPulse 6s ease-in-out infinite'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            width: '100%',
+            height: '100%',
+            border: '1px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+        </div>
+
+        {/* Small Web 2 */}
+        <div style={{
+          position: 'absolute',
+          bottom: '30%',
+          left: '20%',
+          width: '80px',
+          height: '80px',
+          animation: 'webFloat 9s ease-in-out infinite',
+          transform: 'rotate(30deg)'
+        }}>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: '100%',
+            border: '1px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%',
+            animation: 'webPulse 7s ease-in-out infinite'
+          }}></div>
+          <div className="spider-web" style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            width: '100%',
+            height: '100%',
+            border: '1px solid rgba(44, 62, 80, 0.1)',
+            borderRadius: '50%'
+          }}></div>
+        </div>
       </div>
 
       <div style={{
@@ -265,6 +298,26 @@ function WelcomeScreen() {
             }
             75% { 
               transform: translateY(-10px) translateX(-5px) rotate(-1deg); 
+            }
+          }
+          
+          @keyframes webFloat {
+            0%, 100% { 
+              transform: translateY(0) rotate(var(--rotation)); 
+            }
+            50% { 
+              transform: translateY(-15px) rotate(calc(var(--rotation) + 5deg)); 
+            }
+          }
+          
+          @keyframes webPulse {
+            0%, 100% { 
+              transform: translate(-50%, -50%) scale(1);
+              opacity: 0.1;
+            }
+            50% { 
+              transform: translate(-50%, -50%) scale(1.1);
+              opacity: 0.15;
             }
           }
           
@@ -637,7 +690,7 @@ function WebDetectorQuiz() {
         "They create drama during your special moments"
       ],
       longTermEffect: "Internalized shame for wanting recognition.",
-      emotionalImpact: "You start doubting whether your achievements are worth celebrating. Their dismissive or sabotaging behavior makes you feel guilty for wanting recognition. Over time, you might stop sharing your successes or even downplay them to avoid their negative reactions. Your joy becomes tainted with anxiety about how they'll respond.",
+      emotionalImpact: "You start doubting whether your achievements are worth celebrating. Their dismissive or sabotating behavior makes you feel guilty for wanting recognition. Over time, you might stop sharing your successes or even downplay them to avoid their negative reactions. Your joy becomes tainted with anxiety about how they'll respond.",
       metaphor: "It's like trying to light a candle in a windstorm – every time you try to celebrate your light, they create a gust to blow it out. Your achievements become sources of tension rather than joy, and you learn to keep your successes small to avoid their sabotage.",
       counterStrategy: {
         name: "The Success Celebration Strategy",
@@ -740,6 +793,456 @@ function WebDetectorQuiz() {
         ],
         psychology: "Removes their power to manipulate through testing.",
         powerMove: "\"I won't prove my love through your tests.\""
+      }
+    },
+    {
+      question: "Do they deny your reality or make you question your memory?",
+      tactic: "Gaslighting in Tech",
+      howItWorks: "A founder or manager denies facts, memories, or feelings you know to be true, undermining your confidence in your perceptions. They might say 'I never said that' or 'You're overreacting' to make you doubt your reality.",
+      redFlags: [
+        "They harshly criticize you in a meeting, then later insist 'I never singled you out'",
+        "They promise equity in casual conversation and later deny it",
+        "You find yourself constantly apologizing for 'misremembering'",
+        "You start keeping records to prove your sanity"
+      ],
+      longTermEffect: "Erodes your ability to trust your own judgment and memory",
+      emotionalImpact: "You feel confused, anxious, and isolated. You start doubting your memory and perceptions, constantly second-guessing yourself. The stress of trying to prove your reality can be exhausting and demoralizing.",
+      metaphor: "It's like being in a hall of distorted mirrors – your sense of reality warps as reflections of the truth are twisted. Someone keeps stealthily rearranging the furniture in your mind and then claims you moved it.",
+      counterStrategy: {
+        name: "The Receipts Method",
+        action: "Document all important interactions and decisions",
+        examples: [
+          "Keep email records and meeting notes",
+          "When they deny reality: 'I have it in writing from our last meeting'",
+          "If they gaslight: 'Let me check my notes from that conversation'"
+        ],
+        psychology: "Removes their power to distort facts by having concrete evidence",
+        powerMove: "I don't debate reality. Here's the proof."
+      }
+    },
+    {
+      question: "Do they use guilt to pressure you into working more?",
+      tactic: "Guilt-Tripping in Startups",
+      howItWorks: "They make you feel guilty so you'll do what they want, playing on your sense of obligation. Instead of directly asking, they induce guilt to influence your behavior.",
+      redFlags: [
+        "'We've all been working weekends – are you going to leave us hanging?'",
+        "'After all I've done for you, I can't believe you won't do this'",
+        "They invoke 'team family' to make you feel bad for setting boundaries",
+        "You feel indebted and obligated to work extra hours"
+      ],
+      longTermEffect: "Chronic guilt leads to burnout and resentment",
+      emotionalImpact: "You feel shame and responsibility, constantly trying to 'repay' an ever-growing favor bank. Your boundaries erode as you work harder to avoid feeling like you've failed someone.",
+      metaphor: "It's like carrying an invisible debt – the manipulator keeps adding to your 'ledger' of obligations. You're made to feel you must repay favors that were never truly agreed upon.",
+      counterStrategy: {
+        name: "The Ledger Reset",
+        action: "Reject unrequested favors and obligations",
+        examples: [
+          "When they guilt-trip: 'I didn't ask for this, so there's no debt'",
+          "If they keep score: 'Gifts with strings aren't gifts'",
+          "Set clear boundaries: 'My time off is non-negotiable'"
+        ],
+        psychology: "Reframes their 'generosity' as the control tactic it is",
+        powerMove: "I'm not an investment. Stop keeping score."
+      }
+    },
+    {
+      question: "Do they shower you with praise then suddenly withdraw it?",
+      tactic: "Love-Bombing in Tech",
+      howItWorks: "They overwhelm you with praise and promises to gain your trust, then pull back once you're invested. This creates a rush of validation that lowers your guard.",
+      redFlags: [
+        "Excessive praise during interviews or first weeks",
+        "Grand promises about your future role",
+        "Sudden coldness after you've accepted the job",
+        "Investors who love-bomb then become hyper-critical after signing"
+      ],
+      longTermEffect: "Creates dependency on their approval and validation",
+      emotionalImpact: "Initially you feel elated and valued, but the abrupt withdrawal leaves you confused and anxious. You work extra hard to regain their favor, eroding your self-esteem.",
+      metaphor: "It's like a sugar rush followed by a crash – the sweetness was conditional. Or a mirage in the desert: an illusion of endless praise that vanishes when you reach for it.",
+      counterStrategy: {
+        name: "The Reality Check",
+        action: "Maintain perspective and document promises",
+        examples: [
+          "Get all promises in writing",
+          "When they withdraw: 'This doesn't match what we discussed'",
+          "If they love-bomb: 'Let's focus on concrete deliverables'"
+        ],
+        psychology: "Keeps the relationship professional and accountable",
+        powerMove: "I value consistency over compliments."
+      }
+    },
+    {
+      question: "Do they use fear or threats to control you?",
+      tactic: "Threats and Intimidation",
+      howItWorks: "They use fear to control behavior, either through explicit threats or subtle hints of negative consequences. This exploits power imbalances and survival instincts.",
+      redFlags: [
+        "'If you can't meet these numbers, I don't know how secure your position will be'",
+        "Towering over you in anger or slamming doors",
+        "Public criticism in all-hands meetings",
+        "Threats to pull funding or replace you"
+      ],
+      longTermEffect: "Creates a culture of fear and anxiety",
+      emotionalImpact: "You feel trapped, unsafe, and constantly on edge. You become hyper-vigilant, overworking to avoid being a target, or withdrawn to stay 'under the radar'.",
+      metaphor: "It's like having a sword dangling over your head at work – one wrong move and it could drop. Or living with a wolf at the door: always alert, knowing dissent might provoke an attack.",
+      counterStrategy: {
+        name: "The Fear Disarmament",
+        action: "Document threats and maintain professional boundaries",
+        examples: [
+          "Record threatening statements",
+          "When they intimidate: 'I'll need that in writing'",
+          "If they threaten: 'Let's discuss this with HR present'"
+        ],
+        psychology: "Removes the power of fear by making threats visible and accountable",
+        powerMove: "I don't respond to threats. Let's have a professional discussion."
+      }
+    },
+    {
+      question: "Do they pressure you to conform to group decisions?",
+      tactic: "Peer Pressure and Groupthink",
+      howItWorks: "They exploit the natural human desire to fit in by implying 'everyone else' agrees or is doing something, so you should too. This suppresses dissenting opinions.",
+      redFlags: [
+        "'This is just how startup life is – all of us are pulling 80-hour weeks'",
+        "'All of us are on board with this plan, why aren't you?'",
+        "Lack of debate in meetings",
+        "Social ostracism for having different work habits"
+      ],
+      longTermEffect: "Stifles innovation and critical thinking",
+      emotionalImpact: "You feel isolated or defective for thinking differently. You experience anxiety about being judged or left out. Over time, you doubt your own ideas and values.",
+      metaphor: "It's like being the only domino trying not to fall – the force of all the others can knock you down anyway. Or swimming against a strong current in a river.",
+      counterStrategy: {
+        name: "The Independent Voice",
+        action: "Maintain your perspective and document dissenting views",
+        examples: [
+          "When pressured: 'I have a different perspective to share'",
+          "If ostracized: 'Diversity of thought strengthens teams'",
+          "Document your concerns in writing"
+        ],
+        psychology: "Values individual contribution over group conformity",
+        powerMove: "I contribute more by thinking independently."
+      }
+    },
+    {
+      question: "Do they create false urgency to pressure you?",
+      tactic: "False Urgency and Overwork Culture",
+      howItWorks: "They frame everything as critical to prevent scrutiny and induce panic-driven compliance. This ties into hustle culture, pushing people to ignore their limits.",
+      redFlags: [
+        "'If we don't get this feature out this week, the company could die'",
+        "Unrealistic deadlines for every project",
+        "Glorification of sleeping at the office",
+        "Implicit requirement to always be online"
+      ],
+      longTermEffect: "Leads to chronic stress and burnout",
+      emotionalImpact: "You feel exhausted yet guilty for not doing more. Personal boundaries erode as you skip meals, cut sleep, and sacrifice weekends. Anxiety and fatigue diminish your creativity.",
+      metaphor: "It's like a fire alarm ringing all day – you're running on adrenaline and fear, unable to distinguish real fires from false alarms. Or a hamster on a wheel, sprinting frantically but never getting anywhere healthier.",
+      counterStrategy: {
+        name: "The Reality Check",
+        action: "Set and maintain healthy boundaries",
+        examples: [
+          "When pressured: 'Let's assess what's truly urgent'",
+          "If overworked: 'I need to maintain sustainable hours'",
+          "Document your work-life balance needs"
+        ],
+        psychology: "Prioritizes sustainable productivity over panic-driven work",
+        powerMove: "I work best with realistic deadlines and proper rest."
+      }
+    },
+    {
+      question: "Do they dangle rewards that never materialize?",
+      tactic: "Carrot-and-Stick Promises",
+      howItWorks: "They alternate between promised rewards and implied negative outcomes to influence behavior. The 'carrot' is always just out of reach, while the 'stick' is the implied punishment.",
+      redFlags: [
+        "'If you put in extra hours this quarter, you'll get a big bonus next review'",
+        "Promises of raises or equity that never materialize",
+        "'Close this deal and we all get a well-deserved break'",
+        "Moving goalposts for promised rewards"
+      ],
+      longTermEffect: "Creates disillusionment and cynicism",
+      emotionalImpact: "Initially you feel motivated and hopeful, but repeated let-downs leave you disillusioned and used. You feel foolish for believing promises, which hurts your self-esteem.",
+      metaphor: "It's like a donkey with a carrot dangled in front of its nose – no matter how fast it walks, the carrot stays out of reach. Or being in a casino of workplace rewards: you keep investing effort like coins into a slot machine that rarely pays out.",
+      counterStrategy: {
+        name: "The Promise Protection",
+        action: "Get all promises in writing and set clear expectations",
+        examples: [
+          "When promised rewards: 'Let's document that in writing'",
+          "If goals shift: 'I need clarity on the new requirements'",
+          "Track all promised benefits and timelines"
+        ],
+        psychology: "Makes promises concrete and accountable",
+        powerMove: "I need commitments in writing to plan effectively."
+      }
+    },
+    {
+      question: "Do they keep you in the dark about important information?",
+      tactic: "Gatekeeping Information",
+      howItWorks: "They control access to information or resources to maintain power. By keeping you partially informed or excluding you from key discussions, they ensure you remain dependent.",
+      redFlags: [
+        "Withholding crucial documentation or insights",
+        "Not inviting you to important strategy meetings",
+        "'Need-to-know basis' misuse",
+        "Selective sharing of information with different team members"
+      ],
+      longTermEffect: "Creates information asymmetry and dependency",
+      emotionalImpact: "You feel powerless and frustrated. You sense something is off but can't pinpoint it, leading to anxiety and self-doubt. It's isolating and erodes your confidence in the organization.",
+      metaphor: "It's like trying to drive at night with one headlight – your manipulator has the high beams on while you're straining to navigate with limited visibility. Or a locked door in the flow of communication.",
+      counterStrategy: {
+        name: "The Information Audit",
+        action: "Proactively seek information and document gaps",
+        examples: [
+          "When excluded: 'I need to be included in these discussions'",
+          "If information is withheld: 'I require this information to do my job'",
+          "Document instances of information gatekeeping"
+        ],
+        psychology: "Reclaims your right to necessary information",
+        powerMove: "Transparency is essential for effective work."
+      }
+    },
+    {
+      question: "Do they take credit for your work or shift blame to you?",
+      tactic: "Credit Stealing & Blame Shifting",
+      howItWorks: "They take undue praise for your work while casting responsibility for mistakes onto you. This protects their ego at your expense and rewrites the narrative of events.",
+      redFlags: [
+        "Presenting your work as their idea",
+        "Using 'we' for successes but 'you' for failures",
+        "Blaming you for problems they caused",
+        "Taking credit for team achievements"
+      ],
+      longTermEffect: "Erodes trust and team morale",
+      emotionalImpact: "You feel angry, humiliated, and demoralized. Your contributions feel erased or misappropriated. You might overwork to prove yourself or become afraid to take risks.",
+      metaphor: "It's like playing hot potato with praise and blame – they grab all the cool potatoes (credit) and toss every hot one (blame) at you. Or building a sandcastle only for someone to stick their flag on it.",
+      counterStrategy: {
+        name: "The Credit Protection",
+        action: "Document your contributions and call out misattribution",
+        examples: [
+          "When credit is stolen: 'I led that project and would like recognition'",
+          "If blamed: 'Let's review the timeline of events'",
+          "Keep records of your contributions"
+        ],
+        psychology: "Ensures proper attribution and accountability",
+        powerMove: "I deserve credit for my work and won't accept undue blame."
+      }
+    },
+    {
+      question: "Do they control every detail of your work?",
+      tactic: "Micromanagement",
+      howItWorks: "They monitor and dictate every small detail of your work, not trusting others and ensuring they maintain control. This chips away at your autonomy and confidence.",
+      redFlags: [
+        "Reviewing every line of code or document",
+        "Requiring approval for minor decisions",
+        "Tracking your online status obsessively",
+        "Nitpicking minor issues in one-on-ones"
+      ],
+      longTermEffect: "Stifles initiative and growth",
+      emotionalImpact: "You feel stifled, inadequate, and anxious. You experience learned helplessness, stop taking initiative, and your stress levels remain high. It's humiliating and demotivating.",
+      metaphor: "It's like trying to paint with someone's hand clamped over yours, directing each stroke. Or being on a short leash – you can only move as far as it allows.",
+      counterStrategy: {
+        name: "The Autonomy Assertion",
+        action: "Set boundaries and demonstrate competence",
+        examples: [
+          "When micromanaged: 'I need space to do my job effectively'",
+          "If over-controlled: 'Let's agree on checkpoints instead of constant oversight'",
+          "Document your successful independent work"
+        ],
+        psychology: "Reclaims professional autonomy and trust",
+        powerMove: "I was hired for my expertise. Let me use it."
+      }
+    },
+    {
+      question: "Do they play team members against each other?",
+      tactic: "Divide and Conquer",
+      howItWorks: "They create divisions between people to maintain control, often using triangulation – involving a third party to mediate or carry messages rather than addressing issues directly.",
+      redFlags: [
+        "'A lot of the team agrees you need to improve'",
+        "Complaining about someone to others but not directly",
+        "Speaking ill of one founder to employees or investors",
+        "Controlling the narrative separately to different people"
+      ],
+      longTermEffect: "Creates a toxic, distrustful environment",
+      emotionalImpact: "You feel paranoid and confused about who to trust. It breeds distrust among team members and makes collaboration difficult. You feel like a pawn in someone's game.",
+      metaphor: "It's like a puppet master pulling strings from above so that the puppets clash. Or planting weeds in a garden – rumors and grudges sprout between team members.",
+      counterStrategy: {
+        name: "The Direct Communication",
+        action: "Insist on transparent, direct communication",
+        examples: [
+          "When triangulated: 'Let's discuss this directly'",
+          "If divided: 'I prefer to hear feedback directly from the source'",
+          "Document attempts to create division"
+        ],
+        psychology: "Removes the power of indirect manipulation",
+        powerMove: "I communicate directly, not through intermediaries."
+      }
+    },
+    {
+      question: "Do they dismiss real issues with forced positivity?",
+      tactic: "Toxic Positivity",
+      howItWorks: "They insist on being positive to an unhealthy degree, rejecting or shaming negative emotions or valid concerns. This silences dissent and avoids addressing real issues.",
+      redFlags: [
+        "'Let's not focus on the negative' when raising concerns",
+        "'We just need a can-do attitude, no negativity'",
+        "Only wanting to hear solutions, not problems",
+        "Public shout-outs but no space for struggles"
+      ],
+      longTermEffect: "Problems fester and grow worse",
+      emotionalImpact: "You feel guilty or ashamed for having normal negative feelings. You feel invalidated, unheard, and emotionally disconnected. Problems fester internally because they're never addressed.",
+      metaphor: "It's like putting a fresh coat of paint over a moldy wall – it looks cheerful briefly, but the rot is still spreading. Or wearing rose-colored glasses in a burning building.",
+      counterStrategy: {
+        name: "The Reality Validation",
+        action: "Insist on addressing real issues",
+        examples: [
+          "When dismissed: 'This issue needs to be addressed, not ignored'",
+          "If positivity is forced: 'We need to discuss both challenges and opportunities'",
+          "Document concerns that are being dismissed"
+        ],
+        psychology: "Validates the importance of addressing real problems",
+        powerMove: "I value honest discussion over forced positivity."
+      }
+    },
+    {
+      question: "Do they treat the founder like an infallible hero?",
+      tactic: "Cult of Personality",
+      howItWorks: "The leader is elevated to near-hero status, and their persona dominates the company's culture. Questioning them feels like heresy, and their flaws are excused as 'just what brilliant founders are like'.",
+      redFlags: [
+        "'[CEO Name] knows best – they built this company'",
+        "Dissenting opinions get squashed with 'Trust the vision'",
+        "Long hours justified by 'mission'",
+        "Any internal problem downplayed in light of founder's star power"
+      ],
+      longTermEffect: "Creates a culture of blind obedience",
+      emotionalImpact: "You feel conflicted and suppressed. You fear speaking up or being honest. You experience cognitive dissonance as you see issues but everyone else is praising the leader.",
+      metaphor: "It's like being in the orbit of a sun – the founder's persona is the sun, and everyone else just revolves around them. The light is warm if you're aligned, but if you drift out of orbit, you're cast into darkness.",
+      counterStrategy: {
+        name: "The Critical Thinking",
+        action: "Maintain independent judgment",
+        examples: [
+          "When hero-worshiped: 'Let's evaluate this based on facts'",
+          "If dissent is squashed: 'Healthy organizations welcome diverse perspectives'",
+          "Document instances of uncritical praise"
+        ],
+        psychology: "Values rational evaluation over personality cult",
+        powerMove: "I think independently, not through any leader's lens."
+      }
+    },
+    {
+      question: "Do they undermine you with backhanded compliments?",
+      tactic: "Negging and Undermining",
+      howItWorks: "They use sarcasm, teasing, or 'just joking' remarks that carry an insult. This allows them to put you down while maintaining plausible deniability.",
+      redFlags: [
+        "'I'm impressed you got that working... didn't expect you to pull it off'",
+        "'Good presentation – surprisingly coherent coming from the quiet one'",
+        "Snarky comments about your work",
+        "Jokes that are repeatedly at your expense"
+      ],
+      longTermEffect: "Erodes confidence and self-esteem",
+      emotionalImpact: "You laugh along to not seem sensitive, but inside it stings. You start second-guessing yourself. The confusion makes it hard to call out the behavior, so you internalize it.",
+      metaphor: "It's like getting a chocolate with a razor blade inside – it looks sweet, but it cuts you unexpectedly. Or 'death by a thousand cuts': each little joke is a tiny cut that adds up to real harm.",
+      counterStrategy: {
+        name: "The Direct Confrontation",
+        action: "Call out undermining behavior directly",
+        examples: [
+          "When negged: 'That comment felt like a backhanded compliment'",
+          "If undermined: 'I prefer direct feedback to sarcasm'",
+          "Document patterns of undermining behavior"
+        ],
+        psychology: "Removes the power of passive-aggressive comments",
+        powerMove: "I respond to direct communication, not veiled insults."
+      }
+    },
+    {
+      question: "Do they exploit your self-doubt by comparing you to others?",
+      tactic: "Exploiting Imposter Syndrome",
+      howItWorks: "They leverage your inner critic by constantly comparing you to others or highlighting how you stack up unfavorably against peers. This makes you more pliable through feelings of inadequacy.",
+      redFlags: [
+        "'The new hire already fixed that bug you struggled with'",
+        "'Be more like Alice; she delivered X, Y, Z'",
+        "Glorifying competitors to make you feel inadequate",
+        "Using credentials to undermine your confidence"
+      ],
+      longTermEffect: "Creates chronic insecurity and stress",
+      emotionalImpact: "You feel never good enough, constantly comparing yourself to others. You overwork to try to measure up, leading to burnout. Every achievement feels diminished.",
+      metaphor: "It's like running on a treadmill that someone else controls – no matter how fast you go, they keep dialing it up. Or trying to fill a bottomless bucket: each accomplishment disappears.",
+      counterStrategy: {
+        name: "The Self-Validation",
+        action: "Focus on your own growth and achievements",
+        examples: [
+          "When compared: 'I measure my progress against my own goals'",
+          "If undermined: 'My value isn't determined by comparison'",
+          "Keep a record of your achievements"
+        ],
+        psychology: "Builds internal validation over external comparison",
+        powerMove: "I define my success on my own terms."
+      }
+    },
+    {
+      question: "Do they blur professional boundaries by calling the company 'family'?",
+      tactic: "Boundary-Blurring Guilt",
+      howItWorks: "They equate the company to a 'family' to create a sense of obligation and loyalty. This emotionalizes the workplace and can guilt you into tolerating or doing things you normally wouldn't.",
+      redFlags: [
+        "'We're all one big family, so we trust you'll do what's needed'",
+        "Guilt about setting boundaries like 'But we're family'",
+        "'Join our family' during hiring",
+        "Using family rhetoric to justify unpaid overtime"
+      ],
+      longTermEffect: "Creates unhealthy emotional dependence",
+      emotionalImpact: "You feel guilty, dutiful, and pressured. It's hard to say no or prioritize your well-being. You might overwork 'for the family' even when it's hurting you.",
+      metaphor: "It's like being in a found family narrative with fine print – your 'family' ties will be used to ask extra from you. Or golden handcuffs, but emotional instead of financial.",
+      counterStrategy: {
+        name: "The Professional Boundaries",
+        action: "Maintain clear work-life separation",
+        examples: [
+          "When family is invoked: 'I value professional boundaries'",
+          "If guilt-tripped: 'My personal time is non-negotiable'",
+          "Document attempts to blur boundaries"
+        ],
+        psychology: "Maintains healthy work-life separation",
+        powerMove: "I maintain professional boundaries for sustainable work."
+      }
+    },
+    {
+      question: "Do they alternate between supportive and critical behavior?",
+      tactic: "Hot-and-Cold Behavior",
+      howItWorks: "They alternate between positive and negative treatment unpredictably – one day supportive, the next day critical or distant. This creates strong attachment through intermittent reinforcement.",
+      redFlags: [
+        "Lavish praise followed by harsh criticism",
+        "Sudden withdrawal of support without explanation",
+        "Mixed messages about your performance",
+        "Unpredictable responses to your work"
+      ],
+      longTermEffect: "Creates emotional dependency and anxiety",
+      emotionalImpact: "You feel emotionally exhausted, constantly evaluating your last interaction. You become dependent on their occasional positive moments, which feel good by contrast to the negative ones.",
+      metaphor: "It's like a roller coaster – exhilarating highs followed by stomach-churning drops. Or chasing the sun on a partly cloudy day: sometimes it shines warm, then disappears, leaving you cold.",
+      counterStrategy: {
+        name: "The Emotional Stability",
+        action: "Maintain consistent standards and boundaries",
+        examples: [
+          "When behavior shifts: 'I need consistent feedback'",
+          "If support withdraws: 'Let's establish clear expectations'",
+          "Document patterns of inconsistent behavior"
+        ],
+        psychology: "Values stability over emotional manipulation",
+        powerMove: "I respond to consistent, professional behavior."
+      }
+    },
+    {
+      question: "Do they use silence or exclusion as punishment?",
+      tactic: "Silent Treatment and Exclusion",
+      howItWorks: "They refuse to communicate or acknowledge you as a way to punish or control. This plays on our discomfort with social rejection and creates a power dynamic where they decide when you're 'worthy' of interaction.",
+      redFlags: [
+        "Suddenly stopping responses to your messages",
+        "Excluding you from team huddles or social events",
+        "Canceling one-on-one meetings without explanation",
+        "Talking to others while ignoring you"
+      ],
+      longTermEffect: "Creates isolation and anxiety",
+      emotionalImpact: "You feel distressed, confused, and panicked. You might apologize or capitulate just to end the discomfort. Prolonged exclusion leads to loneliness and depression.",
+      metaphor: "It's like being sent to Siberia in the middle of a lively city – physically present but socially isolated. Or a wall of ice between you and the person: you can see them carrying on, but any attempt to connect is met with silence.",
+      counterStrategy: {
+        name: "The Communication Insistence",
+        action: "Demand professional communication",
+        examples: [
+          "When ignored: 'I need clear communication to do my job'",
+          "If excluded: 'I should be included in relevant discussions'",
+          "Document instances of exclusion"
+        ],
+        psychology: "Maintains professional standards of communication",
+        powerMove: "I require professional communication to be effective."
       }
     }
   ];
@@ -1499,3 +2002,4 @@ function App() {
 }
 
 export default App;
+
