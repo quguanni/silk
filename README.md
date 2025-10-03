@@ -1,6 +1,6 @@
 # 🕸️ **Silk** — *See the Strings*
 
-**Silk** is a lightweight web app that helps you recognize emotional manipulation — like **gaslighting**, **guilt-tripping**, and **deflection** — through a simple, guided experience.
+**Silk** is a lightweight web app that helps you recognize emotional manipulation through a simple, guided experience.
 
 > _“Stuck in the web, can’t see the strings.”_  
 > This tool helps you name the patterns.
